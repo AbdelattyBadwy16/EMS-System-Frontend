@@ -12,9 +12,9 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleMenu = () => {
-      setIsOpen(!isOpen);
+    setIsOpen(!isOpen);
   };
-  
+
 
   // set isLogin attribute to know the user in app already or in the login page 
   // const isLogin = from redux store;
@@ -25,7 +25,6 @@ const Navbar = () => {
         <div className="my-auto  px-2 sm:px-6 lg:px-8">
           <div className="relative flex h-16 items-center justify-between">
             {/*left hand side*/}
-
             {/* Drop down */}
             <div className=" relative inline-block text-left xl:hidden mr-6">
               <div>
@@ -51,7 +50,7 @@ const Navbar = () => {
                   </svg>
                 </button>
               </div>
-{ isOpen && (    <div
+              {isOpen && (<div
                 className="absolute left-0 z-10 mt-2 w-44  rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
                 role="menu"
                 aria-orientation="vertical"
@@ -95,8 +94,8 @@ const Navbar = () => {
                   </div>
                 </div>
               </div>
-            )}
-          
+              )}
+
             </div>
 
             {/*  ---------------------*/}
@@ -126,53 +125,55 @@ const Navbar = () => {
                   </Link>
                 </div>
 
-            <div className="flex flex-1 items-center justify-center  sm:justify-start">
-              <h2 className="text-white text-4xl font-futura text-normal">
-                |EMS|
-              </h2>
-              <div className="flex  ml-60 ">
-                <LinkBtn title="اضافة لجنة" link="/" color="" icon="plus-square" />
-                <LinkBtn title="الرئيسية" link="/" color="" icon="home" />
+                <div className="flex flex-1 items-center justify-center  sm:justify-start">
+                  <h2 className="text-white text-4xl font-futura text-normal">
+                    |EMS|
+                  </h2>
+                  <div className="flex  ml-60 ">
+                    <LinkBtn title="اضافة لجنة" link="/" color="" icon="plus-square" />
+                    <LinkBtn title="الرئيسية" link="/" color="" icon="home" />
 
-              </div>
-            </div>
-            {/*right hand side*/}
-            <div className="mx-auto flex flex-1 items-center justify-center sm:justify-end">
-              <div className="flex ml-44 sm:hidden xl:flex">
-                <div className="mr-3.5">
-                  <Link
-                    to="/"
-                    className="text-white text-base font-bold font-gesstwo"
-                  >
-                    تغيير كلمة السر
-                  </Link>
+                  </div>
                 </div>
-=======
-              <div className="flex ml-44">
-                <LinkBtn title="تغيير كلمة السر" link="/" color="" icon="" />
-                <div>
-                  <Link
-                    to="/Login"
-                    className="text-white font-bold font-geDinkum bg-logoutBtnColor rounded-md px-1 py-1 gap-2"
-                  >
-                    <i className="bx bx-log-out ml-0.5 font-bold font-geDinkum"></i>{" "}
-                    تسجيل الخروج
-                  </Link>
+                {/*right hand side*/}
+                <div className="mx-auto flex flex-1 items-center justify-center sm:justify-end">
+                  <div className="flex ml-44 sm:hidden xl:flex">
+                    <div className="mr-3.5">
+                      <Link
+                        to="/"
+                        className="text-white text-base font-bold font-gesstwo"
+                      >
+                        تغيير كلمة السر
+                      </Link>
+                    </div>
+                    <div className="flex ml-44">
+                      <LinkBtn title="تغيير كلمة السر" link="/" color="" icon="" />
+                      <div>
+                        <Link
+                          to="/Login"
+                          className="text-white font-bold font-geDinkum bg-logoutBtnColor rounded-md px-1 py-1 gap-2"
+                        >
+                          <i className="bx bx-log-out ml-0.5 font-bold font-geDinkum"></i>{" "}
+                          تسجيل الخروج
+                        </Link>
+                      </div>
+                    </div>
+
+                    <div className="flex flex-1 items-center justify-end">
+                      <h2 className="text-white sm:text-lg xl:text-2xl  font-gesstwo font-medium "></h2>
+                      <div className="flex flex-1 items-center justify-center  sm:justify-end">
+                        <h2 className="text-white text-2xl font-gesstwo font-medium">
+                          جامعة جنوب الوادي
+                        </h2>
+                        <img
+                          className="size-24 flex justify-end"
+                          src={uniLogo}
+                          alt=""
+                        />
+                      </div>
+                    </div>
+                  </div>
                 </div>
-              </div>
-
-              <div className="flex flex-1 items-center justify-end">
-                <h2 className="text-white sm:text-lg xl:text-2xl  font-gesstwo font-medium ">
-              <div className="flex flex-1 items-center justify-center  sm:justify-end">
-                <h2 className="text-white text-2xl font-gesstwo font-medium">
-
-                  جامعة جنوب الوادي
-                </h2>
-                <img
-                  className="size-24 flex justify-end"
-                  src={uniLogo}
-                  alt=""
-                />
               </div>
             </div>
           </div>
