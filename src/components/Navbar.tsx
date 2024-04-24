@@ -18,12 +18,11 @@ const Navbar = () => {
 
               <div className="flex  ml-60 ">
 
-                <div className="mr-3">              
+                <div className="mr-3">
                   <Link to="/" className="text-white  font-bold text-xl font-gesstwo">
                     اضافة لجنة
                     <i className="bx bxs-plus-square text-white  text-base font-bold font-gesstwo m-2"></i>
                   </Link>
-               
                 </div>
 
                 <div className="mr-2">
@@ -31,7 +30,7 @@ const Navbar = () => {
                     الرئيسية
                     <i className="bx bxs-home text-white  text-base font-bold font-gesstwo m-2"></i>
                   </Link>
-                
+
                 </div>
               </div>
             </div>
