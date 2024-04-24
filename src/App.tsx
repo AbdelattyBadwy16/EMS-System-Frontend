@@ -16,7 +16,7 @@ function App() {
         </Route>
         <Route>
           <Route element={<AppLayout></AppLayout>}>
-            <Route index element={<Navigate replace to="/login" />} />
+            <Route index element={<Navigate replace to="/Login" />} />
             <Route path='/studenthome' element={<StudentHome></StudentHome>}></Route>     
             <Route path='*' element={<PageNotFound />} />       
           </Route>
