@@ -11,7 +11,8 @@ function App() {
       <Routes>
         {/*public Routes */}
         <Route>
-          <Route path="/Login" element={<Login></Login>}></Route>
+          <Route index element={<Login></Login>}></Route>
+          <Route path="/login" element={<Login></Login>}></Route>
         </Route>
         {/*Private Routes */}
         <Route>
