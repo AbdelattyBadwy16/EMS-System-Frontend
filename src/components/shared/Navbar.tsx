@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 import uniLogo from "../../assets/uniLogo.png";
 import { Link } from "react-router-dom";
+import LinkBtn from "../Navbar/LinkBtn";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -46,38 +47,17 @@ const Navbar = () => {
               </div>
               {isOpen && (
                 <div
-                  className="absolute left-0 z-10 mt-2 w-44  rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+                  className="absolute bg-white left-0 z-10 mt-2 w-44  rounded-md  shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
                   role="menu"
                   aria-orientation="vertical"
                   aria-labelledby="menu-button"
                   tabIndex={-1}
                 >
-                  <div className="grid justify-items-center">
+                  <div className="flex flex-col items-center justify-center text-center border-2 shadow-lg rounded-md ">
                     {/* Active: "bg-gray-100 text-gray-900", Not Active: "text-gray-700" */}
-
-                    <div className="hover:bg-gray-500 hover:text-white m-3 py-2 px-6 rounded">
-                      <Link
-                        to="/StudentHome"
-                        className="  text-xl font-bold font-gesstwo"
-                      >
-                        الرئيسية
-                        <i className="bx bxs-home hover:text-white text-base font-bold font-gesstwo m-2"></i>
-                      </Link>
-                    </div>
-
-                    <div className="hover:bg-gray-500 hover:text-white  py-2 px-5 rounded">
-                      <Link to="/" className="font-bold text-xl font-gesstwo">
-                        اضافة لجنة
-                        <i className="bx bxs-plus-square hover:text-white  text-base font-bold font-gesstwo m-2"></i>
-                      </Link>
-                    </div>
-
-                    <div className="hover:bg-gray-500 hover:text-white m-3 py-2 px-5 rounded">
-                      <Link to="/" className=" text-xl font-bold font-gesstwo">
-                        تغيير كلمة السر
-                      </Link>
-                    </div>
-
+                    <LinkBtn title="الرئيسية" color="black" icon="home" link="/studenthome" />
+                    <LinkBtn title="اضافة لجنة" color="black" icon="plus-square" link="/" />
+                    <LinkBtn title="تغيير كلمة السر" color="black" icon="plus-square" link="/" />
                     <div className="m-3">
                       <Link
                         to="/Login"
@@ -100,63 +80,39 @@ const Navbar = () => {
               </h2>
 
               <div className="flex sm:hidden xl:flex ml-60 ">
-                <div className="mr-3 ">
-                  <Link
-                    to="/"
-                    className="text-white  font-bold text-xl font-gesstwo"
-                  >
-                    اضافة لجنة
-                    <i className="bx bxs-plus-square text-white  text-base font-bold font-gesstwo m-2"></i>
-                  </Link>
-                </div>
-
-                <div className="mr-2">
-                  <Link
-                    to="/StudentHome"
-                    className="text-white  text-xl font-gesstwo"
-                  >
-                    الرئيسية
-                    <i className="bx bxs-home text-white  text-base font-bold font-gesstwo m-2"></i>
-                  </Link>
-                </div>
+                <LinkBtn title="اضافة لجنة" color="white" icon="plus-square" link="/" />
+                <LinkBtn title="الرئيسية" color="white" icon="home" link="/studenthome" />
               </div>
             </div>
 
             {/*right hand side*/}
             <div className="flex  items-center justify-end">
-             
 
-              <div className="flex  items-center  justify-end">
-              <div className="flex flex-1  sm:hidden xl:flex mr-48 ">
-                <div className="mr-3">
-                  <Link
-                    to="/"
-                    className="text-white text-base font-bold font-gesstwo"
-                  >
-                    تغيير كلمة السر
-                  </Link>
+
+              <div className="flex  items-center">
+                <div className="flex flex-1 sm:hidden xl:flex mr-48 items-center ">
+                  <LinkBtn title="تغيير كلمة السر" color="white" icon="plus-square" link="/" />
+                  <div className="">
+                    <Link
+                      to="/Login"
+                      className="text-white font-bold font-geDinkum bg-logoutBtnColor rounded-md px-2 py-2 gap-2"
+                    >
+                      <i className="bx bx-log-out ml-0.5 font-bold font-geDinkum mr-2"></i>
+                      تسجيل الخروج
+                    </Link>
+                  </div>
                 </div>
-                <div className="">
-                  <Link
-                    to="/Login"
-                    className="text-white font-bold font-geDinkum bg-logoutBtnColor rounded-md px-1 py-1 gap-2"
-                  >
-                    <i className="bx bx-log-out ml-0.5 font-bold font-geDinkum"></i>
-                    تسجيل الخروج
-                  </Link>
-                </div>
-              </div>
-               <div>
-               <h2 className="text-white text-2xl font-gesstwo font-medium">
-                  جامعة جنوب الوادي
-                </h2>
-               </div>
                 <div>
-                <img
-                  className="size-24 flex sm:justify-end"
-                  src={uniLogo}
-                  alt=""
-                />
+                  <h2 className="text-white text-2xl font-gesstwo font-medium">
+                    جامعة جنوب الوادي
+                  </h2>
+                </div>
+                <div>
+                  <img
+                    className="size-24 flex sm:justify-end"
+                    src={uniLogo}
+                    alt=""
+                  />
                 </div>
               </div>
             </div>
