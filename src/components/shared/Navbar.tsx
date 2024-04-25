@@ -79,8 +79,8 @@ const Navbar = () => {
                 |EMS|
               </h2>
 
-              <div className="flex sm:hidden xl:flex ml-60 ">
-                <LinkBtn title="اضافة لجنة" color="white" icon="plus-square" link="/" />
+              <div className="flex flex-1 sm:hidden xl:flex ml-48 ">
+                <LinkBtn title="اضافة لجنة" color="white" icon="plus-square" link="/"  />
                 <LinkBtn title="الرئيسية" color="white" icon="home" link="/studenthome" />
               </div>
             </div>
@@ -91,7 +91,7 @@ const Navbar = () => {
 
               <div className="flex  items-center">
                 <div className="flex flex-1 sm:hidden xl:flex mr-48 items-center ">
-                  <LinkBtn title="تغيير كلمة السر" color="white" icon="plus-square" link="/" />
+                  <LinkBtn title="تغيير كلمة السر" color="white" icon="" link="/" />
                   <div className="">
                     <Link
                       to="/Login"
@@ -103,7 +103,7 @@ const Navbar = () => {
                   </div>
                 </div>
                 <div>
-                  <h2 className="text-white text-2xl font-gesstwo font-medium">
+                  <h2 className="text-white text-2xl font-gesstwo font-medium ">
                     جامعة جنوب الوادي
                   </h2>
                 </div>
