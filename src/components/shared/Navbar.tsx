@@ -1,12 +1,7 @@
-
 import React, { useState } from "react";
 
 import uniLogo from "../../assets/uniLogo.png";
 import { Link } from "react-router-dom";
-import LinkBtn from "../Login/LinkBtn";
-
-
-
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -15,24 +10,23 @@ const Navbar = () => {
     setIsOpen(!isOpen);
   };
 
-
-  // set isLogin attribute to know the user in app already or in the login page 
-  // const isLogin = from redux store;
-
   return (
     <div>
       <nav className="bg-navColor">
         <div className="my-auto  px-2 sm:px-6 lg:px-8">
           <div className="relative flex h-16 items-center justify-between">
             {/*left hand side*/}
-            {/* Drop down */}
+
+            {/*DropDown*/}
             <div className=" relative inline-block text-left xl:hidden mr-6">
               <div>
                 <button
                   type="button"
                   className="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
                   id="menu-button"
-                  aria-expanded={isOpen} /* Use isOpen state to control aria-expanded */
+                  aria-expanded={
+                    isOpen
+                  } /* Use isOpen state to control aria-expanded */
                   aria-haspopup="true"
                   onClick={toggleMenu}
                 >
@@ -50,62 +44,63 @@ const Navbar = () => {
                   </svg>
                 </button>
               </div>
-              {isOpen && (<div
-                className="absolute left-0 z-10 mt-2 w-44  rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
-                role="menu"
-                aria-orientation="vertical"
-                aria-labelledby="menu-button"
-                tabIndex={-1}
-              >
-                <div className="grid justify-items-center">
-                  {/* Active: "bg-gray-100 text-gray-900", Not Active: "text-gray-700" */}
+              {isOpen && (
+                <div
+                  className="absolute left-0 z-10 mt-2 w-44  rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+                  role="menu"
+                  aria-orientation="vertical"
+                  aria-labelledby="menu-button"
+                  tabIndex={-1}
+                >
+                  <div className="grid justify-items-center">
+                    {/* Active: "bg-gray-100 text-gray-900", Not Active: "text-gray-700" */}
 
-                  <div className="hover:bg-gray-500 hover:text-white m-3 py-2 px-6 rounded">
-                    <Link
-                      to="/StudentHome"
-                      className="  text-xl font-bold font-gesstwo"
-                    >
-                      الرئيسية
-                      <i className="bx bxs-home hover:text-white text-base font-bold font-gesstwo m-2"></i>
-                    </Link>
-                  </div>
+                    <div className="hover:bg-gray-500 hover:text-white m-3 py-2 px-6 rounded">
+                      <Link
+                        to="/StudentHome"
+                        className="  text-xl font-bold font-gesstwo"
+                      >
+                        الرئيسية
+                        <i className="bx bxs-home hover:text-white text-base font-bold font-gesstwo m-2"></i>
+                      </Link>
+                    </div>
 
-                  <div className="hover:bg-gray-500 hover:text-white  py-2 px-5 rounded">
-                    <Link to="/" className="font-bold text-xl font-gesstwo">
-                      اضافة لجنة
-                      <i className="bx bxs-plus-square hover:text-white  text-base font-bold font-gesstwo m-2"></i>
-                    </Link>
-                  </div>
+                    <div className="hover:bg-gray-500 hover:text-white  py-2 px-5 rounded">
+                      <Link to="/" className="font-bold text-xl font-gesstwo">
+                        اضافة لجنة
+                        <i className="bx bxs-plus-square hover:text-white  text-base font-bold font-gesstwo m-2"></i>
+                      </Link>
+                    </div>
 
-                  <div className="hover:bg-gray-500 hover:text-white m-3 py-2 px-5 rounded">
-                    <Link to="/" className=" text-xl font-bold font-gesstwo">
-                      تغيير كلمة السر
-                    </Link>
-                  </div>
+                    <div className="hover:bg-gray-500 hover:text-white m-3 py-2 px-5 rounded">
+                      <Link to="/" className=" text-xl font-bold font-gesstwo">
+                        تغيير كلمة السر
+                      </Link>
+                    </div>
 
-                  <div className="m-3">
-                    <Link
-                      to="/Login"
-                      className=" font-bold text-white hover:text-black font-geDinkum bg-logoutBtnColor rounded-md px-2 py-2 gap-2"
-                    >
-                      <i className="bx bx-log-out ml-0.5 font-bold font-geDinkum"></i>
-                      تسجيل الخروج
-                    </Link>
+                    <div className="m-3">
+                      <Link
+                        to="/Login"
+                        className=" font-bold text-white hover:text-black font-geDinkum bg-logoutBtnColor rounded-md px-2 py-2 gap-2"
+                      >
+                        <i className="bx bx-log-out ml-0.5 font-bold font-geDinkum"></i>
+                        تسجيل الخروج
+                      </Link>
+                    </div>
                   </div>
                 </div>
-              </div>
               )}
-
             </div>
 
-            {/*  ---------------------*/}
-            <div className="flex flex-1 items-center justify-center  sm:justify-center sm:ml-12 lg:justify-start">
+            {/*------------------------------*/}
+
+            <div className="flex flex-1 items-center   sm:justify-start">
               <h2 className="text-white text-4xl font-futura text-normal">
                 |EMS|
               </h2>
 
-              <div className="flex  ml-60 sm:hidden xl:flex">
-                <div className="mr-3">
+              <div className="flex sm:hidden xl:flex ml-60 ">
+                <div className="mr-3 ">
                   <Link
                     to="/"
                     className="text-white  font-bold text-xl font-gesstwo"
@@ -124,55 +119,44 @@ const Navbar = () => {
                     <i className="bx bxs-home text-white  text-base font-bold font-gesstwo m-2"></i>
                   </Link>
                 </div>
+              </div>
+            </div>
 
-                <div className="flex flex-1 items-center justify-center  sm:justify-start">
-                  <h2 className="text-white text-4xl font-futura text-normal">
-                    |EMS|
-                  </h2>
-                  <div className="flex  ml-60 ">
-                    <LinkBtn title="اضافة لجنة" link="/" color="" icon="plus-square" />
-                    <LinkBtn title="الرئيسية" link="/" color="" icon="home" />
+            {/*right hand side*/}
+            <div className="flex  items-center justify-end">
+             
 
-                  </div>
+              <div className="flex  items-center  justify-end">
+              <div className="flex flex-1  sm:hidden xl:flex mr-48 ">
+                <div className="mr-3">
+                  <Link
+                    to="/"
+                    className="text-white text-base font-bold font-gesstwo"
+                  >
+                    تغيير كلمة السر
+                  </Link>
                 </div>
-                {/*right hand side*/}
-                <div className="mx-auto flex flex-1 items-center justify-center sm:justify-end">
-                  <div className="flex ml-44 sm:hidden xl:flex">
-                    <div className="mr-3.5">
-                      <Link
-                        to="/"
-                        className="text-white text-base font-bold font-gesstwo"
-                      >
-                        تغيير كلمة السر
-                      </Link>
-                    </div>
-                    <div className="flex ml-44">
-                      <LinkBtn title="تغيير كلمة السر" link="/" color="" icon="" />
-                      <div>
-                        <Link
-                          to="/Login"
-                          className="text-white font-bold font-geDinkum bg-logoutBtnColor rounded-md px-1 py-1 gap-2"
-                        >
-                          <i className="bx bx-log-out ml-0.5 font-bold font-geDinkum"></i>{" "}
-                          تسجيل الخروج
-                        </Link>
-                      </div>
-                    </div>
-
-                    <div className="flex flex-1 items-center justify-end">
-                      <h2 className="text-white sm:text-lg xl:text-2xl  font-gesstwo font-medium "></h2>
-                      <div className="flex flex-1 items-center justify-center  sm:justify-end">
-                        <h2 className="text-white text-2xl font-gesstwo font-medium">
-                          جامعة جنوب الوادي
-                        </h2>
-                        <img
-                          className="size-24 flex justify-end"
-                          src={uniLogo}
-                          alt=""
-                        />
-                      </div>
-                    </div>
-                  </div>
+                <div className="">
+                  <Link
+                    to="/Login"
+                    className="text-white font-bold font-geDinkum bg-logoutBtnColor rounded-md px-1 py-1 gap-2"
+                  >
+                    <i className="bx bx-log-out ml-0.5 font-bold font-geDinkum"></i>
+                    تسجيل الخروج
+                  </Link>
+                </div>
+              </div>
+               <div>
+               <h2 className="text-white text-2xl font-gesstwo font-medium">
+                  جامعة جنوب الوادي
+                </h2>
+               </div>
+                <div>
+                <img
+                  className="size-24 flex sm:justify-end"
+                  src={uniLogo}
+                  alt=""
+                />
                 </div>
               </div>
             </div>
