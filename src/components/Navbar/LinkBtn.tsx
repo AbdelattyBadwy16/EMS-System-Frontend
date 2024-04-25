@@ -12,7 +12,7 @@ const LinkBtn = (Detail: BtnDetail) => {
         <div className="mr-3 text-center">
             <Link to={Detail.link} className={`text-${Detail.color} font-bold text-xl font-gesstwo`}>
                 {Detail.title}
-                <i className={`bx bxs-${Detail.icon} text-white  text-base font-bold font-gesstwo m-2`}></i>
+                <i className={`bx bxs-${Detail.icon} text-${Detail.color}  text-base font-bold font-gesstwo m-2`}></i>
             </Link>
         </div>
     )

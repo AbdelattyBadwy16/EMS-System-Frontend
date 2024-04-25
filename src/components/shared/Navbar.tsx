@@ -57,7 +57,7 @@ const Navbar = () => {
                     {/* Active: "bg-gray-100 text-gray-900", Not Active: "text-gray-700" */}
                     <LinkBtn title="الرئيسية" color="black" icon="home" link="/studenthome" />
                     <LinkBtn title="اضافة لجنة" color="black" icon="plus-square" link="/" />
-                    <LinkBtn title="تغيير كلمة السر" color="black" icon="plus-square" link="/" />
+                    <LinkBtn title="تغيير كلمة السر" color="black" icon="" link="/" />
                     <div className="m-3">
                       <Link
                         to="/Login"
@@ -103,7 +103,7 @@ const Navbar = () => {
                   </div>
                 </div>
                 <div>
-                  <h2 className="text-white text-2xl font-gesstwo font-medium ">
+                  <h2 className="text-white text-2xl font-gesstwo font-medium">
                     جامعة جنوب الوادي
                   </h2>
                 </div>
