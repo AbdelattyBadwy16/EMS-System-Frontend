@@ -11,6 +11,7 @@ export default {
       colors: {
         navColor: "#1E1E1E",
         logoutBtnColor: "#D84B4B",
+        PageNotFoundcolor:"#A0AAB5"
       },
     },
   },
