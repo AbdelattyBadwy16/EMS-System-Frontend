@@ -1,13 +1,7 @@
-<<<<<<< HEAD
 import React, { useState, useEffect } from 'react';
-import { FaPrint } from 'react-icons/fa';
-=======
-import { useState, useEffect } from 'react';
-import DataTable from 'react-data-table-component';
 import { FaPrint } from 'react-icons/fa'; 
 import { useSelector } from 'react-redux';
 import { getId, getRefreshToken, getRole, getToken } from '../Redux/Slices/userSlice';
->>>>>>> 80583cf1315012c40826662a7b67f72fb4e07619
 
 interface StudentData {
     name: string;
@@ -28,17 +22,6 @@ interface ExamData {
     seatNumber : string;
 }
 
-<<<<<<< HEAD
-
-=======
-const StudentHome = () => {
-    const [studentData, setStudentData] = useState<StudentData[]>([{ name:"ahmed",level:"بسش",code:"ahda",department : "fdsfs",status :"fda" }]);
-    
-    console.log(useSelector(getId));
-    console.log(useSelector(getToken));
-    console.log(useSelector(getRefreshToken));
-    console.log(useSelector(getRole));
->>>>>>> 80583cf1315012c40826662a7b67f72fb4e07619
 
 
 const StudentHome = () => {
@@ -46,13 +29,9 @@ const StudentHome = () => {
     const [examData, setExamData] = useState<ExamData[]>([]); // تعريف حالة البيانات للمواد الدراسية
 
     useEffect(() => {
-<<<<<<< HEAD
         fetchStudentAndExamData();
-=======
-        fetchStudentAndSubjectData();
         
         
->>>>>>> 80583cf1315012c40826662a7b67f72fb4e07619
     }, []);
 
     const fetchStudentAndExamData = async () => {
