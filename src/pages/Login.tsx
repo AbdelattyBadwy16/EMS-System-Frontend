@@ -1,32 +1,44 @@
-import { ChangeEvent, useState } from 'react';
+import { useState } from 'react';
 import Navbar from '../components/shared/Navbar';
 import './Login.css'
+import { login } from '../helper/Api/AuthApi';
+import { useNavigate } from 'react-router';
+import { useDispatch } from 'react-redux';
+import { addData } from '../Redux/Slices/userSlice';
+import Spinner from '../components/shared/Spinner'
+
 
 const Login = () => {
-  const [formData, setFormData] = useState({
-    username: '',
-    password: '',
-    errorMessage: ''
-  });
+  const [username, setUsername] = useState("");
+  const [password, setpassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-  const { username, password, errorMessage } = formData;
-
-  const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = event.target;
-    setFormData({ ...formData, [name]: value });
-  };
-
-  const loginfun = () => {
-    // Implement your login logic here
-    // For now, let's just show an error message if username or password is empty
-    if (!username || !password) {
-      setFormData({ ...formData, errorMessage: 'Please Enter Both Username And Password' });
-    } else {
-      // Clear error message if both username and password are provided
-      setFormData({ ...formData, errorMessage: '' });
-      // Implement your actual login logic here
+  const handelLogin = async () => {
+    if (username == "" || password == "") {
+      setErrorMessage("Username or Password can't be empty.");
+      return;
     }
-  };
+    setIsLoading(true);
+    const res = await login({ username, password });
+    if (res.isAuthenticated) {
+      dispatch(addData(
+        {
+          id: res.userName,
+          token: res.token,
+          refreshToken: res.refreshToken,
+          role: res.roles
+        }
+      ))
+      navigate("/studenthome");
+    } else {
+      setErrorMessage(res.message);
+    }
+     setIsLoading(false);
+
+  }
 
   return (
     <div>
@@ -37,15 +49,21 @@ const Login = () => {
             <h1>User Login</h1>
           </div>
           <form>
-            <input type="text" name="username" value={username} onChange={handleInputChange} placeholder="Username" /><br /><br />
-            <input type="password" name="password" value={password} onChange={handleInputChange} placeholder="Password" /><br /><br />
-            <button className='login-btn' type="button" onClick={loginfun}>Login</button>
+            <input type="text" name="username" value={username} onChange={(e) => setUsername(e.target.value)} placeholder="Username" /><br /><br />
+            <input type="password" name="password" value={password} onChange={(e) => setpassword(e.target.value)} placeholder="Password" /><br /><br />
+            {
+              isLoading ? "" :
+                <button className='login-btn' type="button" onClick={handelLogin}>Login</button>
+            }
           </form>
-          { <div className="error-message" >{errorMessage}</div>}
+          {
+            isLoading ? <Spinner /> :
+              <div className="error-message" >{errorMessage}</div>
+          }
         </div>
       </div>
     </div>
-    );
+  );
 };
 
 export default Login;

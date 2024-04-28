@@ -1,6 +1,7 @@
 import { useState } from "react";
 
 import uniLogo from "../../assets/uniLogo.png";
+import menuIcon from "../../assets/menu.png"
 import { Link } from "react-router-dom";
 import LinkBtn from "../Navbar/LinkBtn";
 
@@ -27,18 +28,7 @@ const Navbar = () => {
               aria-haspopup="true"
               onClick={toggleMenu}
             >
-              <svg
-                className="-mr-1 h-5 w-5 text-gray-400"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-                aria-hidden="true"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
-                  clipRule="evenodd"
-                />
-              </svg>
+              <img src={menuIcon} width="20"></img>
             </button>
           </div>
           {isOpen && (
@@ -49,11 +39,17 @@ const Navbar = () => {
               aria-labelledby="menu-button"
               tabIndex={-1}
             >
-              <div className="flex flex-col items-center justify-center text-center border-2 shadow-lg rounded-md ">
+              <div className="grid items-center justify-center text-center border-2 shadow-lg rounded-md gap-3 p-3">
                 {/* Active: "bg-gray-100 text-gray-900", Not Active: "text-gray-700" */}
-                <LinkBtn title="الرئيسية" color="black" icon="home" link="/studenthome" />
-                <LinkBtn title="اضافة لجنة" color="black" icon="plus-square" link="/" />
-                <LinkBtn title="تغيير كلمة السر" color="black" icon="" link="/" />
+                <div>
+                  <LinkBtn title="الرئيسية" color="black" icon="home" link="/studenthome" />
+                </div>
+                <div>
+                  <LinkBtn title="اضافة لجنة" color="black" icon="plus-square" link="/" />
+                </div>
+                <div>
+                  <LinkBtn title="تغيير كلمة السر" color="black" icon="lock-alt" link="/" />
+                </div>
                 <div className="m-3">
                   <Link
                     to="/Login"
@@ -85,29 +81,25 @@ const Navbar = () => {
 
             </div>
             <div className="">
-              <LinkBtn title="تغيير كلمة السر" color="white" icon="" link="/" />
+              <LinkBtn title="تغيير كلمة السر" color="white" icon="lock-alt" link="/" />
             </div>
             <Link
               to="/Login"
-              className="text-white font-bold font-geDinkum bg-logoutBtnColor rounded-md px-2 py-2 gap-2"
+              className="text-white font-bold font-geDinkum  bg-logoutBtnColor rounded-md px-2 py-2 gap-2"
             >
               <i className="bx bx-log-out ml-0.5 font-bold font-geDinkum mr-2"></i>
               تسجيل الخروج
             </Link>
           </div>
-          <div className="flex items-center">
-            <div>
-              <h2 className="text-white text-2xl font-gesstwo font-medium">
-                جامعة جنوب الوادي
-              </h2>
-            </div>
-            <div>
-              <img
-                className="size-24 flex sm:justify-end"
-                src={uniLogo}
-                alt=""
-              />
-            </div>
+          <div className="flex justify-center items-center ">
+            <h2 className="text-white text-2xl font-gesstwo  text-end font-medium">
+              جامعة جنوب الوادي
+            </h2>
+            <img
+              className="size-24 sm:justify-end"
+              src={uniLogo}
+              alt=""
+            />
           </div>
         </div>
       </div>
