@@ -1,3 +1,6 @@
+import { useSelector } from "react-redux";
+import Cookies from "universal-cookie";
+
 const Base_Url = 'https://localhost:44331/api'
 
 interface loginDto {
@@ -17,5 +20,22 @@ export async function login({ username, password }: loginDto) {
         }),
     });
     const data = await res.json();
+    return data;
+}
+
+
+export async function getRefresh(RefreshToken : any) {
+    if (RefreshToken == null) {
+        return;
+    }
+    const res = await fetch(`${Base_Url}/Account/RefreshToken?token=${RefreshToken}`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+        },
+    });
+
+    const data = await res.json();
+    console.log(data);
     return data;
 }

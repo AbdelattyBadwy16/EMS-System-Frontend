@@ -3,6 +3,7 @@ import Login from "./pages/Login"
 import StudentHome from "./pages/StudentHome"
 import AppLayout from "./components/shared/AppLayout"
 import PageNotFound from "./pages/PageNotFound"
+import PersistLogin from "./helper/PersistLogin"
 
 function App() {
 
@@ -17,8 +18,10 @@ function App() {
         {/*Private Routes */}
         <Route>
           <Route element={<AppLayout></AppLayout>}>
-            <Route path='/studenthome' element={<StudentHome></StudentHome>}></Route>
-            <Route path='*' element={<PageNotFound />} />
+            <Route element={<PersistLogin></PersistLogin>}>
+              <Route path='/studenthome' element={<StudentHome></StudentHome>}></Route>
+              <Route path='*' element={<PageNotFound />} />
+            </Route>
           </Route>
         </Route>
       </Routes>

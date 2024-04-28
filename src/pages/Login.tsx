@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router';
 import { useDispatch } from 'react-redux';
 import { addData } from '../Redux/Slices/userSlice';
 import Spinner from '../components/shared/Spinner'
+import Cookies from 'universal-cookie';
 
 
 const Login = () => {
@@ -13,6 +14,7 @@ const Login = () => {
   const [password, setpassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const Cookie = new Cookies();
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -22,21 +24,24 @@ const Login = () => {
       return;
     }
     setIsLoading(true);
-    const res = await login({ username, password });
-    if (res.isAuthenticated) {
-      dispatch(addData(
-        {
-          id: res.userName,
-          token: res.token,
-          refreshToken: res.refreshToken,
-          role: res.roles
-        }
-      ))
-      navigate("/studenthome");
-    } else {
-      setErrorMessage(res.message);
+    try {
+      const res = await login({ username, password });
+      if (res.isAuthenticated) {
+        dispatch(addData(
+          {
+            id: res.userName,
+            token: res.token,
+            refreshToken: res.refreshToken,
+            role: res.roles
+          }
+        ))
+        navigate("/studenthome");
+      } else {
+        setErrorMessage(res.message);
+      }
+    } finally {
+      setIsLoading(false);
     }
-     setIsLoading(false);
 
   }
 

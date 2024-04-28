@@ -25,11 +25,6 @@ interface SubjectData {
 const StudentHome = () => {
     const [studentData, setStudentData] = useState<StudentData[]>([{ name:"ahmed",level:"بسش",code:"ahda",department : "fdsfs",status :"fda" }]);
     
-    console.log(useSelector(getId));
-    console.log(useSelector(getToken));
-    console.log(useSelector(getRefreshToken));
-    console.log(useSelector(getRole));
-
     useEffect(() => {
         fetchStudentAndSubjectData();
         

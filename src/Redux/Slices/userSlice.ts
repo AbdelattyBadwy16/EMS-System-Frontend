@@ -22,6 +22,7 @@ const userSlice = createSlice(
         initialState,
         reducers: {
             addData(state, action) {
+                console.log(action);
                 state.id = action.payload.id;
                 state.token = action.payload.token;
                 state.refreshToken = action.payload.refreshToken;
@@ -36,20 +37,20 @@ const userSlice = createSlice(
 
 export const { addData } = userSlice.actions;
 
-export const getId = (state : userInterFace) => {
-    return state.id;
+export const getId = (state : any) => {
+    return state.user.id;
 }
 
-export const getToken = (state : userInterFace) => {
-    return state.token;
+export const getToken = (state : any) => {
+    return state.user.token;
 }
 
-export const getRefreshToken = (state : userInterFace) => {
-    return state.refreshToken;
+export const getRefreshToken = (state : any) => {
+    return state.user.refreshToken;
 }
 
-export const getRole = (state : userInterFace) => {
-    return state.role;
+export const getRole = (state : any) => {
+    return state.user.role;
 }
 
 
