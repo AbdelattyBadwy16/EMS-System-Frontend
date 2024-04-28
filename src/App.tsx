@@ -3,6 +3,7 @@ import Login from "./pages/Login"
 import StudentHome from "./pages/StudentHome"
 import AppLayout from "./components/shared/AppLayout"
 import PageNotFound from "./pages/PageNotFound"
+import ObserverHome from "./pages/ObserverHome"
 
 function App() {
 
@@ -18,6 +19,7 @@ function App() {
         <Route>
           <Route element={<AppLayout></AppLayout>}>
             <Route path='/studenthome' element={<StudentHome></StudentHome>}></Route>
+            <Route path='/observerhome' element={<ObserverHome></ObserverHome>}></Route>
             <Route path='*' element={<PageNotFound />} />
           </Route>
         </Route>

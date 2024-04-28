@@ -1,12 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { FaPrint } from 'react-icons/fa';
 
-interface StudentData {
+interface ObserverData {
     name: string;
-    level: string;
-    code: string;
-    department: string;
-    status: string;
+    degree: string;
 }
 
 interface ExamData {
@@ -17,27 +14,27 @@ interface ExamData {
     Time : string;
     Location : string;
     Committee : string;
-    seatNumber : string;
+    numberOfStudents : string;
 }
 
 
 
 
-const StudentHome = () => {
-    const [studentData, setStudentData] = useState<StudentData[]>([]);
+const ObserverHome = () => {
+    const [observerData, setObserverData] = useState<ObserverData[]>([]);
     const [examData, setExamData] = useState<ExamData[]>([]); // تعريف حالة البيانات للمواد الدراسية
 
     useEffect(() => {
-        fetchStudentAndExamData();
+        fetchObserverAndExamData();
     }, []);
 
-    const fetchStudentAndExamData = async () => {
-        //  fetching student data
+    const fetchObserverAndExamData = async () => {
+        //  fetching Observer data
         //  fetching subject data
 
         // for test
-        const studentData = { name: "عبدالهادي محمد علي", level: "الأول", code: "20210185", department: "علوم حاسب", status: "مستجد" };
-        setStudentData([studentData]);
+        const observerData = { name: "عبدالشكور فوزي علي", degree: "استاذ مساعد" };
+        setObserverData([observerData]);
 
         // for test 
         const examData = { 
@@ -48,7 +45,7 @@ const StudentHome = () => {
         Time: "13:00 - 16:00",
         Location: "مبني الفصول - فصل2",
         Committee: "لجنة 4",
-        seatNumber: "23"
+        numberOfStudents: "23"
     };
         setExamData([examData,examData,examData,examData]);
     };
@@ -58,23 +55,15 @@ const StudentHome = () => {
             <ul className='student-information bg-neutral-200 rounded-xl w-full mt-10  p-5 list-disc list-inside text-21 font-medium text-neutral-900 grid grid-cols-1 lg:grid-cols-2'> 
                 
                {
-                    studentData.map((student, index) => (
+                    observerData.map((observer, index) => (
                             <React.Fragment key={index}>
                                 <li className='mb-3'>
-                                    اسم الطالب : {student.name}
+                                    اسم  المراقب/الملاحظ  : {observer.name}
                                 </li>
                                 <li className='mb-3'>
-                                    المستوي : {student.level}
+                                    الدرجة العلمية : {observer.degree}
                                 </li>
-                                <li className='mb-3'>
-                                    كود الطالب : {student.code}
-                                </li>
-                                <li className='mb-3'>
-                                    البرنامج / القسم : {student.department}
-                                </li>
-                                <li>
-                                    حالة الطالب : {student.status}
-                                </li>
+                             
                             </React.Fragment>
                             ))
                 }
@@ -90,7 +79,7 @@ const StudentHome = () => {
                             <td className='w-1/8 p-1'>التوقيت</td>
                             <td className='w-1/8 p-1'>المكان</td>
                             <td className='w-1/8 p-1' >اللجنة</td>
-                            <td className='w-1/8 p-1'>رقم المقعد</td>
+                            <td className='w-1/8 p-1'>عدد الطلاب</td>
                         </tr>
                     </thead>
                     <tbody className='text-18 text-center'>
@@ -104,7 +93,7 @@ const StudentHome = () => {
                                     <td className='w-1/8 p-2'>{exam.Time}</td>
                                     <td className='w-1/8 p-2'>{exam.Location}</td>
                                     <td className='w-1/8 p-2'>{exam.Committee}</td>
-                                    <td className='w-1/8 p-2'>{exam.seatNumber}</td>
+                                    <td className='w-1/8 p-2'>{exam.numberOfStudents}</td>
                                 </tr>
                         ))}
                     </tbody>
@@ -121,4 +110,15 @@ const StudentHome = () => {
     );
 };
 
-export default StudentHome;
+
+
+
+
+
+
+
+
+
+
+
+export default ObserverHome;
