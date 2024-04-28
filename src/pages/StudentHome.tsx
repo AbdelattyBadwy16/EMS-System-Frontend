@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import DataTable from 'react-data-table-component';
 import { FaPrint } from 'react-icons/fa'; 
+import { useSelector } from 'react-redux';
+import { getId, getRefreshToken, getRole, getToken } from '../Redux/Slices/userSlice';
 
 interface StudentData {
     name: string;
@@ -22,11 +24,16 @@ interface SubjectData {
 
 const StudentHome = () => {
     const [studentData, setStudentData] = useState<StudentData[]>([{ name:"ahmed",level:"بسش",code:"ahda",department : "fdsfs",status :"fda" }]);
-    // const [subjectData, setSubjectData] = useState<SubjectData[]>([]);
-
+    
+    console.log(useSelector(getId));
+    console.log(useSelector(getToken));
+    console.log(useSelector(getRefreshToken));
+    console.log(useSelector(getRole));
 
     useEffect(() => {
         fetchStudentAndSubjectData();
+        
+        
     }, []);
 
     const fetchStudentAndSubjectData = async () => {
