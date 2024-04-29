@@ -1,21 +1,31 @@
 import { useEffect, useState } from 'react'
-import { Outlet } from 'react-router';
-import { useSelector } from 'react-redux';
-import {getRefreshToken } from "../Redux/Slices/userSlice";
+import { Outlet, useNavigate } from 'react-router';
+import { useDispatch, useSelector } from 'react-redux';
+import { addData, getRefreshToken } from "../Redux/Slices/userSlice";
 import { getRefresh } from './Api/AuthApi';
 
 const PersistLogin = () => {
     const [isLoading, setIsLoading] = useState(false);
     const RefreshToken = useSelector(getRefreshToken);
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
     useEffect(() => {
 
         async function fetch() {
             try {
                 setIsLoading(true);
-                console.log(RefreshToken)
                 const res = await getRefresh(RefreshToken);
                 console.log(res);
-                
+                if (res.isAuthenticated) {
+                    dispatch(addData(
+                        {
+                            id: res.userName,
+                            token: res.token,
+                            refreshToken: res.refreshToken,
+                            role: res.roles
+                        }
+                    ))
+                }
             } finally {
                 setIsLoading(false);
             }
