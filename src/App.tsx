@@ -3,6 +3,8 @@ import Login from "./pages/Login"
 import StudentHome from "./pages/StudentHome"
 import AppLayout from "./components/shared/AppLayout"
 import PageNotFound from "./pages/PageNotFound"
+import FacultyHome from "./components/FacultyHome/FacultyHome"
+import FacultyFlowcharts from "./components/FacultyHome/FacultyFlowcharts"
 
 function App() {
 
@@ -18,6 +20,8 @@ function App() {
         <Route>
           <Route element={<AppLayout></AppLayout>}>
             <Route path='/studenthome' element={<StudentHome></StudentHome>}></Route>
+            <Route path='/facultyHome' element={<FacultyHome></FacultyHome>}></Route>
+            <Route path='/FacultyFlowcharts' element={<FacultyFlowcharts></FacultyFlowcharts>}></Route>
             <Route path='*' element={<PageNotFound />} />
           </Route>
         </Route>

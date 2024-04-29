@@ -51,9 +51,13 @@ const Navbar = () => {
             >
               <div className="flex flex-col items-center justify-center text-center border-2 shadow-lg rounded-md ">
                 {/* Active: "bg-gray-100 text-gray-900", Not Active: "text-gray-700" */}
-                <LinkBtn title="الرئيسية" color="black" icon="home" link="/studenthome" />
+             <div className="m-3 pl-2">
+            <div className="ml-4">
+            <LinkBtn title="الرئيسية" color="black" icon="home" link="/studenthome" />
+            </div>
                 <LinkBtn title="اضافة لجنة" color="black" icon="plus-square" link="/" />
                 <LinkBtn title="تغيير كلمة السر" color="black" icon="" link="/" />
+             </div>
                 <div className="m-3">
                   <Link
                     to="/Login"
@@ -74,7 +78,7 @@ const Navbar = () => {
           <h2 className="text-white text-4xl font-futura text-normal hidden sm:block">
             |EMS|
           </h2>
-          <div className="lg:grid xl:grid-cols-6 grid-cols-4 m-auto items-center xl:mr-10 mr-25 gap-1 hidden">
+          <div className="xl:grid xl:grid-cols-6 grid-cols-4 m-auto items-center xl:mr-10 mr-25 gap-1 hidden ">
             <div className="">
               <LinkBtn title="اضافة لجنة" color="white" icon="plus-square" link="/" />
             </div>
