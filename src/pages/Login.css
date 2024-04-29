@@ -9,7 +9,7 @@
     background-image: url('../assets/svu.png');
     background-repeat: no-repeat;
     background-size: cover;
-    min-height: calc(100vh - 64px);
+    min-height  : calc(100vh - 64px);
     position: relative;
 }
 
