@@ -4,6 +4,8 @@ import StudentHome from "./pages/StudentHome"
 import AppLayout from "./components/shared/AppLayout"
 import PageNotFound from "./pages/PageNotFound"
 import PersistLogin from "./helper/PersistLogin"
+import ObserverHome from "./pages/ObserverHome"
+
 
 function App() {
 
