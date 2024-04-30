@@ -35,7 +35,6 @@ const Login = () => {
             role: res.roles
           }
         ))
-        console.log(res);
         navigate("/studenthome");
       } else {
         setErrorMessage(res.message);
