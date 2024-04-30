@@ -6,8 +6,6 @@ import PageNotFound from "./pages/PageNotFound"
 import FacultyHome from "./components/FacultyHome/FacultyHome"
 import FacultyFlowcharts from "./components/FacultyHome/FacultyFlowcharts"
 import PersistLogin from "./helper/PersistLogin"
-import ObserverHome from "./pages/ObserverHome"
-import changepassword from "./pages/changepassword"
 import Pass from "./pages/changepassword"
 
 
@@ -23,18 +21,13 @@ function App() {
         </Route>
         {/*Private Routes */}
         <Route>
-          <Route element={<AppLayout></AppLayout>}>
-            <Route path='/studenthome' element={<StudentHome></StudentHome>}></Route>
-            <Route path='/facultyHome' element={<FacultyHome></FacultyHome>}></Route>
-            <Route path='/FacultyFlowcharts' element={<FacultyFlowcharts></FacultyFlowcharts>}></Route>
-            <Route path='*' element={<PageNotFound />} />
-            <Route element={<PersistLogin></PersistLogin>}>
+          <Route element={<PersistLogin></PersistLogin>}>
+            <Route element={<AppLayout></AppLayout>}>
               <Route path='/studenthome' element={<StudentHome></StudentHome>}></Route>
               <Route path='*' element={<PageNotFound />} />
             </Route>
           </Route>
         </Route>
-        <Route path='/changepassword' element={<Pass></Pass>}></Route>
       </Routes>
     </BrowserRouter>
   )

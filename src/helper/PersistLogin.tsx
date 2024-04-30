@@ -7,10 +7,8 @@ import { getRefresh } from './Api/AuthApi';
 const PersistLogin = () => {
     const [isLoading, setIsLoading] = useState(false);
     const RefreshToken = useSelector(getRefreshToken);
-    const navigate = useNavigate();
     const dispatch = useDispatch();
     useEffect(() => {
-
         async function fetch() {
             try {
                 setIsLoading(true);

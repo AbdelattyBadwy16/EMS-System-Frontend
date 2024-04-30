@@ -28,12 +28,14 @@ export async function getRefresh(RefreshToken : any) {
     if (RefreshToken == null) {
         return;
     }
-    const res = await fetch(`${Base_Url}/Account/RefreshToken?token=${RefreshToken}`, {
-        method: "GET",
+    const res = await fetch(`${Base_Url}/Account/RefreshToken`, {
+        method: "POST",
         headers: {
             "Content-Type": "application/json",
-            
         },
+        body: JSON.stringify({
+            "token": RefreshToken,
+        }),
     });
 
     const data = await res.json();
