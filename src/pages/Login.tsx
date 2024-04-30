@@ -52,7 +52,7 @@ const Login = () => {
       <div className='login'>
         <div className="login-container">
           <div className="south-text">
-            <h1>User Login</h1>
+            <h1>South Valley University</h1>
           </div>
           <form>
             <input type="text" name="username" value={username} onChange={(e) => setUsername(e.target.value)} placeholder="Username" /><br /><br />
