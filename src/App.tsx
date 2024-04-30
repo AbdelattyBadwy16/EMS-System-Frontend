@@ -7,6 +7,8 @@ import FacultyHome from "./components/FacultyHome/FacultyHome"
 import FacultyFlowcharts from "./components/FacultyHome/FacultyFlowcharts"
 import PersistLogin from "./helper/PersistLogin"
 import ObserverHome from "./pages/ObserverHome"
+import changepassword from "./pages/changepassword"
+import Pass from "./pages/changepassword"
 
 
 function App() {
@@ -32,6 +34,7 @@ function App() {
             </Route>
           </Route>
         </Route>
+        <Route path='/changepassword' element={<Pass></Pass>}></Route>
       </Routes>
     </BrowserRouter>
   )

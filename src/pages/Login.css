@@ -1,15 +1,17 @@
-* {
+body {
+    font-family: Arial, sans-serif;
+    background-repeat: no-repeat;
+    background-size: cover;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    height: 100vh;
 }
-
 
 .login {
     background-image: url('../assets/svu.png');
     background-repeat: no-repeat;
     background-size: cover;
-    min-height  : calc(100vh - 64px);
+    min-height: calc(100vh - 64px);
     position: relative;
 }
 
@@ -26,7 +28,6 @@
     width: 85%;
 }
 
-
 .login-container::before {
     content: '';
     position: absolute;
@@ -40,17 +41,17 @@
 }
 
 .login-container h1 {
-    font-family: 'Futura Bk BT';
+    font-family: GE Dinkum;
+    margin-top: 0;
     color: #333;
     font-weight: 400;
-    font-size: 32px;
-    margin-bottom: 40px;
+    font-size: 30px;
 }
 
 input[type="text"],
 input[type="password"] {
     width: 80%;
-    padding: 10px;
+    padding: 7px;
     margin: 8px 0;
     border-radius: 4px;
     box-sizing: border-box;
@@ -69,7 +70,7 @@ input[type="password"] {
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    width: 80%;
+    width: 50%;
     transition: 0.3s;
     font-weight: bold;
 }
@@ -85,32 +86,34 @@ button:hover {
     text-align: center;
     margin: 10px auto;
     font-size: 14px;
-    
 }
 
 .south-text {
     margin-top: 20px;
     margin-bottom: 20px;
     color: #666;
-
+    size: 1px;
 }
 
-@media (min-width: 890px) {
+@media (min-width: 600px) {
+    .login-container {
+        width: 70%;
+    }
+}
+
+@media (min-width: 900px) {
     .login-container {
         width: 50%;
     }
 }
 
-
-@media (min-width: 990px) {
+@media (min-width: 1200px) {
     .login-container {
         width: 40%;
     }
-} 
+}
 
-
-
-@media (min-width: 1200px) {
+@media (min-width: 1500px) {
     .login-container {
         width: 30%;
     }
