@@ -7,6 +7,7 @@ import PersistLogin from "./helper/PersistLogin"
 import RequireAuth from "./helper/RequireAuth"
 import FacultyHome from "./components/FacultyHome/FacultyHome"
 import ObserverHome from "./pages/ObserverHome"
+import AddCommitte from "./pages/AddCommitte"
 
 function App() {
 
@@ -26,6 +27,7 @@ function App() {
               <Route path='/studenthome' element={<StudentHome></StudentHome>}></Route>
               <Route path='/facultyhome' element={<FacultyHome></FacultyHome>}></Route>
               <Route path='/staffhome' element={<ObserverHome></ObserverHome>}></Route>
+              <Route path='/addcommit' element={<AddCommitte></AddCommitte>}></Route>
               <Route path='*' element={<PageNotFound />} />
             </Route>
           </Route>
