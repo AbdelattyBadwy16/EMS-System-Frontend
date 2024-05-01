@@ -8,7 +8,7 @@ interface loginDto {
     password: string
 }
 
-export async function login({ username, password }: loginDto) {
+export async function UserLogin({ username, password }: loginDto) {
     const res = await fetch(`${Base_Url}/Account/LogIn`, {
         method: "POST",
         headers: {
@@ -24,7 +24,8 @@ export async function login({ username, password }: loginDto) {
 }
 
 
-export async function getRefresh(RefreshToken : any) {
+export async function Refresh(RefreshToken : any) {
+    console.log(RefreshToken)
     if (RefreshToken == null) {
         return;
     }
@@ -34,11 +35,11 @@ export async function getRefresh(RefreshToken : any) {
             "Content-Type": "application/json",
         },
         body: JSON.stringify({
-            "refreshToken": RefreshToken,
+            "token": RefreshToken,
         }),
     });
 
     const data = await res.json();
-    console.log(data);
+    
     return data;
 }

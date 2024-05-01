@@ -1,12 +1,13 @@
 import { useEffect, useState } from 'react';
 import Navbar from '../components/shared/Navbar';
 import './Login.css'
-import { login } from '../helper/Api/AuthApi';
+import { UserLogin } from '../helper/Api/AuthApi';
 import { useNavigate } from 'react-router';
 import { useDispatch } from 'react-redux';
 import { addData } from '../Redux/Slices/userSlice';
 import Spinner from '../components/shared/Spinner'
 import Cookies from 'universal-cookie';
+import { Helmet } from 'react-helmet-async';
 
 
 const Login = () => {
@@ -37,7 +38,7 @@ const Login = () => {
     }
     setIsLoading(true);
     try {
-      const res = await login({ username, password });
+      const res = await UserLogin({ username, password });
       if (res.isAuthenticated) {
         dispatch(addData(
           {
@@ -78,6 +79,9 @@ const Login = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>EMS South Valley University</title>
+      </Helmet>
       <Navbar />
       <div className='login'>
         <div className="login-container">

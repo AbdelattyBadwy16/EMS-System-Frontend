@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react'
-import { Outlet, useLocation, useNavigate } from 'react-router';
-import { useDispatch, useSelector } from 'react-redux';
-import { addData, getRefreshToken, getToken } from "../Redux/Slices/userSlice";
-import { getRefresh } from './Api/AuthApi';
+import { Outlet } from 'react-router';
+import { useDispatch } from 'react-redux';
+import { addData } from "../Redux/Slices/userSlice";
+import { Refresh } from './Api/AuthApi';
 import Cookies from 'universal-cookie';
-import Login from '../pages/Login';
+import Spinner from '../components/shared/Spinner';
 
 const PersistLogin = () => {
     const [isLoading, setIsLoading] = useState(false);
@@ -15,7 +15,7 @@ const PersistLogin = () => {
         async function fetch() {
             try {
                 setIsLoading(true);
-                const res = await getRefresh(RefreshToken);
+                const res = await Refresh(RefreshToken);
 
                 if (res.response.isAuthenticated) {
                     dispatch(addData(
@@ -34,7 +34,8 @@ const PersistLogin = () => {
         }
         fetch();
     }, [])
-    return <Outlet></Outlet>
+
+    return isLoading ? <Spinner></Spinner> : <Outlet></Outlet>
 }
 
 export default PersistLogin

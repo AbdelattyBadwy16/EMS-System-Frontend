@@ -7,32 +7,34 @@ import PersistLogin from "./helper/PersistLogin"
 import RequireAuth from "./helper/RequireAuth"
 import FacultyHome from "./components/FacultyHome/FacultyHome"
 import ObserverHome from "./pages/ObserverHome"
+import { HelmetProvider } from "react-helmet-async"
+
+const helmetContext = {};
 
 function App() {
 
   return (
-    <BrowserRouter>
-      <Routes>
-        {/*public Routes */}
+    <HelmetProvider context={helmetContext}>
+      <BrowserRouter>
+        <Routes>
+          {/*public Routes */}
+          <Route index element={<Login></Login>}></Route>
+          <Route path="/login" element={<Login></Login>}></Route>
 
-        <Route index element={<Login></Login>}></Route>
-        <Route path="/login" element={<Login></Login>}></Route>
-
-        {/*Private Routes */}
-
-        <Route element={<PersistLogin></PersistLogin>}>
-          <Route element={<RequireAuth></RequireAuth>}>
-            <Route element={<AppLayout></AppLayout>}>
-              <Route path='/studenthome' element={<StudentHome></StudentHome>}></Route>
-              <Route path='/facultyhome' element={<FacultyHome></FacultyHome>}></Route>
-              <Route path='/staffhome' element={<ObserverHome></ObserverHome>}></Route>
-              <Route path='*' element={<PageNotFound />} />
+          {/*Private Routes */}
+          <Route element={<PersistLogin></PersistLogin>}>
+            <Route element={<RequireAuth></RequireAuth>}>
+              <Route element={<AppLayout></AppLayout>}>
+                <Route path='/studenthome' element={<StudentHome></StudentHome>}></Route>
+                <Route path='/facultyhome' element={<FacultyHome></FacultyHome>}></Route>
+                <Route path='/staffhome' element={<ObserverHome></ObserverHome>}></Route>
+                <Route path='*' element={<PageNotFound />} />
+              </Route>
             </Route>
           </Route>
-        </Route>
-
-      </Routes>
-    </BrowserRouter>
+        </Routes>
+      </BrowserRouter>
+    </HelmetProvider>
   )
 }
 

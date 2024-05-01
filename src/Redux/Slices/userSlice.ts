@@ -22,7 +22,6 @@ const userSlice = createSlice(
         initialState,
         reducers: {
             addData(state, action) {
-                console.log(action);
                 state.id = action.payload.id;
                 state.token = action.payload.token;
                 state.refreshToken = action.payload.refreshToken;
