@@ -34,7 +34,7 @@ export async function getRefresh(RefreshToken : any) {
             "Content-Type": "application/json",
         },
         body: JSON.stringify({
-            "token": RefreshToken,
+            "refreshToken": RefreshToken,
         }),
     });
 

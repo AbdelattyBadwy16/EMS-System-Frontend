@@ -27,7 +27,6 @@ interface ExamData {
 const StudentHome = () => {
     const [studentData, setStudentData] = useState<StudentData[]>([]);
     const [examData, setExamData] = useState<ExamData[]>([]); // تعريف حالة البيانات للمواد الدراسية
-
     useEffect(() => {
         fetchStudentAndExamData();
         
