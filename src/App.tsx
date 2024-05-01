@@ -7,6 +7,8 @@ import FacultyHome from "./components/FacultyHome/FacultyHome"
 import FacultyFlowcharts from "./components/FacultyHome/FacultyFlowcharts"
 import PersistLogin from "./helper/PersistLogin"
 import Pass from "./pages/changepassword"
+import ObserverHome from "./pages/ObserverHome"
+import AddCommitte from "./pages/AddCommitte"
 
 
 function App() {
@@ -24,6 +26,8 @@ function App() {
           <Route element={<PersistLogin></PersistLogin>}>
             <Route element={<AppLayout></AppLayout>}>
               <Route path='/studenthome' element={<StudentHome></StudentHome>}></Route>
+              <Route path='/observerhome' element={<ObserverHome></ObserverHome>}></Route>
+              <Route path='/addcommitte' element={<AddCommitte></AddCommitte>}></Route>
               <Route path='*' element={<PageNotFound />} />
             </Route>
           </Route>
