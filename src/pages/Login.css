@@ -75,7 +75,7 @@ input[type="password"] {
     font-weight: bold;
 }
 
-button:hover {
+.login-btn:hover {
     background-color: #45a049;
 }
 

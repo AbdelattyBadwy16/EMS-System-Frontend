@@ -26,7 +26,6 @@ export default {
         tableColor: "#ECECEC",
         btnColor: "rgba(76, 175, 80, 1)",
         iconColor: "rgba(11, 106, 14, 1)",
-        fontColor:'rgba(30, 30, 30, 1)',
         borderColor:'rgba(0, 0, 0, 0.68)'
       },
     },
