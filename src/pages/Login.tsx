@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Navbar from '../components/shared/Navbar';
 import './Login.css'
 import { login } from '../helper/Api/AuthApi';
@@ -18,6 +18,18 @@ const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
+  useEffect(() => {
+    dispatch(addData(
+      {
+        id: "",
+        token: "",
+        refreshToken: "",
+        role: []
+      }
+    ))
+    Cookie.remove("Bearer");
+  }, [])
+
   const handelLogin = async () => {
     if (username == "" || password == "") {
       setErrorMessage("Username or Password can't be empty.");
@@ -35,7 +47,26 @@ const Login = () => {
             role: res.roles
           }
         ))
-        navigate("/studenthome");
+        Cookie.set("Bearer", res.refreshToken);
+
+        switch (res.roles[0]) {
+          case "Student":
+            navigate("/studenthome");
+            break;
+          case "Observers":
+            navigate("/staffhome");
+            break;
+          case "Invigilators":
+            navigate("/staffhome");
+            break;
+          case "FacultyAdmin":
+            navigate("/facultyhome");
+            break;
+          case "GlobelAdmin":
+            navigate("/studenthome");
+            break;
+        }
+
       } else {
         setErrorMessage(res.message);
       }

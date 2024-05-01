@@ -1,36 +1,39 @@
 import { useEffect, useState } from 'react'
-import { Outlet, useNavigate } from 'react-router';
+import { Outlet, useLocation, useNavigate } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
-import { addData, getRefreshToken } from "../Redux/Slices/userSlice";
+import { addData, getRefreshToken, getToken } from "../Redux/Slices/userSlice";
 import { getRefresh } from './Api/AuthApi';
+import Cookies from 'universal-cookie';
+import Login from '../pages/Login';
 
 const PersistLogin = () => {
     const [isLoading, setIsLoading] = useState(false);
-    const RefreshToken = useSelector(getRefreshToken);
+    const cookie = new Cookies();
+    const RefreshToken = cookie.get("Bearer");
     const dispatch = useDispatch();
     useEffect(() => {
         async function fetch() {
             try {
                 setIsLoading(true);
                 const res = await getRefresh(RefreshToken);
-                console.log(res);
-                if (res.isAuthenticated) {
+
+                if (res.response.isAuthenticated) {
                     dispatch(addData(
                         {
-                            id: res.userName,
-                            token: res.token,
-                            refreshToken: res.refreshToken,
-                            role: res.roles
+                            id: res.response.userName,
+                            token: res.response.token,
+                            refreshToken: res.response.refreshToken,
+                            role: res.response.roles,
                         }
                     ))
                 }
+                cookie.set("Bearer", res.response.refreshToken);
             } finally {
                 setIsLoading(false);
             }
         }
         fetch();
     }, [])
-
     return <Outlet></Outlet>
 }
 

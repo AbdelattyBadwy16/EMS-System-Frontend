@@ -1,10 +1,12 @@
-import { Navigate, Outlet } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { Navigate, Outlet, useLocation } from 'react-router-dom';
+import { getToken } from '../Redux/Slices/userSlice';
 import Cookies from 'universal-cookie';
 
-export default function RequireAuth() {
-    // const cookie = new Cookies();
-    // const token = cookie.get("bearer");
-    // check if token found or not
-    const token = 1;
-    return !token ? <Outlet></Outlet> : <Navigate to="/home"></Navigate>
+export default function SaveAuth() {
+    const Cookie = new Cookies();
+    const loc = useLocation();
+    const token = Cookie.get("Bearer");
+
+    return token ? <Navigate to=""></Navigate>  : <Navigate to="/login"></Navigate> 
 }

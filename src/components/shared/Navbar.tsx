@@ -5,11 +5,12 @@ import menuIcon from "../../assets/menu.png"
 import { Link } from "react-router-dom";
 import LinkBtn from "../Navbar/LinkBtn";
 import { useSelector } from "react-redux";
-import { getRole } from "../../Redux/Slices/userSlice";
+import { getRole, getToken } from "../../Redux/Slices/userSlice";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const userRole = useSelector(getRole);
+  const token = useSelector(getToken);
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
@@ -19,7 +20,7 @@ const Navbar = () => {
       <div className="relative flex h-16 items-center justify-between">
         {/*DropDown*/}
         {
-          userRole[0] == "FacultyAdmin" ?
+          token && userRole[0] == "FacultyAdmin" ?
             <div className="relative inline-block text-left xl:hidden mr-6">
               <div>
                 <button
@@ -74,32 +75,35 @@ const Navbar = () => {
           <h2 className="text-white text-4xl font-futura text-normal hidden sm:block">
             |EMS|
           </h2>
-          <div className="lg:grid xl:grid-cols-6 grid-cols-4 m-auto items-center xl:mr-10 mr-25 gap-1 hidden">
-            {
-               userRole[0] == "FacultyAdmin" ?
-              <>
-                <div className="">
-                  <LinkBtn title="اضافة لجنة" color="white" icon="plus-square" link="/" />
-                </div>
-                <div className="">
-                  <LinkBtn title="الرئيسية" color="white" icon="home" link="/studenthome" />
-                </div>
-                <div className="xl:block hidden">
+          {
+            token ?
+            <div className="lg:grid xl:grid-cols-6 grid-cols-4 m-auto items-center xl:mr-10 mr-25 gap-1 hidden">
+              {
+                userRole[0] == "FacultyAdmin" ?
+                  <>
+                    <div className="">
+                      <LinkBtn title="اضافة لجنة" color="white" icon="plus-square" link="/" />
+                    </div>
+                    <div className="">
+                      <LinkBtn title="الرئيسية" color="white" icon="home" link="/studenthome" />
+                    </div>
+                    <div className="xl:block hidden">
 
-                </div>
-                <div className="">
-                  <LinkBtn title="تغيير كلمة السر" color="white" icon="lock-alt" link="/" />
-                </div>
-              </> : ""
-            }
-            <Link
-              to="/Login"
-              className="text-white font-bold font-geDinkum  bg-logoutBtnColor rounded-md px-2 py-2 gap-2"
-            >
-              <i className="bx bx-log-out ml-0.5 font-bold font-geDinkum mr-2"></i>
-              تسجيل الخروج
-            </Link>
-          </div>
+                    </div>
+                    <div className="">
+                      <LinkBtn title="تغيير كلمة السر" color="white" icon="lock-alt" link="/" />
+                    </div>
+                  </> : ""
+              }
+              <Link
+                to="/Login"
+                className="text-white font-bold font-geDinkum  bg-logoutBtnColor rounded-md px-2 py-2 gap-2"
+              >
+                <i className="bx bx-log-out ml-0.5 font-bold font-geDinkum mr-2"></i>
+                تسجيل الخروج
+              </Link>
+            </div> : ""
+          }
           <div className="flex justify-center items-center ">
             <h2 className="text-white text-2xl font-gesstwo  text-end font-medium">
               جامعة جنوب الوادي
