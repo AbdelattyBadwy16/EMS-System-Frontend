@@ -24,6 +24,7 @@ function App() {
           <Route element={<PersistLogin></PersistLogin>}>
             <Route element={<AppLayout></AppLayout>}>
               <Route path='/studenthome' element={<StudentHome></StudentHome>}></Route>
+              <Route path='/facultyhome' element={<FacultyHome></FacultyHome>}></Route>
               <Route path='*' element={<PageNotFound />} />
             </Route>
           </Route>

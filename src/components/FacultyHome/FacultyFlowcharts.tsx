@@ -3,10 +3,10 @@ import React from 'react'
 const FacultyFlowcharts = () => {
   return (
     
-<div className='w-full flex justify-center mt-8'>
+<div className='w-full xl:flex justify-center mt-8 '>
 
    {/*pei flowchart*/}
-<div className='w-11/12 h-50  mx-24 bg-customGray rounded-2xl text-center'>
+<div className='w-11/12 h-80  xl:mx-24 bg-customGray rounded-2xl text-center sm:ml-10'>
    <h1>pei flowchart</h1>
 </div>
 
@@ -15,7 +15,7 @@ const FacultyFlowcharts = () => {
  
     {/*bar flowchart*/}
 
-<div className='w-11/12 h-80 mx-24 bg-customGray rounded-2xl text-center'>
+<div className='w-11/12 h-80 xl:mx-24 sm:mt-8 xl:mt-0 bg-customGray rounded-2xl text-center sm:ml-10'>
 
 <h1>bar flowchart</h1>
 
