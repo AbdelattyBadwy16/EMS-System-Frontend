@@ -5,9 +5,10 @@ import AppLayout from "./components/shared/AppLayout"
 import PageNotFound from "./pages/PageNotFound"
 import PersistLogin from "./helper/PersistLogin"
 import RequireAuth from "./helper/RequireAuth"
-import FacultyHome from "./components/FacultyHome/FacultyHome"
+import FacultyHome from "./pages/FacultyHome"
 import ObserverHome from "./pages/ObserverHome"
 import { HelmetProvider } from "react-helmet-async"
+import AddCommitte from "./pages/AddCommitte"
 
 const helmetContext = {};
 
@@ -28,6 +29,7 @@ function App() {
                 <Route path='/studenthome' element={<StudentHome></StudentHome>}></Route>
                 <Route path='/facultyhome' element={<FacultyHome></FacultyHome>}></Route>
                 <Route path='/staffhome' element={<ObserverHome></ObserverHome>}></Route>
+                <Route path='/addCommitte' element={<AddCommitte></AddCommitte>}></Route>
                 <Route path='*' element={<PageNotFound />} />
               </Route>
             </Route>

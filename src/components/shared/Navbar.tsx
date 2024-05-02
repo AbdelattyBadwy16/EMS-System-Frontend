@@ -11,6 +11,25 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const userRole = useSelector(getRole);
   const token = useSelector(getToken);
+  let userHome = "";
+  switch (userRole[0]) {
+    case "Student":
+      userHome = "/studenthome";
+      break;
+    case "Observers":
+      userHome = "/staffhome";
+      break;
+    case "Invigilators":
+      userHome = "/staffhome";
+      break;
+    case "FacultyAdmin":
+      userHome = "/facultyhome";
+      break;
+    case "GlobelAdmin":
+      userHome = "/studenthome";
+      break;
+  }
+
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
@@ -50,7 +69,7 @@ const Navbar = () => {
                       <LinkBtn title="الرئيسية" color="black" icon="home" link="/studenthome" />
                     </div>
                     <div>
-                      <LinkBtn title="اضافة لجنة" color="black" icon="plus-square" link="/" />
+                      <LinkBtn title="اضافة لجنة" color="black" icon="plus-square" link="/addCommitte" />
                     </div>
                     <div>
                       <LinkBtn title="تغيير كلمة السر" color="black" icon="lock-alt" link="/" />
@@ -77,32 +96,32 @@ const Navbar = () => {
           </h2>
           {
             token ?
-            <div className="lg:grid xl:grid-cols-6 grid-cols-4 m-auto items-center xl:mr-10 mr-25 gap-1 hidden">
-              {
-                userRole[0] == "FacultyAdmin" ?
-                  <>
-                    <div className="">
-                      <LinkBtn title="اضافة لجنة" color="white" icon="plus-square" link="/" />
+              <div className="lg:grid xl:grid-cols-6 grid-cols-4 m-auto items-center xl:mr-10 mr-25 gap-1 hidden">
+                {
+                  userRole[0] == "FacultyAdmin" ?
+                    <>
+                      <div className="">
+                        <LinkBtn title="اضافة لجنة" color="white" icon="plus-square" link="/addCommitte" />
+                      </div>
+                      <div className="">
+                        <LinkBtn title="الرئيسية" color="white" icon="home" link={userHome} / >
                     </div>
-                    <div className="">
-                      <LinkBtn title="الرئيسية" color="white" icon="home" link="/studenthome" />
-                    </div>
-                    <div className="xl:block hidden">
+                      <div className="xl:block hidden">
 
-                    </div>
-                    <div className="">
-                      <LinkBtn title="تغيير كلمة السر" color="white" icon="lock-alt" link="/" />
-                    </div>
-                  </> : ""
-              }
-              <Link
-                to="/Login"
-                className="text-white font-bold font-geDinkum  bg-logoutBtnColor rounded-md px-2 py-2 gap-2"
-              >
-                <i className="bx bx-log-out ml-0.5 font-bold font-geDinkum mr-2"></i>
-                تسجيل الخروج
-              </Link>
-            </div> : ""
+                      </div>
+                      <div className="">
+                        <LinkBtn title="تغيير كلمة السر" color="white" icon="lock-alt" link="/" />
+                      </div>
+                    </> : ""
+                }
+                <Link
+                  to="/Login"
+                  className="text-white font-bold font-geDinkum  bg-logoutBtnColor rounded-md px-2 py-2 gap-2"
+                >
+                  <i className="bx bx-log-out ml-0.5 font-bold font-geDinkum mr-2"></i>
+                  تسجيل الخروج
+                </Link>
+              </div> : ""
           }
           <div className="flex justify-center items-center ">
             <h2 className="text-white text-2xl font-gesstwo  text-end font-medium">

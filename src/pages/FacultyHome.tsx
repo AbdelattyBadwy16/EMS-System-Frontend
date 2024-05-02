@@ -1,6 +1,6 @@
 import React from "react";
-import FacultyBars from "./FacultyBars";
-import FacultyFlowcharts from "./FacultyFlowcharts";
+import FacultyBars from "../components/FacultyHome/FacultyBars";
+import FacultyFlowcharts from "../components/FacultyHome/FacultyFlowcharts";
 import { Helmet } from "react-helmet-async";
 
 const FacultyHome = () => {
