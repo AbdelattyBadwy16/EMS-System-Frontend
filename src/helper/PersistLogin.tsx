@@ -5,6 +5,8 @@ import { addData } from "../Redux/Slices/userSlice";
 import { Refresh } from './Api/AuthApi';
 import Cookies from 'universal-cookie';
 import Spinner from '../components/shared/Spinner';
+import { addFacultyData } from '../Redux/Slices/FacultySlice';
+import { GetStaffData } from './Api/StaffApi';
 
 const PersistLogin = () => {
     const [isLoading, setIsLoading] = useState(false);
@@ -16,7 +18,7 @@ const PersistLogin = () => {
             try {
                 setIsLoading(true);
                 const res = await Refresh(RefreshToken);
-
+                console.log(res);
                 if (res.response.isAuthenticated) {
                     dispatch(addData(
                         {
@@ -24,6 +26,15 @@ const PersistLogin = () => {
                             token: res.response.token,
                             refreshToken: res.response.refreshToken,
                             role: res.response.roles,
+                        }
+                    ))
+                }
+                if (res.response.roles[0] == 'FacultyAdmin') {
+                    const newRes = await GetStaffData(res.response.userName);
+                    dispatch(addFacultyData(
+                        {
+                            id: newRes.model[0].facultyId,
+                            name: newRes.model[0].facultyName
                         }
                     ))
                 }

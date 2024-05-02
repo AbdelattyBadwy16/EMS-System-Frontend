@@ -6,11 +6,13 @@ import { Link } from "react-router-dom";
 import LinkBtn from "../Navbar/LinkBtn";
 import { useSelector } from "react-redux";
 import { getRole, getToken } from "../../Redux/Slices/userSlice";
+import { getFacultyName } from "../../Redux/Slices/FacultySlice";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const userRole = useSelector(getRole);
   const token = useSelector(getToken);
+  const FacultyName = useSelector(getFacultyName);
   let userHome = "";
   switch (userRole[0]) {
     case "Student":
@@ -104,8 +106,8 @@ const Navbar = () => {
                         <LinkBtn title="اضافة لجنة" color="white" icon="plus-square" link="/addCommitte" />
                       </div>
                       <div className="">
-                        <LinkBtn title="الرئيسية" color="white" icon="home" link={userHome} / >
-                    </div>
+                        <LinkBtn title="الرئيسية" color="white" icon="home" link={userHome} />
+                      </div>
                       <div className="xl:block hidden">
 
                       </div>
@@ -125,7 +127,11 @@ const Navbar = () => {
           }
           <div className="flex justify-center items-center ">
             <h2 className="text-white text-2xl font-gesstwo  text-end font-medium">
-              جامعة جنوب الوادي
+              {
+                FacultyName ?
+                  <div>كلية {FacultyName}</div>
+                  : "جامعة جنوب الوادى"
+              }
             </h2>
             <img
               className="size-24 sm:justify-end"

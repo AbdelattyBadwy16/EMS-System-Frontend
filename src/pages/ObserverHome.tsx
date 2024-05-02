@@ -65,32 +65,11 @@ const ObserverHome = () => {
     }, []);
 
 
-const fetchObserverAndExamData = async () => {
-    //  fetching Observer data
-    //  fetching subject data
-
-    // for test
-    const observerData = { name: "عبدالشكور فوزي علي", degree: "استاذ مساعد" };
-    setObserverData([observerData]);
-
-    // for test 
-    const examData = {
-        Course: "أنظمة تشغيل",
-        Date: "20/5/2024",
-        Day: "الأحد",
-        Period: "الصباحية",
-        Time: "13:00 - 16:00",
-        Location: "مبني الفصول - فصل2",
-        Committee: "لجنة 4",
-        numberOfStudents: "23"
-    };
-    setExamData([examData, examData, examData, examData]);
-};
 
 return (
     <div className='student-page dir-rtl px-2 sm:px-6 lg:px-20 w-full font-gesstwo f' style={{ direction: 'rtl' }}>
         <Helmet>
-            <title>Home</title>
+        <title>الصفحة الرئيسية</title>
         </Helmet>
         <ul className='student-information bg-neutral-200 rounded-xl w-full mt-10  p-5 list-disc list-inside text-21 font-medium text-neutral-900 grid grid-cols-1 lg:grid-cols-2'>
 

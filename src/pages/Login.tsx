@@ -8,6 +8,7 @@ import { addData } from '../Redux/Slices/userSlice';
 import Spinner from '../components/shared/Spinner'
 import Cookies from 'universal-cookie';
 import { Helmet } from 'react-helmet-async';
+import { addFacultyData } from '../Redux/Slices/FacultySlice';
 
 
 const Login = () => {
@@ -26,6 +27,13 @@ const Login = () => {
         token: "",
         refreshToken: "",
         role: []
+      }
+    ))
+    dispatch(addFacultyData(
+      {
+        id: "",
+        name: "",
+        
       }
     ))
     Cookie.remove("Bearer");

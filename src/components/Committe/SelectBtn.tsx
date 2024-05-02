@@ -3,7 +3,6 @@ import React from 'react'
 
 
 const SelectBtn = (option: any) => {
-    console.log(option);
     return (
         <select
             className="p-3  border-2 rounded-xl border-borderColor text-gray-700 font-gesstwo font-bold text-lg"

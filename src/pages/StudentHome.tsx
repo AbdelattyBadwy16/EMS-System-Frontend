@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { FaPrint } from 'react-icons/fa';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { getId } from '../Redux/Slices/userSlice';
 import { GetStudentData } from '../helper/Api/StudentApi';
 import Spinner from '../components/shared/Spinner';
 import { Helmet } from 'react-helmet-async';
+import { addFacultyData } from '../Redux/Slices/FacultySlice';
 
 
 interface StudentData {
     name: string;
     facultyCode: string;
-    facultyName: string;
     level: string;
     status: string;
     department: string;
@@ -34,20 +34,25 @@ const StudentHome = () => {
     const [examData, setExamData] = useState<ExamData[]>([]);
     const [isLoading, setIsLoading] = useState(false);
     const userId = useSelector(getId);
+    const dispath = useDispatch();
     useEffect(() => {
         const fetch = async () => {
             try {
                 setIsLoading(true);
                 const res = await GetStudentData(userId);
-                console.log(userId);
                 const Data = {
                     name: res.name,
                     facultyCode: res.facultyCode,
-                    facultyName: res.facultyName,
                     level: "الثالث",
                     status: res.status,
                     department: res.department,
                 };
+                dispath(addFacultyData(
+                    {
+                        id : res.facultyId,
+                        name : res.facultyName
+                    }
+                ))
                 setStudentData([Data]);
             } catch {
                 throw new Error("Faild To Fetch");
@@ -79,7 +84,7 @@ const StudentHome = () => {
         isLoading ? <Spinner></Spinner> :
             <div className='student-page dir-rtl px-2 sm:px-6 lg:px-20 w-full font-gesstwo f' style={{ direction: 'rtl' }}>
                 <Helmet>
-                    <title>Home</title>
+                    <title>الصفحة الرئيسية</title>
                 </Helmet>
                 <ul className='student-information bg-neutral-200 rounded-xl w-full mt-10  p-5 list-disc list-inside text-21 font-medium text-neutral-900 grid grid-cols-1 lg:grid-cols-2 '>
 
