@@ -56,8 +56,8 @@ const Login = () => {
             role: res.roles
           }
         ))
-        Cookie.set("Bearer", res.refreshToken);
-
+        Cookie.set("Refresh", res.refreshToken);
+        Cookie.set("Bearer", res.token);
         switch (res.roles[0]) {
           case "Student":
             navigate("/studenthome");

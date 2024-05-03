@@ -3,7 +3,8 @@ import { Helmet } from 'react-helmet-async';
 import { FaPrint } from 'react-icons/fa';
 import { GetStaffData } from '../helper/Api/StaffApi';
 import { useSelector } from 'react-redux';
-import { getId } from '../Redux/Slices/userSlice';
+import { getId, getRole } from '../Redux/Slices/userSlice';
+import { useNavigate } from 'react-router';
 
 interface ObserverData {
     name: string;
@@ -29,6 +30,11 @@ const ObserverHome = () => {
     const [examData, setExamData] = useState<ExamData[]>([]); 
     const [isLoading ,setIsLoading] = useState(false);
     const userId = useSelector(getId);
+    const role = useSelector(getRole);
+    if(role == "FacultyAdmin"){
+        const nav = useNavigate();
+        nav("/facultyhome")
+    }
     useEffect(() => {
         const fetch = async () => {
             try {

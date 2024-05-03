@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { FaPrint } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
-import { getId } from '../Redux/Slices/userSlice';
+import { getId, getRole } from '../Redux/Slices/userSlice';
 import { GetStudentData } from '../helper/Api/StudentApi';
 import Spinner from '../components/shared/Spinner';
 import { Helmet } from 'react-helmet-async';
 import { addFacultyData } from '../Redux/Slices/FacultySlice';
+import { useNavigate } from 'react-router';
 
 
 interface StudentData {
@@ -35,6 +36,11 @@ const StudentHome = () => {
     const [isLoading, setIsLoading] = useState(false);
     const userId = useSelector(getId);
     const dispath = useDispatch();
+    const role = useSelector(getRole);
+    if(role == "FacultyAdmin"){
+        const nav = useNavigate();
+        nav("/facultyhome")
+    }
     useEffect(() => {
         const fetch = async () => {
             try {

@@ -4,14 +4,20 @@ import FacultyFlowcharts from "../components/FacultyHome/FacultyFlowcharts";
 import { Helmet } from "react-helmet-async";
 import { GetStaffData } from "../helper/Api/StaffApi";
 import { addFacultyData } from "../Redux/Slices/FacultySlice";
-import { getId } from "../Redux/Slices/userSlice";
+import { getId, getRole } from "../Redux/Slices/userSlice";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router";
 
 const FacultyHome = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [name ,setName] = useState("");
   const userId = useSelector(getId);
   const dispath = useDispatch();
+  const role = useSelector(getRole);
+    if(role == "Student"){
+        const nav = useNavigate();
+        nav("/studenthome")
+    }
   useEffect(() => {
     const fetch = async () => {
       try {

@@ -10,15 +10,14 @@ import { GetStaffData } from './Api/StaffApi';
 
 const PersistLogin = () => {
     const [isLoading, setIsLoading] = useState(false);
-    const cookie = new Cookies();
-    const RefreshToken = cookie.get("Bearer");
+    const Cookie = new Cookies();
+    const RefreshToken = Cookie.get("Refresh");
     const dispatch = useDispatch();
     useEffect(() => {
         async function fetch() {
             try {
                 setIsLoading(true);
                 const res = await Refresh(RefreshToken);
-                console.log(res);
                 if (res.response.isAuthenticated) {
                     dispatch(addData(
                         {
@@ -38,7 +37,8 @@ const PersistLogin = () => {
                         }
                     ))
                 }
-                cookie.set("Bearer", res.response.refreshToken);
+                Cookie.set("Refresh", res.response.refreshToken);
+                Cookie.set("Bearer", res.response.token);
             } finally {
                 setIsLoading(false);
             }

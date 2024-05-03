@@ -20,9 +20,9 @@ interface ExamData {
 
 const AddCommitte = () => {
   const time = ["الفترة", "صباحية", "مسائية"]
-  const term = ["الفصل الدراسى", "اول", "ثانى"]
   const sub = ["المقرر", "برمجة مرئية", "مفاهيم برمجيه", "تشفير"]
   const [lawdto, setLaw] = useState([]);
+  const [term, setTerm] = useState([]);
   const [studyMethod, setStudyMethod] = useState([]);
   const [depart, setDepart] = useState([]);
   const [level, setLevel] = useState([]);
@@ -38,9 +38,10 @@ const AddCommitte = () => {
         setIsLoading(true);
         const res = await GetFacultyData(facultyID);
         setLaw(res.bYlaw);
-        setStudyMethod([res.studyMethod]);
+        setStudyMethod(res.studyMethod);
         setDepart(res.facultyNode);
         setLevel(res.facultyPhase);
+        setTerm(res.facultysemster);
       } catch {
         throw new Error("Faild To Fetch");
       } finally {
@@ -66,7 +67,7 @@ const AddCommitte = () => {
   }, [])
 
 
-  const handel = (e: any) => {
+  const GetDay = (e: any) => {
 
     var dateEntered = new Date(e.target.value);
     switch (dateEntered.getDay()) {
@@ -133,7 +134,7 @@ const AddCommitte = () => {
               </div>
               <div className='flex flex-col'>
                 <label className='font-bold text-[20px]'>التاريخ :</label>
-                <input onChange={(e) => handel(e)} className="p-3 border-2 rounded-xl w-full  border-borderColor text-gray-700 font-gesstwo font-bold text-lg" type='date' />
+                <input onChange={(e) => GetDay(e)} className="p-3 border-2 rounded-xl w-full  border-borderColor text-gray-700 font-gesstwo font-bold text-lg" type='date' />
               </div>
 
               <div className='flex flex-col'>
