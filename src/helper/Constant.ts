@@ -1,5 +1,6 @@
-export const GetStudent = (dateEntered: Date) =>{
+export const GetCommitteDay = (dateEntered: Date) =>{
     let day = "";
+    console.log(dateEntered)
     switch (dateEntered.getDay()) {
         case 1:
             day = "الاثنين"

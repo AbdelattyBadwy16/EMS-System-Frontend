@@ -129,7 +129,7 @@ const Navbar = () => {
             <h2 className="text-white text-2xl font-gesstwo  text-end font-medium">
               {
                 FacultyName ?
-                  <div>كلية {FacultyName}</div>
+                  <div> {FacultyName}</div>
                   : "جامعة جنوب الوادى"
               }
             </h2>

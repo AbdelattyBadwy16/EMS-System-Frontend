@@ -49,7 +49,7 @@ const StudentHome = () => {
                 const Data = {
                     name: res.name,
                     facultyCode: res.facultyCode,
-                    level: "الثالث",
+                    level: res.level,
                     status: res.status,
                     department: res.department,
                 };
