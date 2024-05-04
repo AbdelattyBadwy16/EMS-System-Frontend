@@ -48,7 +48,7 @@ const FacultyBars = (Detail: BarDetails) => {
 
         {isExpanded && (
           <div className="container  mx-auto px-12 grid">
-            <div className="border border-gray-500 rounded-b-lg">
+            {/* <div className="border border-gray-500 rounded-b-lg">
               <div className="grid grid-cols-8 divide-x text-center bg-gray-800 text-white rounded-b-lg py-3">
                 <div>اللجنة</div>
                 <div>المكان</div>
@@ -62,7 +62,25 @@ const FacultyBars = (Detail: BarDetails) => {
               {
                 Detail.data.map((item) => <TableRow rowData={item} />)
               }
-            </div>
+            </div> */}
+            <table className='w-full border border-navColor rounded-md font-gesstwo overflow-x-auto'>
+              <thead className='text-21 bg-stone-800 text-neutral-200 text-center rounded'>
+                <tr>
+                  <td className='w-1/8 p-1'>المكان</td>
+                  <td className='w-1/8 p-1'>الفترة</td>
+                  <td className='w-1/8 p-1'>التوقيت</td>
+                  <td className='w-1/8 p-1'>اليوم</td>
+                  <td className='w-1/8 p-1' >التاريخ</td>
+                  <td className='w-1/8 p-1' >اللجنة</td>
+                  <td className='w-1/8 p-1 '>المقرر</td>
+                </tr>
+              </thead>
+              <tbody className='text-18 text-center'>
+                {
+                  Detail.data.map((com: any, index) => (<TableRow rowData={com} index={index} />
+                  ))}
+              </tbody>
+            </table>
           </div>
         )}
       </div>

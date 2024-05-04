@@ -9,42 +9,16 @@ function TableRow(rowData: any) {
     const newDate = `${date.getDate()}-${date.getUTCMonth() + 1}-${date.getFullYear()}`;
     const newDay = GetCommiteDate(rowData?.rowData?.c?.day);
 
-
     return (
-        <div className="flex justify-center text-center  rounded-lg ">
-            <div className="w-1/6 bg-tableColor rounded-lg m-3 p-3">
-                <p>{rowData?.rowData?.c?.name}</p>
-                <br />
-            </div>
-            <div className="w-1/6 bg-tableColor rounded-lg m-3 p-3">
-                <p>{rowData?.rowData?.c?.place}</p>
-                <br />
-            </div>
-            <div className="w-1/6 bg-tableColor rounded-lg m-3 p-3">
-                <p>{`${rowData?.rowData?.c?.to}-${rowData?.rowData?.c?.from}`}</p>
-                <br />
-            </div>
-            <div className="w-1/6 bg-tableColor rounded-lg m-3 p-3">
-                <p>{rowData?.rowData?.c?.interval}</p>
-                <br />
-            </div>
-            <div className="w-1/6 bg-tableColor rounded-lg m-3 p-3">
-                <p>{newDay}</p>
-                <br />
-            </div>
-            <div className="w-1/6 bg-tableColor rounded-lg m-3 p-3">
-                <p>{newDate}</p>
-                <br />
-            </div>
-            <div className="w-1/6 bg-tableColor rounded-lg m-3 p-3">
-                <p>{rowData?.rowData?.c?.subjectName}</p>
-                <br />
-            </div>
-            <div className="w-1/6 bg-tableColor rounded-lg m-3 p-3">
-                <p>{rowData?.rowData?.c?.facultyNode}</p>
-                <br />
-            </div>
-        </div>
+        <tr key={rowData.index} className={rowData.index % 2 !== 0 ? ' bg-neutral-200' : ''}>
+            <td className='w-1/8 p-2 '>{rowData.rowData.c.place}</td>
+            <td className='w-1/8 p-2'>{rowData.rowData.c.interval}</td>
+            <td className='w-1/8 p-2'>{`${rowData.rowData.c.from} - ${rowData.rowData.c.to}`}</td>
+            <td className='w-1/8 p-2'>{newDay}</td>
+            <td className='w-1/8 p-2'>{newDate}</td>
+            <td className='w-1/8 p-2'>{rowData.rowData.c.name}</td>
+            <td className='w-1/8 p-2'>{rowData.rowData.c.subjectName}</td>
+        </tr>
     )
 }
 
