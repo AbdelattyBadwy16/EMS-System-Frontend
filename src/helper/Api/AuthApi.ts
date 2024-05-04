@@ -24,15 +24,18 @@ export async function UserLogin({ username, password }: loginDto) {
 }
 
 
-export async function Refresh(RefreshToken : any) {
-    console.log(RefreshToken)
+export async function Refresh(RefreshToken: any) {
+
     if (RefreshToken == null) {
         return;
     }
+    const Cookie = new Cookies();
+    const token = Cookie.get("Bearer");
     const res = await fetch(`${Base_Url}/Account/RefreshToken`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`
         },
         body: JSON.stringify({
             "token": RefreshToken,
@@ -40,6 +43,6 @@ export async function Refresh(RefreshToken : any) {
     });
 
     const data = await res.json();
-    
+
     return data;
 }

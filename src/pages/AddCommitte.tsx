@@ -5,10 +5,11 @@ import { useSelector } from 'react-redux';
 import { getgetFacultyId } from '../Redux/Slices/FacultySlice';
 import { GetFacultyData, GetSubjects } from '../helper/Api/FacultyApi';
 import Spinner from '../components/shared/Spinner';
-import { AddNewCommite, DeleteCommite, GetAllCommite } from '../helper/Api/CommiteApi';
+import { AddNewCommite, DeleteAllCommite, DeleteCommite, GetAllCommite } from '../helper/Api/CommiteApi';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { subjectDto } from '../helper/Api/FacultyApi';
+import { GetCommiteDate } from '../helper/Constant';
 
 interface commiteDto {
   day: string,
@@ -28,16 +29,6 @@ interface commiteDto {
   subjectId: number
 }
 
-interface ExamData {
-  Course: string;
-  Date: string;
-  Day: string;
-  Period: string;
-  Time: string;
-  Location: string;
-  Committee: string;
-  seatNumber: string;
-}
 
 const AddCommitte = () => {
   // drop down data
@@ -103,21 +94,7 @@ const AddCommitte = () => {
 
   }, [])
 
-  useEffect(() => {
-    const fetch = async () => {
-      try {
-        setIsLoading(true);
-        const res2 = await GetAllCommite(facultyID);
-        setCommitte(res2);
-      } catch {
-        throw new Error("Faild To Fetch");
-      } finally {
-        setIsLoading(false);
-      }
-    }
-    fetch();
-
-  }, [])
+  
 
   useEffect(() => {
     async function fetch() {
@@ -231,11 +208,18 @@ const AddCommitte = () => {
       setFrom("");
       setTo("");
       setCommName("");
+      let res2;
       try {
         // Fetch Again
-        const res2 = await GetAllCommite(facultyID);
+        res2 = await GetAllCommite(facultyID);
         setCommitte(res2);
       } finally {
+        for (let i = 0; i < res2.length; i++) {
+          const date = new Date(res2[i].date);
+          res2[i].date = `${date.getDate()}-${date.getUTCMonth() + 1}-${date.getFullYear()}`;
+          res2[i].day = GetCommiteDate(res2[i].day);
+        }
+        setCommitte(res2);
         setIsLoading(false);
       }
     }
@@ -243,21 +227,34 @@ const AddCommitte = () => {
 
   async function handelDelete(id: number, e: any) {
     // DELETE
+    e.preventDefault()
     try {
       const res = await DeleteCommite(id);
     } finally {
+      let res2 = []
       try {
-        const res2 = await GetAllCommite(facultyID);
-        if (res2)
-          setCommitte(res2);
-        else setCommitte([]);
+        res2 = await GetAllCommite(facultyID);
       } finally {
+        for (let i = 0; i < res2.length; i++) {
+          const date = new Date(res2[i].date);
+          res2[i].date = `${date.getDate()}-${date.getUTCMonth() + 1}-${date.getFullYear()}`;
+          res2[i].day = GetCommiteDate(res2[i].day);
+        }
+        setCommitte(res2);
         setIsLoading(false);
       }
     }
 
   }
 
+  async function handelDeleteAll(e: any) {
+    // DELETE  All
+    try {
+      const res = await DeleteAllCommite(facultyID);
+    } finally {
+      setCommitte([]);
+    }
+  }
   return (
     <>
 
@@ -484,7 +481,7 @@ const AddCommitte = () => {
                       <i className="bx bx-save"></i>
                     </span>
                   </button>
-                  <button className="bg-logoutBtnColor text-white rounded-lg	p-2.5 w-28">
+                  <button onClick={(e) => handelDeleteAll(e)} className="bg-logoutBtnColor text-white rounded-lg p-2.5 w-28">
                     ازالة
                     <span className="mr-1">
                       <i className="bx bx-trash"></i>
@@ -514,7 +511,7 @@ const AddCommitte = () => {
                         {
                           committe.map((com: any, index) => (
                             <tr key={index} className={index % 2 !== 0 ? ' bg-neutral-200' : ''}>
-                              <td className='w-1/8 p-2 '>{com.subjectName}</td>
+                              <td className='w-1/8 p-2 '>{com.subjectsName}</td>
                               <td className='w-1/8 p-2'>{com.date}</td>
                               <td className='w-1/8 p-2'>{com.day}</td>
                               <td className='w-1/8 p-2'>{com.interval}</td>
