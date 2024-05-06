@@ -24,15 +24,13 @@ const ChangePassword = () => {
       <div className="bottom-right-border"></div>
       <div className="bottom-left-border"></div>
       <div className="top-right-border"></div>
-
-
       <div className="pass-container">
         <h1>تغيير كلمة السر</h1>
         <form>
 
-          <input type="password" name="oldPassword" value={oldPassword} onChange={(e)=>setOldPassword(e.target.value)} placeholder="كلمة السر القديمه" /><br /><br />
-          <input type="password" name="newPassword" value={newPassword} onChange={(e)=>setNewPassword(e.target.value)} placeholder="كلمة السر الجديده" /><br /><br />
-          <input type="password" name="confirmPassword" value={confirmPassword} onChange={(e)=>setConfirmPassword(e.target.value)} placeholder="تأكيد كلمة السر " /><br /><br />
+          <input type="password" name="oldPassword" value={oldPassword} onChange={(e) => setOldPassword(e.target.value)} placeholder="كلمة السر القديمه" /><br /><br />
+          <input type="password" name="newPassword" value={newPassword} onChange={(e) => setNewPassword(e.target.value)} placeholder="كلمة السر الجديده" /><br /><br />
+          <input type="password" name="confirmPassword" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} placeholder="تأكيد كلمة السر " /><br /><br />
           <button className='pass-btn' type="button" onClick={changePassword}>حفظ</button>
         </form>
         {errorMessage && <div className="error-message text-[18px] font-bold">{errorMessage}</div>}

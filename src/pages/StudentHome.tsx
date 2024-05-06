@@ -29,12 +29,14 @@ const StudentHome = () => {
     const userId = useSelector(getId);
     const dispath = useDispatch();
     const role = useSelector(getRole);
+    
     const nav = useNavigate();
-    if(role == "FacultyAdmin"){
+    if (role == "FacultyAdmin") {
         nav("/facultyhome")
-    }else if(role != "Student"){
+    } else if (role != "Student") {
         nav("/studenthome")
     }
+
     useEffect(() => {
         const fetch = async () => {
             let res2;
@@ -42,6 +44,7 @@ const StudentHome = () => {
                 setIsLoading(true);
                 const res = await GetStudentData(userId);
                 res2 = await GetStudentCommite(userId);
+         
                 const Data = {
                     name: res.name,
                     facultyCode: res.facultyCode,
@@ -51,8 +54,8 @@ const StudentHome = () => {
                 };
                 dispath(addFacultyData(
                     {
-                        id : res.facultyId,
-                        name : res.facultyName
+                        id: res.facultyId,
+                        name: res.facultyName
                     }
                 ))
                 setStudentData([Data]);
@@ -106,39 +109,42 @@ const StudentHome = () => {
                     }
                 </ul>
                 <div className='shadow rounded-xl mt-10 p-7 overflow-y-auto'>
-                    <table className='w-full border border-navColor rounded-md font-gesstwo overflow-x-auto'>
-                        <thead className='text-21 bg-stone-800 text-neutral-200 text-center rounded'>
-                            <tr>
-                                <td className='w-1/8 p-1 td-table'>المقرر</td>
-                                <td className='w-1/8 p-1 td-table' >التاريخ</td>
-                                <td className='w-1/8 p-1 td-table'>اليوم</td>
-                                <td className='w-1/8 p-1 td-table'>الفترة</td>
-                                <td className='w-1/8 p-1 td-table'>التوقيت</td>
-                                <td className='w-1/8 p-1 td-table'>المكان</td>
-                                <td className='w-1/8 p-1 td-table' >اللجنة</td>
-                            </tr>
-                        </thead>
-                        <tbody className='text-18 text-center'>
-                            {
-                                examData.map((exam : any, index : any) => (
-                                    <tr key={index} className={index % 2 !== 0 ? ' bg-neutral-200' : ''}>
-                                        <td className='w-1/8 p-2  td-table'>{exam.subjectName}</td>
-                                        <td className='w-1/8 p-2 td-table'>{exam.committeeDate}</td>
-                                        <td className='w-1/8 p-2 td-table'>{exam.committeeday}</td>
-                                        <td className='w-1/8 p-2 td-table'>{exam.committeeInterval}</td>
-                                        <td className='w-1/8 p-2 td-table'>{exam.committeetimeFrom} - {exam.committeetimeTo}</td>
-                                        <td className='w-1/8 p-2 td-table'>{exam.committeePlace}</td>
-                                        <td className='w-1/8 p-2 td-table'>{exam.committeeName}</td>
+                    {
+                        examData.length ?
+                            <table className='w-full border border-navColor rounded-md font-gesstwo overflow-x-auto'>
+                                <thead className='text-21 bg-stone-800 text-neutral-200 text-center rounded'>
+                                    <tr>
+                                        <td className='w-1/8 p-1 td-table'>المقرر</td>
+                                        <td className='w-1/8 p-1 td-table' >التاريخ</td>
+                                        <td className='w-1/8 p-1 td-table'>اليوم</td>
+                                        <td className='w-1/8 p-1 td-table'>الفترة</td>
+                                        <td className='w-1/8 p-1 td-table'>التوقيت</td>
+                                        <td className='w-1/8 p-1 td-table'>المكان</td>
+                                        <td className='w-1/8 p-1 td-table' >اللجنة</td>
                                     </tr>
-                                ))}
-                        </tbody>
-                    </table>
-
-                   
+                                </thead>
+                                <tbody className='text-18 text-center'>
+                                    {
+                                        examData.map((exam: any, index: any) => (
+                                            <tr key={index} className={index % 2 !== 0 ? ' bg-neutral-200' : ''}>
+                                                <td className='w-1/8 p-2  td-table'>{exam?.subjectName}</td>
+                                                <td className='w-1/8 p-2 td-table'>{exam?.committeeDate}</td>
+                                                <td className='w-1/8 p-2 td-table'>{exam?.committeeday}</td>
+                                                <td className='w-1/8 p-2 td-table'>{exam?.committeeinterval}</td>
+                                                <td className='w-1/8 p-2 td-table'>{exam?.committeefrom} - {exam?.committeeto}</td>
+                                                <td className='w-1/8 p-2 td-table'>{exam?.committeeplace}</td>
+                                                <td className='w-1/8 p-2 td-table'>{exam?.committeeName}</td>
+                                            </tr>
+                                        ))}
+                                </tbody>
+                            </table>
+                            :
+                            <h1 className='text-center text-[30px] font-bold'>لا يوجد لجان بعد.</h1>
+                    }
                 </div>
                 <div className="flex justify-end mt-5">
                     <button className="no-print  btn-print bg-black text-white flex items-center px-4 py-1 rounded hover:bg-gray-800 "
-                    onClick={()=> {window.print()}}
+                        onClick={() => { window.print() }}
                     >
                         طباعة
                         <FaPrint className="mr-2" />
