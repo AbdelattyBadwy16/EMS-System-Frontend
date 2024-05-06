@@ -114,9 +114,8 @@ const ObserverHome = () => {
                             </tbody>
                         </table>
                         :
-                        <h1 className='text-center text-[50px] font-bold'>لا يوجد لجان بعد.</h1>
+                        <h1 className='text-center text-[30px] font-bold'>لا يوجد لجان بعد.</h1>
                 }
-
             </div>
             <div className="flex justify-end mt-5">
                 <ReactToPrint
