@@ -18,8 +18,9 @@ const FacultyHome = () => {
   const facultyID = useSelector(getgetFacultyId);
   const role = useSelector(getRole);
   const [phaseLen, setPhaseLen] = useState(0);
+  const nav = useNavigate();
   if (role == "Student") {
-    const nav = useNavigate();
+    
     nav("/studenthome")
   }
   useEffect(() => {
