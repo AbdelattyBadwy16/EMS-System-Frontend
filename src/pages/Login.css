@@ -38,8 +38,8 @@ body {
     margin-bottom: 30px;
 }
 
-input[type="text"],
-input[type="password"] {
+input[name="username"],
+input[name="password"] {
     width: 70%;
     padding: 7px;
     margin-top: 20px ;

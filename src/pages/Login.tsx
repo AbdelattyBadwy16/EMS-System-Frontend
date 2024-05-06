@@ -97,7 +97,7 @@ const Login = () => {
             <h1 >تسجيل الدخول </h1>
           </div>
           <form>
-            <input type="text" name="username" value={username} onChange={(e) => setUsername(e.target.value)} placeholder="اسم المستخدم" />
+            <input type="text"  name="username" value={username} onChange={(e) => setUsername(e.target.value)} placeholder="اسم المستخدم" />
             <input type="password" name="password" value={password} onChange={(e) => setpassword(e.target.value)} placeholder="كلمة المرور" />
             {
               isLoading ? "" :
