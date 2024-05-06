@@ -8,7 +8,7 @@ body {
 }
 
 .login {
-    background-image: url('../assets/svu.png');
+    background-image: url('../assets/Home.jpeg');
     background-repeat: no-repeat;
     background-size: cover;
     min-height: calc(100vh - 64px);
