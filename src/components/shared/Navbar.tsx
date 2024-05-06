@@ -130,11 +130,11 @@ const Navbar = () => {
               </div> : ""
           }
           <div className="flex justify-center items-center ">
-            <h2 className="text-white text-3xl font-gesstwo  text-end font-medium">
+            <h2 className="text-white text-2xl font-gesstwo  text-end font-medium">
               {
                 FacultyName ?
                   <div> {FacultyName}</div>
-                  : "نظام ادارة لجان الامتحانات "
+                  : "نـظام إدارة لجان الامتحانات "
               }
             </h2>
             <img

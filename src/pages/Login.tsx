@@ -41,7 +41,7 @@ const Login = () => {
 
   const handelLogin = async () => {
     if (username == "" || password == "") {
-      setErrorMessage("Username or Password can't be empty.");
+      setErrorMessage("Check Username Or Password!!");
       return;
     }
     setIsLoading(true);
@@ -94,11 +94,11 @@ const Login = () => {
       <div className='login'>
         <div className="login-container">
           <div className="south-text ">
-            <h1>تسجيل الدخول </h1>
+            <h1 >تسجيل الدخول </h1>
           </div>
           <form>
-            <input type="text" name="username" value={username} onChange={(e) => setUsername(e.target.value)} placeholder="اسم المستخدم" /><br /><br />
-            <input type="password" name="password" value={password} onChange={(e) => setpassword(e.target.value)} placeholder="كلمة المرور" /><br /><br />
+            <input type="text" name="username" value={username} onChange={(e) => setUsername(e.target.value)} placeholder="اسم المستخدم" />
+            <input type="password" name="password" value={password} onChange={(e) => setpassword(e.target.value)} placeholder="كلمة المرور" />
             {
               isLoading ? "" :
                 <button className='login-btn' type="button" onClick={handelLogin}>تسجيل الدخول</button>
