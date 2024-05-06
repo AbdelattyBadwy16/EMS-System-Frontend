@@ -24,14 +24,7 @@ function App() {
 
           {/*Private Routes */}
           <Route element={<PersistLogin></PersistLogin>}>
-<<<<<<< HEAD
-            <Route  >
-              {/* element={<RequireAuth></RequireAuth>} */}
-              
-              
-=======
             <Route element={<RequireAuth></RequireAuth>}>
->>>>>>> 67cb96d8afed3d77cb5fb082b72bbedc5bb412a5
               <Route element={<AppLayout></AppLayout>}>
                 <Route path='/studenthome' element={<StudentHome></StudentHome>}></Route>
                 <Route path='/facultyhome' element={<FacultyHome></FacultyHome>}></Route>
