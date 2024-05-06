@@ -37,8 +37,8 @@ const StudentHome = () => {
     const userId = useSelector(getId);
     const dispath = useDispatch();
     const role = useSelector(getRole);
+    const nav = useNavigate();
     if(role == "FacultyAdmin"){
-        const nav = useNavigate();
         nav("/facultyhome")
     }
     useEffect(() => {
@@ -116,44 +116,48 @@ const StudentHome = () => {
                         ))
                     }
                 </ul>
-                <div className='shadow rounded-xl mt-10 p-7'>
+                <div className='shadow rounded-xl mt-10 p-7 overflow-y-auto'>
                     <table className='w-full border border-navColor rounded-md font-gesstwo overflow-x-auto'>
                         <thead className='text-21 bg-stone-800 text-neutral-200 text-center rounded'>
                             <tr>
-                                <td className='w-1/8 p-1 '>المقرر</td>
-                                <td className='w-1/8 p-1' >التاريخ</td>
-                                <td className='w-1/8 p-1'>اليوم</td>
-                                <td className='w-1/8 p-1'>الفترة</td>
-                                <td className='w-1/8 p-1'>التوقيت</td>
-                                <td className='w-1/8 p-1'>المكان</td>
-                                <td className='w-1/8 p-1' >اللجنة</td>
-                                <td className='w-1/8 p-1'>رقم المقعد</td>
+                                <td className='w-1/8 p-1 td-table'>المقرر</td>
+                                <td className='w-1/8 p-1 td-table' >التاريخ</td>
+                                <td className='w-1/8 p-1 td-table'>اليوم</td>
+                                <td className='w-1/8 p-1 td-table'>الفترة</td>
+                                <td className='w-1/8 p-1 td-table'>التوقيت</td>
+                                <td className='w-1/8 p-1 td-table'>المكان</td>
+                                <td className='w-1/8 p-1 td-table' >اللجنة</td>
+                                <td className='w-1/8 p-1 td-table'>رقم المقعد</td>
                             </tr>
                         </thead>
                         <tbody className='text-18 text-center'>
                             {
                                 examData.map((exam, index) => (
                                     <tr key={index} className={index % 2 !== 0 ? ' bg-neutral-200' : ''}>
-                                        <td className='w-1/8 p-2 '>{exam.Course}</td>
-                                        <td className='w-1/8 p-2'>{exam.Date}</td>
-                                        <td className='w-1/8 p-2'>{exam.Day}</td>
-                                        <td className='w-1/8 p-2'>{exam.Period}</td>
-                                        <td className='w-1/8 p-2'>{exam.Time}</td>
-                                        <td className='w-1/8 p-2'>{exam.Location}</td>
-                                        <td className='w-1/8 p-2'>{exam.Committee}</td>
-                                        <td className='w-1/8 p-2'>{exam.seatNumber}</td>
+                                        <td className='w-1/8 p-2  td-table'>{exam.Course}</td>
+                                        <td className='w-1/8 p-2 td-table'>{exam.Date}</td>
+                                        <td className='w-1/8 p-2 td-table'>{exam.Day}</td>
+                                        <td className='w-1/8 p-2 td-table'>{exam.Period}</td>
+                                        <td className='w-1/8 p-2 td-table'>{exam.Time}</td>
+                                        <td className='w-1/8 p-2 td-table'>{exam.Location}</td>
+                                        <td className='w-1/8 p-2 td-table'>{exam.Committee}</td>
+                                        <td className='w-1/8 p-2 td-table'>{exam.seatNumber}</td>
                                     </tr>
                                 ))}
                         </tbody>
                     </table>
 
-                    <div className="flex justify-end mt-5">
-                        <button className="btn-print bg-black text-white flex items-center px-4 py-1 rounded hover:bg-gray-800 ">
-                            طباعة
-                            <FaPrint className="mr-2" />
-                        </button>
-                    </div>
+                   
                 </div>
+                <div className="flex justify-end mt-5">
+                    <button className="no-print  btn-print bg-black text-white flex items-center px-4 py-1 rounded hover:bg-gray-800 "
+                    onClick={()=> {window.print()}}
+                    >
+                        طباعة
+                        <FaPrint className="mr-2" />
+                    </button>
+                </div>
+
             </div>
     );
 };

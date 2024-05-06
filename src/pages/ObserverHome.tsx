@@ -7,7 +7,7 @@ import { getId, getRole } from '../Redux/Slices/userSlice';
 import { useNavigate } from 'react-router';
 import { addFacultyData } from '../Redux/Slices/FacultySlice';
 import { GetCommiteDate } from '../helper/Constant';
-import ReactToPrint from 'react-to-print';
+
 
 
 
@@ -21,9 +21,9 @@ const ObserverHome = () => {
     const role = useSelector(getRole);
     const componentRef = useRef<any>();
 
-
+    const nav = useNavigate();
     if (role == "FacultyAdmin") {
-        const nav = useNavigate();
+       
         nav("/facultyhome")
     }
     useEffect(() => {
@@ -91,34 +91,34 @@ const ObserverHome = () => {
 
                 </React.Fragment>
             </ul>
-            <div className='shadow rounded-xl mt-10 p-7'>
+            <div className='shadow rounded-xl mt-10 p-7 overflow-y-auto'>
                 {
                     examData.length ?
                         <table ref={componentRef} className='w-full border border-navColor rounded-md font-gesstwo '>
                             <thead className='text-21 bg-stone-800 text-neutral-200 text-center rounded'>
                                 <tr>
-                                    <td className='w-1/8 p-1 '>المقرر</td>
-                                    <td className='w-1/8 p-1' >التاريخ</td>
-                                    <td className='w-1/8 p-1'>اليوم</td>
-                                    <td className='w-1/8 p-1'>الفترة</td>
-                                    <td className='w-1/8 p-1'>التوقيت</td>
-                                    <td className='w-1/8 p-1'>المكان</td>
-                                    <td className='w-1/8 p-1' >اللجنة</td>
-                                    <td className='w-1/8 p-1'>عدد الطلاب</td>
+                                    <td className='w-1/8 p-1  td-table'>المقرر</td>
+                                    <td className='w-1/8 p-1 td-table' >التاريخ</td>
+                                    <td className='w-1/8 p-1 td-table'>اليوم</td>
+                                    <td className='w-1/8 p-1 td-table'>الفترة</td>
+                                    <td className='w-1/8 p-1 td-table'>التوقيت</td>
+                                    <td className='w-1/8 p-1 td-table'>المكان</td>
+                                    <td className='w-1/8 p-1 td-table' >اللجنة</td>
+                                    <td className='w-1/8 p-1 td-table'>عدد الطلاب</td>
                                 </tr>
                             </thead>
                             <tbody className='text-18 text-center'>
                                 {
                                     examData.map((exam: any, index: any) => (
                                         <tr key={index} className={index % 2 !== 0 ? ' bg-neutral-200' : ''}>
-                                            <td className='w-1/8 p-2 '>{exam.subjectsName}</td>
-                                            <td className='w-1/8 p-2'>{exam.date}</td>
-                                            <td className='w-1/8 p-2'>{exam.day}</td>
-                                            <td className='w-1/8 p-2'>{exam.interval}</td>
-                                            <td className='w-1/8 p-2'>{`${exam.from} - ${exam.to}`}</td>
-                                            <td className='w-1/8 p-2'>{exam.place}</td>
-                                            <td className='w-1/8 p-2'>{exam.name}</td>
-                                            <td className='w-1/8 p-2'>{exam.studentNumber}</td>
+                                            <td className='w-1/8 p-2  td-table'>{exam.subjectsName}</td>
+                                            <td className='w-1/8 p-2 td-table'>{exam.date}</td>
+                                            <td className='w-1/8 p-2 td-table'>{exam.day}</td>
+                                            <td className='w-1/8 p-2 td-table'>{exam.interval}</td>
+                                            <td className='w-1/8 p-2 td-table'>{`${exam.from} - ${exam.to}`}</td>
+                                            <td className='w-1/8 p-2 td-table'>{exam.place}</td>
+                                            <td className='w-1/8 p-2 td-table'>{exam.name}</td>
+                                            <td className='w-1/8 p-2 td-table'>{exam.studentNumber}</td>
                                         </tr>
                                     ))
                                 }
@@ -128,19 +128,17 @@ const ObserverHome = () => {
                         :
                         <h1 className='text-center text-[50px] font-bold'>لا يوجد لجان بعد.</h1>
                 }
-                <div className="flex justify-end mt-5">
-                    <ReactToPrint
-                        trigger={() => <div className="flex justify-end mt-5 ">
-                            <button className="btn-print gap-3 bg-black text-white flex items-center px-4 py-1 rounded hover:bg-gray-800 ">
-                                <p>طباعة</p>
-                                <FaPrint className="mr-2" />
-                            </button>
-                        </div>}
-                        content={() => componentRef.current}
-                    />
-                    )
-                </div>
+                
             </div>
+            <div className="flex justify-end mt-5">
+                    <button className="no-print  btn-print bg-black text-white flex items-center px-4 py-1 rounded hover:bg-gray-800 "
+                    onClick={()=> {window.print()}}
+                    >
+                        طباعة
+                        <FaPrint className="mr-2" />
+                    </button>
+            </div>
+
         </div>
     );
 };

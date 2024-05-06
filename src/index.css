@@ -8,3 +8,25 @@ body {
   margin: 0;
   padding: 0;
 }
+
+.td-table {
+  min-width: 100px;
+
+}
+
+
+@media print {
+
+  @page {
+    size: auto;
+    margin: 0;
+  }
+
+  body {
+    color: black;
+  }
+
+  .no-print {
+    display: none;
+  }
+}
