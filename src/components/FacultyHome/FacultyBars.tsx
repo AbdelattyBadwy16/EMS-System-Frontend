@@ -1,7 +1,7 @@
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import TableRow from './TableRow';
-
-
+import ReactToPrint from "react-to-print";
+import { FaPrint } from 'react-icons/fa';
 interface BarDetails {
   title: string,
   number: number,
@@ -11,7 +11,7 @@ interface BarDetails {
 
 const FacultyBars = (Detail: BarDetails) => {
   const [isExpanded, setIsExpanded] = useState(false);
-
+  const componentRef = useRef<any>();
   const toggleSlide = () => {
     setIsExpanded(!isExpanded);
   };
@@ -48,22 +48,7 @@ const FacultyBars = (Detail: BarDetails) => {
 
         {isExpanded && (
           <div className="container  mx-auto px-12 grid">
-            {/* <div className="border border-gray-500 rounded-b-lg">
-              <div className="grid grid-cols-8 divide-x text-center bg-gray-800 text-white rounded-b-lg py-3">
-                <div>اللجنة</div>
-                <div>المكان</div>
-                <div>التوقيت</div>
-                <div>الفتره</div>
-                <div>اليوم</div>
-                <div>التاريخ</div>
-                <div>المقرر</div>
-                <div>القسم</div>
-              </div>
-              {
-                Detail.data.map((item) => <TableRow rowData={item} />)
-              }
-            </div> */}
-            <table className='w-full border border-navColor rounded-md font-gesstwo overflow-x-auto'>
+            <table ref={componentRef} className='w-full border border-navColor rounded-md font-gesstwo overflow-x-auto'>
               <thead className='text-21 bg-stone-800 text-neutral-200 text-center rounded'>
                 <tr>
                   <td className='w-1/8 p-1'>المكان</td>
@@ -81,6 +66,15 @@ const FacultyBars = (Detail: BarDetails) => {
                   ))}
               </tbody>
             </table>
+            <ReactToPrint
+              trigger={() => <div className="flex justify-end mt-5 ">
+                <button className="btn-print gap-3 bg-black text-white flex items-center px-4 py-1 rounded hover:bg-gray-800 ">
+                  <p>طباعة</p>
+                  <FaPrint className="mr-2" />
+                </button>
+              </div>}
+              content={() => componentRef.current}
+            />
           </div>
         )}
       </div>

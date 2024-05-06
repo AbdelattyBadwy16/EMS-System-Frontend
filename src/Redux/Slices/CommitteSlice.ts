@@ -15,7 +15,6 @@ const committeSlice = createSlice(
         initialState,
         reducers: {
             addCommites(state, action) {
-                console.log(action);
                 state.data = action.payload;
             }
 

@@ -1,7 +1,7 @@
 import { Bar } from '@nivo/bar';
 import React, { useEffect, useState } from 'react'
 import { PieChart, Pie, Sector, Cell, ResponsiveContainer, Legend, Tooltip, YAxis, XAxis, BarChart, CartesianGrid } from 'recharts';
-import { GetCommitesStaticForLevels, GetCommitesStaticForLevelsForCurrentDay } from '../../helper/Api/CommiteApi';
+import { GetCommitesStaticForLevels, GetCommitesStaticForLevelsForCurrentDay } from '../../helper/Api/FacultyApi';
 import { useSelector } from 'react-redux';
 import { getgetFacultyId } from '../../Redux/Slices/FacultySlice';
 

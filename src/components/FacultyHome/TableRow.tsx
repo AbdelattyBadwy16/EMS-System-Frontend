@@ -2,10 +2,8 @@ import React from 'react'
 import { GetCommiteDate } from '../../helper/Constant';
 
 function TableRow(rowData: any) {
-    console.log(rowData);
 
     const date = new Date(rowData.rowData.c.date);
-    console.log(rowData.rowData)
     const newDate = `${date.getDate()}-${date.getUTCMonth() + 1}-${date.getFullYear()}`;
     const newDay = GetCommiteDate(rowData?.rowData?.c?.day);
 

@@ -58,7 +58,6 @@ const FacultyHome = () => {
     }
     fetch();
   }, [])
-  console.log(phaseLen);
   return (
     <>
       <div className="container mx-auto my-2 text-right">

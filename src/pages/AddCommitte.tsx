@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { FaPrint } from 'react-icons/fa';
 import { useSelector } from 'react-redux';
 import { getgetFacultyId } from '../Redux/Slices/FacultySlice';
-import { GetFacultyData, GetSubjects } from '../helper/Api/FacultyApi';
+import { GetFacultyData, GetPlaces, GetSubjects } from '../helper/Api/FacultyApi';
 import Spinner from '../components/shared/Spinner';
-import { AddNewCommite, DeleteAllCommite, DeleteCommite, GetAllCommite } from '../helper/Api/CommiteApi';
+import { AddNewCommite, DeleteAllCommite, DeleteCommite, SearchForCommite, UpdateCommitte } from '../helper/Api/CommiteApi';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { subjectDto } from '../helper/Api/FacultyApi';
 import { GetCommiteDate } from '../helper/Constant';
+import { GetFacultyInvigilators, GetFacultyObservers } from '../helper/Api/StaffApi';
 
 interface commiteDto {
   day: string,
@@ -26,7 +26,8 @@ interface commiteDto {
   from: string,
   to: string,
   subjectName: string,
-  subjectId: number
+  subjectId: number,
+  studentNumber: number
 }
 
 
@@ -41,6 +42,8 @@ const AddCommitte = () => {
   const [depart, setDepart] = useState<any>([]);
   const [level, setLevel] = useState<any>([]);
   const [place, setPLace] = useState<any>(["مبنى الفندق", "مبنى كلية حاسبات", "مبنى الفصول"]);
+  const [observ, setObserv] = useState<any>([]);
+  const [invi, setInvi] = useState<any>([]);
 
   // selected data
   const [day, setDay] = useState("");
@@ -57,8 +60,11 @@ const AddCommitte = () => {
   const [from, setFrom] = useState("");
   const [to, setTo] = useState("");
   const [subject, setSubject] = useState("");
-
-
+  const [observInp, setObservInp] = useState<any>();
+  const [idInviInp, setIdInviInp] = useState<any>([]);
+  const [listinvi, setListInvi] = useState<any>([]);
+  const [inviInp, setInviInp] = useState<any>();
+  const [studentNum, setStudentNum] = useState<any>(0);
   // subject filter
   let lawID = 0;
   let facultyNodeID = 0;
@@ -68,11 +74,19 @@ const AddCommitte = () => {
   const [committe, setCommitte] = useState([]);
   const facultyID = useSelector(getgetFacultyId)
   const [isLoading, setIsLoading] = useState(false);
+  const [searchterm, setSearchterm] = useState("");
+  const [subjectSearch, setSubjectSearch] = useState("");
+  const [searchLevel, setSearchLevel] = useState(0);
+  const [isUpdate, setIsUpdate] = useState(false);
+  // Get Data For DropDowns
   useEffect(() => {
     const fetch = async () => {
       try {
         setIsLoading(true);
         const res = await GetFacultyData(facultyID);
+        const res2 = await GetPlaces();
+        const res3 = await GetFacultyInvigilators(facultyID);
+        const res4 = await GetFacultyObservers(facultyID);
         setLaw(res.bYlaw);
         setLawInput(res.bYlaw[0].name)
         setStudyMethod(res.studyMethod);
@@ -83,19 +97,22 @@ const AddCommitte = () => {
         setLevelInput(res.facultyPhase[0].name);
         setTerm(res.facultysemster);
         setTermInput(res.facultysemster[0].name);
+        setPLace(res2);
+        setPlaceInput(res2[0].name);
+        setInvi(res3);
+        setObserv(res4);
       } catch {
         throw new Error("Faild To Fetch");
       } finally {
         setIsLoading(false);
       }
+
     }
     fetch();
-
-
   }, [])
 
-  
 
+  // Filter Subjects
   useEffect(() => {
     async function fetch() {
       for (let i = 0; i < lawdto.length; i++) {
@@ -129,6 +146,9 @@ const AddCommitte = () => {
       try {
         const res = await GetSubjects(data);
         setSub(res);
+        if (!isUpdate) {
+          setSubject(res[0].name);
+        }
       } catch {
         setSub([{ id: 1, name: "لا يوجد مقررات" }]);
       }
@@ -136,6 +156,40 @@ const AddCommitte = () => {
     fetch();
   }, [facultyID, termInput, departInput, levelInput, lawInput])
 
+  // Search in Committe
+  useEffect(() => {
+    async function fetch() {
+      let res2 = [];
+      try {
+        res2 = await SearchForCommite(facultyID, searchLevel, searchterm, subjectSearch);
+      } finally {
+        for (let i = 0; i < res2.length; i++) {
+          const date = new Date(res2[i].date);
+          res2[i].date = `${date.getDate()}-${date.getUTCMonth() + 1}-${date.getFullYear()}`;
+          res2[i].day = GetCommiteDate(res2[i].day);
+        }
+        setCommitte(res2);
+      }
+    }
+    fetch();
+  }, [searchterm, searchLevel, subjectSearch])
+
+
+  // Add Observer
+  useEffect(() => {
+    console.log(inviInp);
+    for (let i = 0; i < idInviInp.length; i++) {
+      if (idInviInp[i] == inviInp) return;
+    }
+    if (inviInp != undefined && inviInp != '0')
+      setIdInviInp([...idInviInp, +inviInp]);
+    else return;
+    let data = "";
+    for (let i = 0; i < invi.length; i++) {
+      if (invi[i].id == +inviInp) data = invi[i].name;
+    }
+    setListInvi([...listinvi, data]);
+  }, [inviInp])
 
   const GetDay = (e: any) => {
     setDate(e.target.value)
@@ -166,14 +220,16 @@ const AddCommitte = () => {
     }
   }
 
+  // Add Commite
   const handelSubmit = async (e: any) => {
     e.preventDefault()
     if (day == "" || lawInput == "" || termInput == "" || placeInput == "" || commDate == "" || levelInput == "" || stateInput == "" || from == "" || to == ""
-      || commName == "" || stateInput == ""
+      || commName == "" || stateInput == "" || subject == "" || !idInviInp.length || observInp == "" || studentNum == 0 || periodInput == ""
     ) {
       toast.warning("من فضلك لا تترك حقل فارغ");
       return;
     }
+    let res;
     try {
       let subId = 0;
       for (let i = 0; i < sub.length; i++) {
@@ -198,20 +254,27 @@ const AddCommitte = () => {
         from: from,
         to: to,
         subjectName: subject,
-        subjectId: subId
+        subjectId: subId,
+        studentNumber: +studentNum
       }
-      const res = await AddNewCommite(data);
 
-
+      res = await AddNewCommite(data, observInp, idInviInp);
+      console.log(res);
     } finally {
-      toast.success("تم اضافة اللجنة بنجاح")
+      if (+res >= 0 && +res <= 1000) {
+        let mess = ' من فضلك تاكد من عدد الطلاب فاللجنة لا يزيد عن عدد الطلاب المتاحين وهو';
+        mess += " ";
+        mess += res
+        toast.warning(mess);
+      } else
+        toast.success("تم اضافة اللجنة بنجاح")
       setFrom("");
       setTo("");
       setCommName("");
       let res2;
       try {
         // Fetch Again
-        res2 = await GetAllCommite(facultyID);
+        res2 = await SearchForCommite(facultyID, searchLevel, searchterm, subjectSearch);
         setCommitte(res2);
       } finally {
         for (let i = 0; i < res2.length; i++) {
@@ -225,6 +288,7 @@ const AddCommitte = () => {
     }
   }
 
+  // Delete Committe
   async function handelDelete(id: number, e: any) {
     // DELETE
     e.preventDefault()
@@ -233,7 +297,7 @@ const AddCommitte = () => {
     } finally {
       let res2 = []
       try {
-        res2 = await GetAllCommite(facultyID);
+        res2 = await SearchForCommite(facultyID, searchLevel, searchterm, subjectSearch);
       } finally {
         for (let i = 0; i < res2.length; i++) {
           const date = new Date(res2[i].date);
@@ -246,13 +310,98 @@ const AddCommitte = () => {
     }
 
   }
-
+  // DELETE All Commite
   async function handelDeleteAll(e: any) {
-    // DELETE  All
     try {
       const res = await DeleteAllCommite(facultyID);
     } finally {
       setCommitte([]);
+    }
+  }
+
+
+  // From Invi List
+  function handelDeleteItem(item: any) {
+    let newData: any = [];
+    let id = 0;
+    for (let i = 0; i < invi.length; i++) {
+      if (invi[i].name == item) {
+        id = invi[i].id;
+        break;
+      }
+    }
+    for (let i = 0; i < listinvi.length; i++) {
+      if (listinvi[i] != item) newData = [...newData, listinvi[i]];
+    }
+    setListInvi(newData);
+    newData = [];
+    for (let i = 0; i < idInviInp.length; i++) {
+      if (idInviInp[i] != id) newData = [...newData, idInviInp[i]];
+    }
+    setIdInviInp(newData);
+  }
+
+
+  // handel Update
+  const [comId, setCommeId] = useState(0);
+  function handelUpdate(com: any) {
+    setIsUpdate(true);
+    setLawInput(com.byLaw)
+    setCommeId(com.id);
+    setStudyMethodInput(com.studyMethod)
+    setDepartInput(com.facultyNode);
+    setLevelInput(com.facultyPhase);
+    setPlaceInput(com.place);
+    setDay(com.day);
+    let curDate = new Date().getMonth() + 1;
+    if (curDate < 3) setTermInput("ترم اول");
+    else setTermInput("ترم ثانى");
+    setSubject(com.subjectName);
+    setCommName(com.name);
+    setperiodInput(com.interval);
+    setFrom(com.from);
+    setTo(com.to);
+  }
+
+
+  // Update
+  async function addUpdate(e: any) {
+    e.preventDefault();
+
+    const data: commiteDto =
+    {
+      day: day,
+      lawInput: lawInput,
+      termInput: termInput,
+      studyMethodInput: studyMethodInput,
+      departInput: departInput,
+      levelInput: levelInput,
+      commDate: new Date(commDate),
+      periodInput: periodInput,
+      stateInput: stateInput,
+      placeInput: placeInput,
+      commName: commName,
+      from: from,
+      to: to,
+      subjectName: subject,
+      subjectId: 0,
+      studentNumber: studentNum
+    }
+    let res2 = [];
+    try {
+      const res = await UpdateCommitte(comId, data);
+    } finally {
+      try {
+        res2 = await SearchForCommite(facultyID, searchLevel, searchterm, subjectSearch);
+      } finally {
+        for (let i = 0; i < res2.length; i++) {
+          const date = new Date(res2[i].date);
+          res2[i].date = `${date.getDate()}-${date.getUTCMonth() + 1}-${date.getFullYear()}`;
+          res2[i].day = GetCommiteDate(res2[i].day);
+        }
+        setCommitte(res2);
+      }
+      setIsUpdate(false);
     }
   }
   return (
@@ -273,104 +422,134 @@ const AddCommitte = () => {
               <form className="shadow rounded-xl mt-10 p-7 grid grid-cols-1 lg:grid-cols-3 gap-5 ">
                 <div className='flex flex-col'>
                   <label className='font-bold text-[20px]'>اللائحة :</label>
-                  <select
-                    className="p-3 border-2 rounded-xl border-borderColor text-gray-700 font-gesstwo font-bold text-lg"
-                    name=""
-                    id=""
-                    value={lawInput}
-                    onChange={(e) => {
-                      setLawInput(e.target.value)
-                    }
-                    }
-                  >
-                    {
-                      lawdto.map((title: any) =>
-                        <option key={title.id} className=" text-fontColor font-medium bg-black  text-white ">{title.name}</option>
-                      )
-                    }
-                  </select>
+                  {
+                    !isUpdate ?
+                      <select
+                        className="p-3 border-2 rounded-xl border-borderColor text-gray-700 font-gesstwo font-bold text-lg"
+                        name=""
+                        id=""
+                        value={lawInput}
+                        onChange={(e) => {
+                          setLawInput(e.target.value)
+                        }
+                        }
+                      >
+                        {
+                          lawdto.map((title: any) =>
+                            <option key={title.id} className=" text-fontColor font-medium bg-black  text-white ">{title.name}</option>
+                          )
+                        }
+                      </select>
+                      :
+                      <input type='text' value={lawInput} disabled></input>
+                  }
                 </div>
 
                 <div className='flex flex-col'>
                   <label className='font-bold text-[20px]'>نظام الدراسة :</label>
-                  <select
-                    className="p-3 border-2 rounded-xl border-borderColor text-gray-700 font-gesstwo font-bold text-lg"
-                    name=""
-                    id=""
-                    value={studyMethodInput}
-                    onChange={(e) => setStudyMethodInput(e.target.value)}
-                  >
-                    {
-                      studyMethod.map((title: any) =>
-                        <option key={title.id} className=" text-fontColor font-medium bg-black  text-white ">{title.name}</option>
-                      )
-                    }
-                  </select>
+                  {
+                    !isUpdate ?
+                      <select
+                        className="p-3 border-2 rounded-xl border-borderColor text-gray-700 font-gesstwo font-bold text-lg"
+                        name=""
+                        id=""
+                        value={studyMethodInput}
+                        onChange={(e) => setStudyMethodInput(e.target.value)}
+                      >
+                        {
+                          studyMethod.map((title: any) =>
+                            <option key={title.id} className=" text-fontColor font-medium bg-black  text-white ">{title.name}</option>
+                          )
+                        }
+                      </select>
+                      :
+                      <input type='text' value={studyMethodInput} disabled></input>
+                  }
                 </div>
 
                 <div className='flex flex-col'>
                   <label className='font-bold text-[20px]'>القسم :</label>
-                  <select
-                    className="p-3 border-2 rounded-xl border-borderColor text-gray-700 font-gesstwo font-bold text-lg"
-                    name=""
-                    id=""
-                    value={departInput}
-                    onChange={(e) => setDepartInput(e.target.value)}
-                  >
-                    {
-                      depart.map((title: any) =>
-                        <option key={title.id} className=" text-fontColor font-medium bg-black  text-white ">{title.name}</option>
-                      )
-                    }
-                  </select>
+                  {
+                    !isUpdate ?
+                      <select
+                        className="p-3 border-2 rounded-xl border-borderColor text-gray-700 font-gesstwo font-bold text-lg"
+                        name=""
+                        id=""
+                        value={departInput}
+                        onChange={(e) => setDepartInput(e.target.value)}
+                      >
+                        {
+                          depart.map((title: any) =>
+                            <option key={title.id} className=" text-fontColor font-medium bg-black  text-white ">{title.name}</option>
+                          )
+                        }
+                      </select>
+                      :
+                      <input type='text' value={departInput} disabled></input>
+                  }
                 </div>
                 <div className='flex flex-col'>
                   <label className='font-bold text-[20px]'>المستوى :</label>
-                  <select
-                    className="p-3 border-2 rounded-xl border-borderColor text-gray-700 font-gesstwo font-bold text-lg"
-                    name=""
-                    id=""
-                    value={levelInput}
-                    onChange={(e) => setLevelInput(e.target.value)}
-                  >
-                    {
-                      level.map((title: any) =>
-                        <option key={title.id} className=" text-fontColor font-medium bg-black  text-white ">{title.name}</option>
-                      )
-                    }
-                  </select>
+                  {
+                    !isUpdate ?
+                      <select
+                        className="p-3 border-2 rounded-xl border-borderColor text-gray-700 font-gesstwo font-bold text-lg"
+                        name=""
+                        id=""
+                        value={levelInput}
+                        onChange={(e) => setLevelInput(e.target.value)}
+                      >
+                        {
+                          level.map((title: any) =>
+                            <option key={title.id} className=" text-fontColor font-medium bg-black  text-white ">{title.name}</option>
+                          )
+                        }
+                      </select>
+                      :
+                      <input type='text' value={levelInput} disabled></input>
+                  }
                 </div>
                 <div className='flex flex-col'>
                   <label className='font-bold text-[20px]'>الفصل الدراسى :</label>
-                  <select
-                    className="p-3 border-2 rounded-xl border-borderColor text-gray-700 font-gesstwo font-bold text-lg"
-                    name=""
-                    id=""
-                    value={termInput}
-                    onChange={(e) => setTermInput(e.target.value)}
-                  >
-                    {
-                      term.map((title: any) =>
-                        <option key={title.id} className=" text-fontColor font-medium bg-black  text-white ">{title.name}</option>
-                      )
-                    }
-                  </select>
+                  {
+                    !isUpdate ?
+                      <select
+                        className="p-3 border-2 rounded-xl border-borderColor text-gray-700 font-gesstwo font-bold text-lg"
+                        name=""
+                        id=""
+                        value={termInput}
+                        onChange={(e) => setTermInput(e.target.value)}
+                      >
+                        {
+                          term.map((title: any) =>
+                            <option key={title.id} className=" text-fontColor font-medium bg-black  text-white ">{title.name}</option>
+                          )
+                        }
+                      </select>
+                      :
+                      <input type='text' value={termInput} disabled></input>
+                  }
                 </div>
                 <div className='flex flex-col'>
                   <label className='font-bold text-[20px]'>المقرر :</label>
-                  <select
-                    className="p-3 border-2 rounded-xl border-borderColor text-gray-700 font-gesstwo font-bold text-lg"
-                    name=""
-                    id=""
-                    value={subject}
-                    onChange={(e) => setSubject(e.target.value)}
-                  >
-                    {
-                      sub.map((title: any) =>
-                        <option key={title.id} className=" text-fontColor font-medium bg-black  text-white ">{title.name}</option>
-                      )
-                    }
-                  </select>
+                  {
+                    !isUpdate ?
+                      <select
+                        className="p-3 border-2 rounded-xl border-borderColor text-gray-700 font-gesstwo font-bold text-lg"
+                        name=""
+                        id=""
+                        value={subject}
+                        onChange={(e) => setSubject(e.target.value)}
+                      >
+                        {
+                          sub.map((title: any) =>
+                            <option key={title.id} className=" text-fontColor font-medium bg-black  text-white ">{title.name}</option>
+                          )
+                        }
+                      </select>
+                      :
+                      <input type='text' value={subject} disabled></input>
+                  }
                 </div>
                 <div className='flex flex-col'>
                   <label className='font-bold text-[20px]'>التاريخ :</label>
@@ -428,8 +607,8 @@ const AddCommitte = () => {
                     onChange={(e) => setPlaceInput(e.target.value)}
                   >
                     {
-                      place.map((title: any, index: any) =>
-                        <option key={index} className=" text-fontColor font-medium bg-black  text-white ">{title}</option>
+                      place.map((item: any, index: any) =>
+                        <option key={index} className=" text-fontColor font-medium bg-black  text-white ">{item.name}</option>
                       )
                     }
                   </select>
@@ -467,31 +646,104 @@ const AddCommitte = () => {
                 </div>
 
 
-                <button onClick={(e) => handelSubmit(e)} className="bg-btnColor text-white rounded-lg p-2.5 w-28 mt-8	">
-                  اضافة
-                  <span className="mr-1 text-iconColor text-base">
-                    <i className="bx bx-bookmark"></i>
-                  </span>
-                </button>
-                <div></div>
-                <div className="mr-40 mt-8">
-                  <button className="bg-btnColor text-white rounded-lg	p-2.5 w-28 ml-4 ">
-                    حفظ الجدول
-                    <span className="mr-1 text-iconColor text-base">
-                      <i className="bx bx-save"></i>
-                    </span>
-                  </button>
-                  <button onClick={(e) => handelDeleteAll(e)} className="bg-logoutBtnColor text-white rounded-lg p-2.5 w-28">
-                    ازالة
-                    <span className="mr-1">
-                      <i className="bx bx-trash"></i>
-                    </span>
-                  </button>
+                {/* last row of input */}
+                <div className='grid grid-cols-6  gap-5 justify-center items-center col-span-3'>
+                  {
+                    !isUpdate ?
+                      <button onClick={(e) => handelSubmit(e)} className="bg-btnColor text-white rounded-lg p-2.5 w-28 mt-8	">
+                        اضافة
+                        <span className="mr-1 text-iconColor text-base">
+                          <i className="bx bx-bookmark"></i>
+                        </span>
+                      </button>
+                      :
+                      <button onClick={(e) => addUpdate(e)} className="bg-yellow-600 text-white rounded-lg p-2.5 w-28 mt-8	">
+                        تعديل
+                        <span className="mr-1 text-iconColor text-base">
+                          <i className="bx bx-bookmark"></i>
+                        </span>
+                      </button>
+                  }
+                  <div className='flex flex-col'>
+                    <label className='font-bold text-[20px]'>عدد الطلاب فاللجنة :</label>
+                    <input value={studentNum} onChange={(e) => setStudentNum(e.target.value)} className="p-3 border-2 rounded-xl w-full  border-borderColor text-gray-700 font-gesstwo font-bold text-lg" type='text' />
+                  </div>
+                  {
+                    !isUpdate ?
+                      <>
+                        <div className='flex flex-col w-full'>
+                          <label className='font-bold text-[20px]'>المراقبين :</label>
+                          <select
+                            className="p-3 border-2 rounded-xl border-borderColor text-gray-700 font-gesstwo font-bold text-lg"
+                            name=""
+                            id=""
+                            value={observInp}
+                            onChange={(e) => setObservInp(e.target.value)}
+                          >
+                            <option value={0}>اختر مراقب</option>
+                            {
+                              observ.map((title: any, index: any) =>
+                                <option value={title.id} key={index} className=" text-fontColor font-medium bg-black  text-white ">{title.name}</option>
+                              )
+                            }
+                          </select>
+                        </div>
+
+                        <div className='flex flex-col w-full'>
+                          <label className='font-bold text-[20px]'>الملاحظين :</label>
+                          <select
+                            className="p-3 border-2 rounded-xl border-borderColor text-gray-700 font-gesstwo font-bold text-lg"
+                            name=""
+                            id=""
+                            onChange={(e) => setInviInp(e.target.value)}
+                          >
+                            <option value={0}>اختر ملاحظ</option>
+
+                            {
+                              invi.map((title: any, index: any) =>
+                                <option key={index} value={title.id} className=" text-fontColor font-medium bg-black  text-white ">{title.name}</option>
+                              )
+                            }
+                          </select>
+                        </div></> : ""
+                  }
+                  <div className='cols-span-2 grid-cols-2'>
+                    {
+                      listinvi.map((item: any) => <p className='border-2 p-2 text-center rounded-md font-bold'>{item}<span className='mr-2 text-red-500 cursor-pointer hover:scale-150' onClick={() => handelDeleteItem(item)}>X</span></p>)
+                    }
+                  </div>
+
                 </div>
               </form>
 
-
-              <div className='shadow rounded-xl mt-10 p-7'>
+              {/* Table */}
+              <div className='shadow rounded-xl mt-10 p-7 '>
+                <div className='flex items-center justify-between'>
+                  <div className='flex justify-start items-center gap-5 mb-10'>
+                    <div>
+                      <input onChange={(e) => setSearchterm(e.target.value)} value={searchterm} type='text' placeholder='ابحث باسم اللجنة'></input>
+                    </div>
+                    <div>
+                      <input onChange={(e) => setSubjectSearch(e.target.value)} value={subjectSearch} type='text' placeholder='ابحث باسم المادة'></input>
+                    </div>
+                    <div>
+                      <select onChange={(e) => setSearchLevel(+e.target.value)} className='bg-[#e5e5e5] p-3 rounded-md'>
+                        <option value={0}>المستوى</option>
+                        {
+                          level.map((item: any) => <option key={item.id} value={item.id}>{item.name}</option>)
+                        }
+                      </select>
+                    </div>
+                  </div>
+                  <div className='mb-10'>
+                    <button onClick={(e) => handelDeleteAll(e)} className="bg-logoutBtnColor text-white rounded-lg p-2.5 w-28">
+                      ازالة
+                      <span className="mr-1">
+                        <i className="bx bx-trash"></i>
+                      </span>
+                    </button>
+                  </div>
+                </div>
                 {
                   committe.length ?
                     <table className='w-full border border-navColor rounded-md font-gesstwo overflow-x-auto'>
@@ -504,32 +756,26 @@ const AddCommitte = () => {
                           <td className='w-1/8 p-1'>التوقيت</td>
                           <td className='w-1/8 p-1'>المكان</td>
                           <td className='w-1/8 p-1' >اللجنة</td>
-                          <td className='w-1/8 p-1' >حذف لجنة</td>
+                          <td className='w-1/8 p-1' >اعدادات</td>
                         </tr>
                       </thead>
                       <tbody className='text-18 text-center'>
                         {
                           committe.map((com: any, index) => (
                             <tr key={index} className={index % 2 !== 0 ? ' bg-neutral-200' : ''}>
-                              <td className='w-1/8 p-2 '>{com.subjectsName}</td>
+                              <td className='w-1/8 p-2 '>{com.subjectName}</td>
                               <td className='w-1/8 p-2'>{com.date}</td>
                               <td className='w-1/8 p-2'>{com.day}</td>
                               <td className='w-1/8 p-2'>{com.interval}</td>
                               <td className='w-1/8 p-2'>{`${com.from} - ${com.to}`}</td>
                               <td className='w-1/8 p-2'>{com.place}</td>
                               <td className='w-1/8 p-2'>{com.name}</td>
-                              <td className='w-1/8 p-2 text-center cursor-pointer text-red-500 hover:scale-125' onClick={(e) => handelDelete(com.id, e)}>X</td>
+                              <td className='w-1/8 p-2 text-center cursor-pointer flex  justify-center items-center gap-5' ><p className='bg-green-500 text-white p-1 px-3 rounded-lg ' onClick={(e) => handelUpdate(com)}>تعديل</p><p className='bg-red-500 p-1 px-3 text-white rounded-lg' onClick={(e) => handelDelete(com.id, e)}>حذف</p></td>
                             </tr>
                           ))}
                       </tbody>
                     </table> : <p className='text-center font-bold text-[50px]'>لا يوجد بيانات لعرضها</p>
                 }
-                <div className="flex justify-end mt-5">
-                  <button className="btn-print bg-black text-white flex items-center px-4 py-1 rounded hover:bg-gray-800 ">
-                    طباعة
-                    <FaPrint className="mr-2" />
-                  </button>
-                </div>
               </div>
             </>
         }

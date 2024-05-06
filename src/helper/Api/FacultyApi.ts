@@ -30,7 +30,6 @@ export interface subjectDto {
 export async function GetSubjects(Data: subjectDto) {
     const Cookie = new Cookies();
     const token = Cookie.get("Bearer");
-    console.log(Data);
 
     const res = await fetch(`${Base_Url}/Faculty/subjects?BylawId=${Data.BylawId}&PhaseId=${Data.PhaseId}&FacultyId=${Data.FacultyId}&FacultyNodeId=${Data.FacultyNodeId}&FacultySemesterId=${Data.FacultySemesterId}`, {
         method: "GET",
@@ -40,6 +39,51 @@ export async function GetSubjects(Data: subjectDto) {
         }
     });
 
+    const data = await res.json();
+    return data;
+}
+
+
+export async function GetCommitesStaticForLevels(id: number) {
+    const Cookie = new Cookies();
+    const token = Cookie.get("Bearer");
+    const res = await fetch(`${Base_Url}/Faculty/FacultyCommitteesDetails?FacultyID=${id}`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`
+        }
+    });
+    const data = await res.json();
+    return data;
+}
+
+
+export async function GetCommitesStaticForLevelsForCurrentDay(id: number) {
+    const Cookie = new Cookies();
+    const token = Cookie.get("Bearer");
+    const res = await fetch(`${Base_Url}/Faculty/FacultyCommitteesForCurrentDay?FacultyID=${id}`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`
+        }
+    });
+    const data = await res.json();
+    return data;
+}
+
+
+export async function GetPlaces() {
+    const Cookie = new Cookies();
+    const token = Cookie.get("Bearer");
+    const res = await fetch(`${Base_Url}/Faculty/Places`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`
+        }
+    });
     const data = await res.json();
     return data;
 }

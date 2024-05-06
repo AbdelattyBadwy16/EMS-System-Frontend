@@ -20,7 +20,6 @@ const facultySlice = createSlice(
         initialState,
         reducers: {
             addFacultyData(state, action) {
-                console.log(action)
                 state.id = action.payload.id;
                 state.name = action.payload.name;
             }
