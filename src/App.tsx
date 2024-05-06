@@ -25,6 +25,7 @@ function App() {
           {/*Private Routes */}
           <Route element={<PersistLogin></PersistLogin>}>
             <Route element={<RequireAuth></RequireAuth>}>
+              
               <Route element={<AppLayout></AppLayout>}>
                 <Route path='/studenthome' element={<StudentHome></StudentHome>}></Route>
                 <Route path='/facultyhome' element={<FacultyHome></FacultyHome>}></Route>
