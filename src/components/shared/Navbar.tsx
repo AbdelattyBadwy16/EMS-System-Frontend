@@ -92,7 +92,7 @@ const Navbar = () => {
         }
         {/*------------------------------*/}
 
-        <div className="flex flex-1 items-center sm:justify-between justify-center">
+        <div className="flex flex-1 items-center sm:justify-between justify-end">
           <h2 className="text-white text-4xl font-futura text-normal hidden sm:block">
             |EMS|
           </h2>
