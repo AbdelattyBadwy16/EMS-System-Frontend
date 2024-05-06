@@ -585,7 +585,7 @@ const AddCommitte = () => {
                     }
                   </select>
                 </div>
-                <div className="flex flex-1 grid grid-cols-2 gap-x-4">
+                <div className="flex-1 grid grid-cols-2 gap-x-4">
                   <div className='flex flex-col w-full'>
                     <label className='font-bold text-[20px]'>من :</label>
                     <input
@@ -632,7 +632,7 @@ const AddCommitte = () => {
                   </select>
                 </div>
 
-                <div className="flex flex-1 grid grid-cols-2 gap-x-4">
+                <div className="flex-1 grid grid-cols-2 gap-x-4">
                   <div className='flex flex-col w-full'>
                     <label className='font-bold text-[20px]'>اسم اللجنة :</label>
                     <input
@@ -711,11 +711,11 @@ const AddCommitte = () => {
                       </div></> : ""
                 }
 
-                <div className='flex col-span-3 justify-between'>
-                  <div className='fex flex-col '>
+                <div className='flex justify-between items-center lg:col-span-3'>
+                  <div className='flex flex-col '>
                     {
                       !isUpdate ?
-                        <button onClick={(e) => handelSubmit(e)} className="bg-btnColor text-white rounded-lg p-2.5 w-28 w-full mt-5	">
+                        <button onClick={(e) => handelSubmit(e)} className="bg-btnColor text-white rounded-lg p-2.5 w-full mt-5	">
                           اضافة
                           <span className="mr-1 text-iconColor text-base">
                             <i className="bx bx-bookmark"></i>
