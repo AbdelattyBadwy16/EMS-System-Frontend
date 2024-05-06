@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router';
 import { addFacultyData } from '../Redux/Slices/FacultySlice';
 import { GetCommiteDate } from '../helper/Constant';
 import ReactToPrint from 'react-to-print';
-
+import { motion } from 'framer-motion'
 
 
 
@@ -58,19 +58,6 @@ const ObserverHome = () => {
         }
         fetch();
 
-
-        const examData = {
-            Course: "أنظمة تشغيل",
-            Date: "20/5/2024",
-            Day: "الأحد",
-            Period: "الصباحية",
-            Time: "13:00 - 16:00",
-            Location: "مبني الفصول - فصل2",
-            Committee: "لجنة 4",
-            numberOfStudents: "23"
-        };
-        setExamData([examData, examData, examData, examData]);
-
     }, []);
 
 
@@ -80,7 +67,19 @@ const ObserverHome = () => {
             <Helmet>
                 <title>الصفحة الرئيسية</title>
             </Helmet>
-            <ul className='student-information bg-neutral-200 rounded-xl w-full mt-10  p-5 list-disc list-inside text-21 font-medium text-neutral-900 grid grid-cols-1 lg:grid-cols-2'>
+            <motion.ul
+                variants={{
+                    hidden: { y: -100, opacity: 0 },
+                    visible: {
+                        y: 0,
+                        opacity: 1,
+                        transition: {
+                            delay: 0.5,
+                            duration: 0.5
+                        },
+                    },
+                }}
+                className='student-information bg-neutral-200 rounded-xl w-full mt-10  p-5 list-disc list-inside text-21 font-medium text-neutral-900 grid grid-cols-1 lg:grid-cols-2'>
                 <React.Fragment>
                     <li className='mb-3'>
                         اسم  المراقب/الملاحظ  : {observerData.name}
@@ -90,7 +89,7 @@ const ObserverHome = () => {
                     </li>
 
                 </React.Fragment>
-            </ul>
+            </motion.ul>
             <div className='shadow rounded-xl mt-10 p-7'>
                 {
                     examData.length ?
@@ -138,7 +137,6 @@ const ObserverHome = () => {
                         </div>}
                         content={() => componentRef.current}
                     />
-                    )
                 </div>
             </div>
         </div>

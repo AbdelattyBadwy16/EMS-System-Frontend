@@ -25,7 +25,6 @@ const FacultyBars = (Detail: BarDetails) => {
         <div className="m-6">
           <div className="bg-customGray rounded-2xl py-6  ">
             <h2 className="mr-5 font-gesstwo text-gray-500 font-medium text-4xl">
-
               {Detail.title}
               <span className="border-4 border-borderColor  px-1 ml-2 mr-2  float-right rounded-b	">
                 {Detail.number}
