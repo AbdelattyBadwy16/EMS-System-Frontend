@@ -1,32 +1,18 @@
 import React, { ChangeEvent, useState } from 'react';
-import uniLogo from "../assets/uniLogo.png";
 import './changepass.css';
-import Navbar from '../components/shared/Navbar';
-
 const ChangePassword = () => {
 
-  const [formData, setFormData] = useState({
-    username: '',
-    oldPassword: '',
-    newPassword: '',
-    confirmPassword: '',
-    errorMessage: ''
-  });
-
-  const { oldPassword, newPassword, confirmPassword, errorMessage } = formData;
-
-  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = event.target;
-    setFormData({ ...formData, [name]: value });
-  };
-
+  const [oldPassword, setOldPassword] = useState<any>();
+  const [newPassword, setNewPassword] = useState<any>();
+  const [confirmPassword, setConfirmPassword] = useState<any>();
+  const [errorMessage, setErrorMessage] = useState<any>();
   const changePassword = () => {
     if (!oldPassword || !newPassword || !confirmPassword) {
-      setFormData({ ...formData, errorMessage: 'Please enter all fields' });
+      setErrorMessage('من فضلك لا تترك حقل فارغ');
     } else if (newPassword !== confirmPassword) {
-      setFormData({ ...formData, errorMessage: 'New password and confirm password do not match' });
+      setErrorMessage('كلمة المرور الجديدة وتاكيد كلمة المرور غير متطابقين');
     } else {
-      setFormData({ ...formData, errorMessage: '' });
+      setErrorMessage("");
     }
   };
 
@@ -44,12 +30,12 @@ const ChangePassword = () => {
         <h1>تغيير كلمة السر</h1>
         <form>
 
-          <input type="password" name="oldPassword" value={oldPassword} onChange={handleChange} placeholder="كلمة السر القديمه" /><br /><br />
-          <input type="password" name="newPassword" value={newPassword} onChange={handleChange} placeholder="كلمة السر الجديده" /><br /><br />
-          <input type="password" name="confirmPassword" value={confirmPassword} onChange={handleChange} placeholder="تأكيد كلمة السر " /><br /><br />
+          <input type="password" name="oldPassword" value={oldPassword} onChange={(e)=>setOldPassword(e.target.value)} placeholder="كلمة السر القديمه" /><br /><br />
+          <input type="password" name="newPassword" value={newPassword} onChange={(e)=>setNewPassword(e.target.value)} placeholder="كلمة السر الجديده" /><br /><br />
+          <input type="password" name="confirmPassword" value={confirmPassword} onChange={(e)=>setConfirmPassword(e.target.value)} placeholder="تأكيد كلمة السر " /><br /><br />
           <button className='pass-btn' type="button" onClick={changePassword}>حفظ</button>
         </form>
-        {errorMessage && <div className="error-message">{errorMessage}</div>}
+        {errorMessage && <div className="error-message text-[18px] font-bold">{errorMessage}</div>}
       </div>
     </>
   );
