@@ -23,9 +23,12 @@ const ObserverHome = () => {
 
     const nav = useNavigate();
     if (role == "FacultyAdmin") {
-       
+
         nav("/facultyhome")
     }
+    let newRole = "";
+    if (role == "Observers") newRole = "المراقب";
+    else newRole = "الملاحظ";
     useEffect(() => {
         const fetch = async () => {
             let res2;
@@ -71,7 +74,7 @@ const ObserverHome = () => {
                 className='student-information bg-neutral-200 rounded-xl w-full mt-10  p-5 list-disc list-inside text-21 font-medium text-neutral-900 grid grid-cols-1 lg:grid-cols-2'>
                 <React.Fragment>
                     <li className='mb-3'>
-                        اسم  المراقب/الملاحظ  : {observerData.name}
+                        اسم  {newRole}  : {observerData.name}
                     </li>
                     <li className='mb-3'>
                         الدرجة العلمية : {observerData.degree}
@@ -118,14 +121,16 @@ const ObserverHome = () => {
                 }
             </div>
             <div className="flex justify-end mt-5">
-                    <button className="no-print  btn-print bg-black text-white flex items-center px-4 py-1 rounded hover:bg-gray-800 "
-                    onClick={()=> {window.print()}}
-                    >
-                        طباعة
-                        <FaPrint className="mr-2" />
-                    </button>
+                <ReactToPrint
+                    trigger={() => <div className="flex justify-end mt-5 ">
+                        <button className="btn-print gap-3 bg-black text-white flex items-center px-4 py-1 rounded hover:bg-gray-800 ">
+                            <p>طباعة</p>
+                            <FaPrint className="mr-2" />
+                        </button>
+                    </div>}
+                    content={() => componentRef.current}
+                />
             </div>
-
         </div>
     );
 };

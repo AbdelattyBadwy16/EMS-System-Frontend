@@ -18,3 +18,17 @@ export async function GetStudentData(NID: string) {
     return data;
 }
 
+export async function GetStudentCommite(id : string) {
+    const Cookie = new Cookies();
+    const token = Cookie.get("Bearer");
+    const res = await fetch(`${Base_Url}/Student/GetStudentCommittees?studentNationalId=${id}`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`
+        }
+    });
+    const data = await res.json();
+    return data;
+}
+

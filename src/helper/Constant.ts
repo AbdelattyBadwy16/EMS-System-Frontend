@@ -57,6 +57,6 @@ export const GetCommiteDate = (dateEntered: number) => {
             break;
     }
 
-
+    console.log(day);
     return day
 }

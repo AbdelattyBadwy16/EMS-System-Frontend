@@ -9,7 +9,7 @@ import FacultyHome from "./pages/FacultyHome"
 import ObserverHome from "./pages/ObserverHome"
 import { HelmetProvider } from "react-helmet-async"
 import AddCommitte from "./pages/AddCommitte"
-
+import ChangePassword from "./pages/Changepassword"
 const helmetContext = {};
 
 function App() {
@@ -24,15 +24,20 @@ function App() {
 
           {/*Private Routes */}
           <Route element={<PersistLogin></PersistLogin>}>
+<<<<<<< HEAD
             <Route  >
               {/* element={<RequireAuth></RequireAuth>} */}
               
               
+=======
+            <Route element={<RequireAuth></RequireAuth>}>
+>>>>>>> 67cb96d8afed3d77cb5fb082b72bbedc5bb412a5
               <Route element={<AppLayout></AppLayout>}>
                 <Route path='/studenthome' element={<StudentHome></StudentHome>}></Route>
                 <Route path='/facultyhome' element={<FacultyHome></FacultyHome>}></Route>
                 <Route path='/staffhome' element={<ObserverHome></ObserverHome>}></Route>
                 <Route path='/addCommitte' element={<AddCommitte></AddCommitte>}></Route>
+                <Route path="/changePassword" element={<ChangePassword></ChangePassword>}></Route>
                 <Route path='*' element={<PageNotFound />} />
               </Route>
             </Route>
