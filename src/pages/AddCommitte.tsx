@@ -418,7 +418,7 @@ const AddCommitte = () => {
               <Helmet>
                 <title>اضافة لجنة</title>
               </Helmet>
-            
+
 
               <form className="shadow rounded-xl mt-10 p-7 grid grid-cols-1 lg:grid-cols-3 gap-5  ">
                 <div className='flex flex-col'>
@@ -429,12 +429,12 @@ const AddCommitte = () => {
                         className="p-3 border-2 rounded-xl border-borderColor text-gray-700 font-gesstwo font-bold text-lg"
                         name=""
                         id=""
-                        style={{ height: '52px'}}
+                        style={{ height: '52px' }}
                         value={lawInput}
                         onChange={(e) => {
                           setLawInput(e.target.value)
                         }
-                        
+
                         }
                       >
                         {
@@ -458,7 +458,7 @@ const AddCommitte = () => {
                         id=""
                         value={studyMethodInput}
                         onChange={(e) => setStudyMethodInput(e.target.value)}
-                        style={{ height: '52px'}}
+                        style={{ height: '52px' }}
                       >
                         {
                           studyMethod.map((title: any) =>
@@ -481,7 +481,7 @@ const AddCommitte = () => {
                         id=""
                         value={departInput}
                         onChange={(e) => setDepartInput(e.target.value)}
-                        style={{ height: '52px'}}
+                        style={{ height: '52px' }}
                       >
                         {
                           depart.map((title: any) =>
@@ -503,7 +503,7 @@ const AddCommitte = () => {
                         id=""
                         value={levelInput}
                         onChange={(e) => setLevelInput(e.target.value)}
-                        style={{ height: '52px'}}
+                        style={{ height: '52px' }}
                       >
                         {
                           level.map((title: any) =>
@@ -525,7 +525,7 @@ const AddCommitte = () => {
                         id=""
                         value={termInput}
                         onChange={(e) => setTermInput(e.target.value)}
-                        style={{ height: '52px'}}
+                        style={{ height: '52px' }}
                       >
                         {
                           term.map((title: any) =>
@@ -547,7 +547,7 @@ const AddCommitte = () => {
                         id=""
                         value={subject}
                         onChange={(e) => setSubject(e.target.value)}
-                        style={{ height: '52px'}}
+                        style={{ height: '52px' }}
                       >
                         {
                           sub.map((title: any) =>
@@ -561,12 +561,12 @@ const AddCommitte = () => {
                 </div>
                 <div className='flex flex-col'>
                   <label className='font-bold text-[20px]'>التاريخ :</label>
-                  <input style={{ height: '52px'}} value={commDate} onChange={(e) => GetDay(e)} className="p-3 border-2 rounded-xl w-full  border-borderColor text-gray-700 font-gesstwo font-bold text-lg" type='date' />
+                  <input style={{ height: '52px' }} value={commDate} onChange={(e) => GetDay(e)} className="p-3 border-2 rounded-xl w-full  border-borderColor text-gray-700 font-gesstwo font-bold text-lg" type='date' />
                 </div>
 
                 <div className='flex flex-col'>
                   <label className='font-bold text-[20px]'>اليوم :</label>
-                  <input value={day} style={{ height: '52px'}} className="p-3 border-2 rounded-xl w-full   border-borderColor text-gray-600 font-gesstwo font-bold text-lg" disabled type='text' />
+                  <input value={day} style={{ height: '52px' }} className="p-3 border-2 rounded-xl w-full   border-borderColor text-gray-600 font-gesstwo font-bold text-lg" disabled type='text' />
                 </div>
                 <div className='flex flex-col'>
                   <label className='font-bold text-[20px]'>الفترة :</label>
@@ -576,7 +576,7 @@ const AddCommitte = () => {
                     id=""
                     value={periodInput}
                     onChange={(e) => setperiodInput(e.target.value)}
-                    style={{ height: '52px'}}
+                    style={{ height: '52px' }}
                   >
                     {
                       time.map((title: any, index) =>
@@ -596,11 +596,11 @@ const AddCommitte = () => {
                       placeholder="من"
                       value={from}
                       onChange={(e) => setFrom(e.target.value)}
-                      style={{ height: '52px'}}
+                      style={{ height: '52px' }}
                     />
                   </div>
                   <div className='flex flex-col w-full'>
-                     <label className='font-bold text-[20px]'>إلي :</label>
+                    <label className='font-bold text-[20px]'>إلي :</label>
                     <input
                       className=" border-2 rounded-xl border-borderColor text-center  text-fontColor font-medium	p-3"
                       type="number"
@@ -608,7 +608,7 @@ const AddCommitte = () => {
                       id=""
                       placeholder="الي"
                       value={to}
-                      style={{ height: '52px'}}
+                      style={{ height: '52px' }}
                       onChange={(e) => setTo(e.target.value)}
                     />
                   </div>
@@ -622,7 +622,7 @@ const AddCommitte = () => {
                     id=""
                     value={placeInput}
                     onChange={(e) => setPlaceInput(e.target.value)}
-                    style={{ height: '52px'}}
+                    style={{ height: '52px' }}
                   >
                     {
                       place.map((item: any, index: any) =>
@@ -643,7 +643,7 @@ const AddCommitte = () => {
                       placeholder="اسم اللجنة"
                       value={commName}
                       onChange={(e) => setCommName(e.target.value)}
-                      style={{ height: '52px'}}
+                      style={{ height: '52px' }}
                     />
                   </div>
 
@@ -655,7 +655,7 @@ const AddCommitte = () => {
                       id=""
                       value={stateInput}
                       onChange={(e) => setStateInput(e.target.value)}
-                      style={{ height: '52px'}}
+                      style={{ height: '52px' }}
                     >
                       {
                         state.map((title: any, index) =>
@@ -667,57 +667,53 @@ const AddCommitte = () => {
                 </div>
 
                 <div className='flex flex-col'>
-                    <label className='font-bold text-[20px]'>عدد الطلاب فاللجنة :</label>
-                    <input value={studentNum} onChange={(e) => setStudentNum(e.target.value)} className="p-3 border-2 rounded-xl w-full  border-borderColor text-gray-700 font-gesstwo font-bold text-lg" type='text' />
-                  </div>
-                  {
-                    !isUpdate ?
-                      <>
-                        <div className='flex flex-col w-full'>
-                          <label className='font-bold text-[20px]'>المراقبين :</label>
-                          <select
-                            className="p-3 border-2 rounded-xl border-borderColor text-gray-700 font-gesstwo font-bold text-lg"
-                            name=""
-                            id=""
-                            value={observInp}
-                            style={{ height: '52px'}}
-                            onChange={(e) => setObservInp(e.target.value)}
-                          >
-                            <option value={0}>اختر مراقب</option>
-                            {
-                              observ.map((title: any, index: any) =>
-                                <option value={title.id} key={index} className=" text-fontColor font-medium bg-black  text-white ">{title.name}</option>
-                              )
-                            }
-                          </select>
-                  </div>
+                  <label className='font-bold text-[20px]'>عدد الطلاب فاللجنة :</label>
+                  <input value={studentNum} onChange={(e) => setStudentNum(e.target.value)} className="p-3 border-2 rounded-xl w-full  border-borderColor text-gray-700 font-gesstwo font-bold text-lg" type='text' />
+                </div>
+                {
+                  !isUpdate ?
+                    <>
+                      <div className='flex flex-col w-full'>
+                        <label className='font-bold text-[20px]'>المراقبين :</label>
+                        <select
+                          className="p-3 border-2 rounded-xl border-borderColor text-gray-700 font-gesstwo font-bold text-lg"
+                          name=""
+                          id=""
+                          value={observInp}
+                          style={{ height: '52px' }}
+                          onChange={(e) => setObservInp(e.target.value)}
+                        >
+                          <option value={0}>اختر مراقب</option>
+                          {
+                            observ.map((title: any, index: any) =>
+                              <option value={title.id} key={index} className=" text-fontColor font-medium bg-black  text-white ">{title.name}</option>
+                            )
+                          }
+                        </select>
+                      </div>
 
-                        <div className='flex flex-col w-full'>
-                          <label className='font-bold text-[20px]'>الملاحظين :</label>
-                          <select
-                            className="p-3 border-2 rounded-xl border-borderColor text-gray-700 font-gesstwo font-bold text-lg"
-                            name=""
-                            id=""
-                            onChange={(e) => setInviInp(e.target.value)}
-                          >
-                            <option value={0}>اختر ملاحظ</option>
+                      <div className='flex flex-col w-full'>
+                        <label className='font-bold text-[20px]'>الملاحظين :</label>
+                        <select
+                          className="p-3 border-2 rounded-xl border-borderColor text-gray-700 font-gesstwo font-bold text-lg"
+                          name=""
+                          id=""
+                          onChange={(e) => setInviInp(e.target.value)}
+                        >
+                          <option value={0}>اختر ملاحظ</option>
 
-                            {
-                              invi.map((title: any, index: any) =>
-                                <option key={index} value={title.id} className=" text-fontColor font-medium bg-black  text-white ">{title.name}</option>
-                              )
-                            }
-                          </select>
-                        </div></> : ""
-                  }
-                  <div className='cols-span-2 grid-cols-2'>
-                    {
-                      listinvi.map((item: any) => <p className='border-2 p-2 text-center rounded-md font-bold'>{item}<span className='mr-2 text-red-500 cursor-pointer hover:scale-150' onClick={() => handelDeleteItem(item)}>X</span></p>)
-                    }
-                  </div>
+                          {
+                            invi.map((title: any, index: any) =>
+                              <option key={index} value={title.id} className=" text-fontColor font-medium bg-black  text-white ">{title.name}</option>
+                            )
+                          }
+                        </select>
+                      </div></> : ""
+                }
 
+                <div className='flex col-span-3 justify-between'>
                   <div className='fex flex-col '>
-                   {
+                    {
                       !isUpdate ?
                         <button onClick={(e) => handelSubmit(e)} className="bg-btnColor text-white rounded-lg p-2.5 w-28 w-full mt-5	">
                           اضافة
@@ -736,37 +732,47 @@ const AddCommitte = () => {
 
                   </div>
 
-                
+                  <div className='cols-span-2 grid-cols-2 text-start'>
+                    {
+                      listinvi.length ?
+                        <>
+                          <p>الملاحظين :</p>
+                          {
+                            listinvi.map((item: any) => <p className='border-2 p-2 text-center rounded-md font-bold'>{item}<span className='mr-2 text-red-500 cursor-pointer hover:scale-150' onClick={() => handelDeleteItem(item)}>X</span></p>)
+                          } </> : ""
+                    }
+                  </div>
+                </div>
               </form>
 
               {/* Table */}
               <div className='shadow rounded-xl mt-10 p-7 '>
                 <div className='grid grid-cols-2 sm:grid-cols-4 gap-4 my-5 mb-10'>
-                  
-                    <div className='w-full'>
-                      <input style={{ height: '52px'}} className='w-full p-3 outline-none border-2 border-solid border-gray-500' onChange={(e) => setSearchterm(e.target.value)} value={searchterm} type='text' placeholder='ابحث باسم اللجنة'></input>
-                    </div>
-                    <div className='w-full'>
-                      <input style={{ height: '52px'}} className='w-full p-3 outline-none border-2 border-solid border-gray-500 ' onChange={(e) => setSubjectSearch(e.target.value)} value={subjectSearch} type='text' placeholder='ابحث باسم المادة'></input>
-                    </div>
-                    <div className='w-full'>
-                      <select style={{ height: '52px'}}  onChange={(e) => setSearchLevel(+e.target.value)} className='w-full bg-[#e5e5e5] p-3 rounded-md'>
-                        <option value={0}>المستوى</option>
-                        {
-                          level.map((item: any) => <option key={item.id} value={item.id}>{item.name}</option>)
-                        }
-                      </select>
-                    </div>
-                  
-                  
-                    <button onClick={(e) => handelDeleteAll(e)} className="bg-logoutBtnColor text-white rounded-lg p-2.5 w-full p-3 ">
-                      ازالة
-                      <span className="mr-1">
-                        <i className="bx bx-trash"></i>
-                      </span>
-                    </button>
+
+                  <div className='w-full'>
+                    <input style={{ height: '52px' }} className='w-full p-3 outline-none border-2 border-solid border-gray-500' onChange={(e) => setSearchterm(e.target.value)} value={searchterm} type='text' placeholder='ابحث باسم اللجنة'></input>
                   </div>
-               
+                  <div className='w-full'>
+                    <input style={{ height: '52px' }} className='w-full p-3 outline-none border-2 border-solid border-gray-500 ' onChange={(e) => setSubjectSearch(e.target.value)} value={subjectSearch} type='text' placeholder='ابحث باسم المادة'></input>
+                  </div>
+                  <div className='w-full'>
+                    <select style={{ height: '52px' }} onChange={(e) => setSearchLevel(+e.target.value)} className='w-full bg-[#e5e5e5] p-3 rounded-md'>
+                      <option value={0}>المستوى</option>
+                      {
+                        level.map((item: any) => <option key={item.id} value={item.id}>{item.name}</option>)
+                      }
+                    </select>
+                  </div>
+
+
+                  <button onClick={(e) => handelDeleteAll(e)} className="bg-logoutBtnColor text-white rounded-lg p-2.5 w-full p-3 ">
+                    ازالة
+                    <span className="mr-1">
+                      <i className="bx bx-trash"></i>
+                    </span>
+                  </button>
+                </div>
+
                 {
                   committe.length ?
                     <table className='w-full border border-navColor rounded-md font-gesstwo overflow-x-auto'>
