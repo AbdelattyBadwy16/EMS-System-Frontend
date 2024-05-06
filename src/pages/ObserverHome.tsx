@@ -23,7 +23,7 @@ const ObserverHome = () => {
 
     const nav = useNavigate();
     if (role == "FacultyAdmin") {
-       
+
         nav("/facultyhome")
     }
     useEffect(() => {
@@ -116,27 +116,19 @@ const ObserverHome = () => {
                         :
                         <h1 className='text-center text-[50px] font-bold'>لا يوجد لجان بعد.</h1>
                 }
-                <div className="flex justify-end mt-5">
-                    <ReactToPrint
-                        trigger={() => <div className="flex justify-end mt-5 ">
-                            <button className="btn-print gap-3 bg-black text-white flex items-center px-4 py-1 rounded hover:bg-gray-800 ">
-                                <p>طباعة</p>
-                                <FaPrint className="mr-2" />
-                            </button>
-                        </div>}
-                        content={() => componentRef.current}
-                    />
-                </div>
+
             </div>
             <div className="flex justify-end mt-5">
-                    <button className="no-print  btn-print bg-black text-white flex items-center px-4 py-1 rounded hover:bg-gray-800 "
-                    onClick={()=> {window.print()}}
-                    >
-                        طباعة
-                        <FaPrint className="mr-2" />
-                    </button>
-            </div>
-
+                <ReactToPrint
+                    trigger={() => <div className="flex justify-end mt-5 ">
+                        <button className="btn-print gap-3 bg-black text-white flex items-center px-4 py-1 rounded hover:bg-gray-800 ">
+                            <p>طباعة</p>
+                            <FaPrint className="mr-2" />
+                        </button>
+                    </div>}
+                    content={() => componentRef.current}
+                />
+            </div>ل
         </div>
     );
 };
