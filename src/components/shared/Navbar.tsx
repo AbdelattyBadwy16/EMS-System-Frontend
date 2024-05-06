@@ -74,7 +74,7 @@ const Navbar = () => {
                       <LinkBtn title="اضافة لجنة" color="black" icon="plus-square" link="/addCommitte" />
                     </div>
                     <div>
-                      <LinkBtn title="تغيير كلمة السر" color="black" icon="lock-alt" link="/" />
+                      <LinkBtn title="تغيير كلمة السر" color="black" icon="lock-alt" link="/changePassword" />
                     </div>
                     <div className="m-3">
                       <Link
@@ -116,7 +116,7 @@ const Navbar = () => {
 
                       </div>
                       <div className="">
-                        <LinkBtn title="تغيير كلمة السر" color="white" icon="lock-alt" link="/" />
+                        <LinkBtn title="تغيير كلمة السر" color="white" icon="lock-alt" link="/changePassword" />
                       </div>
                     </> : ""
                 }
