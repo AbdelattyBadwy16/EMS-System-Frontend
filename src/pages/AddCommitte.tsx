@@ -715,14 +715,14 @@ const AddCommitte = () => {
                   <div className='flex flex-col '>
                     {
                       !isUpdate ?
-                        <button onClick={(e) => handelSubmit(e)} className="bg-btnColor text-white rounded-lg p-2.5 w-full mt-5	">
+                        <button onClick={(e) => handelSubmit(e)} className="bg-btnColor text-white rounded-lg p-2.5 w-full mt-5 px-5	">
                           اضافة
                           <span className="mr-1 text-iconColor text-base">
                             <i className="bx bx-bookmark"></i>
                           </span>
                         </button>
                         :
-                        <button onClick={(e) => addUpdate(e)} className="bg-yellow-600 text-white rounded-lg p-2.5 w-full	mt-5">
+                        <button onClick={(e) => addUpdate(e)} className="bg-yellow-600 text-white rounded-lg p-2.5 w-full	mt-5 px-5">
                           تعديل
                           <span className="mr-1 text-iconColor text-base">
                             <i className="bx bx-bookmark"></i>
