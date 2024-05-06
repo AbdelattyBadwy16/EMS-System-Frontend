@@ -93,15 +93,15 @@ const Login = () => {
       <Navbar />
       <div className='login'>
         <div className="login-container">
-          <div className="south-text">
-            <h1>South Valley University</h1>
+          <div className="south-text ">
+            <h1>تسجيل الدخول </h1>
           </div>
           <form>
-            <input type="text" name="username" value={username} onChange={(e) => setUsername(e.target.value)} placeholder="Username" /><br /><br />
-            <input type="password" name="password" value={password} onChange={(e) => setpassword(e.target.value)} placeholder="Password" /><br /><br />
+            <input type="text" name="username" value={username} onChange={(e) => setUsername(e.target.value)} placeholder="اسم المستخدم" /><br /><br />
+            <input type="password" name="password" value={password} onChange={(e) => setpassword(e.target.value)} placeholder="كلمة المرور" /><br /><br />
             {
               isLoading ? "" :
-                <button className='login-btn' type="button" onClick={handelLogin}>Login</button>
+                <button className='login-btn' type="button" onClick={handelLogin}>تسجيل الدخول</button>
             }
           </form>
           {

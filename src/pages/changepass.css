@@ -2,7 +2,7 @@ body {
     font-family: Arial, sans-serif;
     
     background-repeat: no-repeat;
-    background-size: cover; /* Changed to cover for better display */
+    background-size: cover; 
     margin: 0;
     padding: 0;
     height: 100vh;
@@ -46,26 +46,32 @@ body {
 .pass-container h1 {
     font-family: GE Dinkum;
     margin-top: 0;
-    color: #333;
+    color: black;
     font-weight: 600;
     font-size: 38px;
+    margin-bottom: 20px;
 }
 
 input[type="text"],
 input[type="password"] {
     width: 80%;
     padding:none;
-   
+    margin: 3px;
     border-radius: 4px;
     box-sizing: border-box;
     background-color: #e5e5e5;
     text-align: center;
     outline: none;
     border-bottom: none;
+    font-size: 18px; 
     
 }
 
-
+::placeholder {
+    color: #666666;
+    font-size: 20px; 
+    font-weight: bold; 
+}
 
 .pass-btn {
     background-color: #4caf50;
@@ -75,7 +81,8 @@ input[type="password"] {
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    width: 50%;
+    width: 65%;
+    height: 6;
     transition: 0.3s;
     font-weight: bold;
 }
@@ -105,7 +112,7 @@ button:hover {
     right: -10px;
     width: 130px;
     height: 130px;
-    background-color: #e5e5e5;
+    background-color: #D9D9D9;
     border-radius: 12px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 
@@ -118,7 +125,7 @@ button:hover {
     width: 130px;
     height: 130px;
     border-radius: 12px;
-    border: rgb(205, 204, 204) solid 1px;
+    border: rgb(192, 189, 189) solid 1px;
 }
 
 .bottom-left-box {
@@ -127,7 +134,7 @@ button:hover {
     left: -10px;
     width: 1350px;
     height: 60px;
-    background-color: #e5e5e5;
+    background-color: #D9D9D9;
     border-radius: 8px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 
@@ -140,7 +147,7 @@ button:hover {
     width: 1350px;
     height: 60px;
     border-radius: 8px;
-    border: rgb(205, 204, 204) solid 1px;
+    border: rgb(192, 189, 189) solid 1px;
 }
 
 .top-right-box {
@@ -149,7 +156,7 @@ button:hover {
     right: 40px;
     width: 63px;
     height: 450px;
-    background-color: #e5e5e5;
+    background-color: #D9D9D9;
     border-radius: 8px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 }
@@ -161,7 +168,7 @@ button:hover {
     width: 63px;
     height: 450px;
     border-radius: 8px;
-    border: rgb(205, 204, 204) solid 1px;
+    border: rgb(192, 189, 189) solid 1px;
 }
 
 

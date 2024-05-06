@@ -43,25 +43,33 @@ body {
 .login-container h1 {
     font-family: GE Dinkum;
     margin-top: 0;
-    color: #333;
-    font-weight: 400;
-    font-size: 30px;
+    color: #636363;
+    font-weight: 598px;
+    font-size: 32px;
 }
 
 input[type="text"],
 input[type="password"] {
     width: 80%;
     padding: 7px;
-    margin: 8px 0;
+    margin: 2px 0;
     border-radius: 4px;
     box-sizing: border-box;
     background-color: #e5e5e5;
     text-align: center;
     outline: none;
     border: none;
-    border-bottom: 1px solid #7b6f6f;
+    border-spacing: 8px;
+    font-size: 18px; 
+    
 }
 
+
+::placeholder {
+    color: #666666;
+    font-size: 20px; 
+    font-weight: bold; 
+}
 .login-btn {
     background-color: #4caf50;
     color: white;
@@ -70,7 +78,7 @@ input[type="password"] {
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    width: 50%;
+    width: 65%;
     transition: 0.3s;
     font-weight: bold;
 }
@@ -87,6 +95,7 @@ input[type="password"] {
     margin: 10px auto;
     font-size: 14px;
 }
+
 
 .south-text {
     margin-top: 20px;

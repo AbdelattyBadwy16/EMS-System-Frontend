@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+import emslogo from "../../assets/emslogo.png";
 import uniLogo from "../../assets/uniLogo.png";
 import menuIcon from "../../assets/menu.png"
 import { Link } from "react-router-dom";
@@ -92,9 +92,13 @@ const Navbar = () => {
         }
         {/*------------------------------*/}
 
-        <div className="flex flex-1 items-center sm:justify-between justify-end">
+        <div className="flex flex-1 items-center sm:justify-between justify-center">
           <h2 className="text-white text-4xl font-futura text-normal hidden sm:block">
-            |EMS|
+          <img
+              className="size-24 sm:justify-end"
+              src={emslogo}
+              alt=""
+            />
           </h2>
           {
             token ?
@@ -126,11 +130,11 @@ const Navbar = () => {
               </div> : ""
           }
           <div className="flex justify-center items-center ">
-            <h2 className="text-white text-2xl font-gesstwo  text-end font-medium">
+            <h2 className="text-white text-3xl font-gesstwo  text-end font-medium">
               {
                 FacultyName ?
                   <div> {FacultyName}</div>
-                  : "جامعة جنوب الوادى"
+                  : "نظام ادارة لجان الامتحانات "
               }
             </h2>
             <img
