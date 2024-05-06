@@ -64,7 +64,7 @@ const FacultyHome = () => {
         <Helmet>
           <title>الصفحة الرئيسية</title>
         </Helmet>
-        <div className='student-information bg-neutral-200 rounded-xl w-full mt-10 p-5 list-disc list-inside text-21 font-medium text-neutral-900'>
+        <div className='student-information bg-neutral-200 p-5 rounded-xl w-full mt-10  list-disc list-inside text-21 font-medium text-neutral-900'>
           <p className="font-bold text-center w-full text-[30px] ">
             مرحبا د/ {name}
           </p>
@@ -86,7 +86,7 @@ const FacultyHome = () => {
               Committes?.level1?.length ?
                 <FacultyBars data={Committes.level1} title="المستوى الاول " number={1} />
                 :
-                <p className="m-6 Font-bold text-[35px] mt-10 bg-gray-500 text-white p-5 rounded-lg">.لا يوجد لجان للمستوى الاول بعد</p>
+                <p className="m-6 Font-bold text-[35px] mt-10 bg-neutral-200  text-gray-600 p-5 rounded-lg">.لا يوجد لجان للمستوى الاول بعد</p>
               : ""
 
           }
@@ -95,7 +95,7 @@ const FacultyHome = () => {
               Committes?.level2?.length ?
                 <FacultyBars data={Committes.level2} title="المستوى الثاني " number={2} />
                 :
-                <p className="m-6 Font-bold text-[35px] mt-10 bg-gray-500 text-white p-5 rounded-lg">.لا يوجد لجان للمستوى الثانى بعد</p>
+                <p className="m-6 Font-bold text-[35px] mt-10 bg-neutral-200 text-gray-600 p-5 rounded-lg">.لا يوجد لجان للمستوى الثانى بعد</p>
               : ""
           }
           {
@@ -103,7 +103,7 @@ const FacultyHome = () => {
               Committes?.level3?.length ?
                 <FacultyBars data={Committes.level3} title="المستوى الثالث " number={3} />
                 :
-                <p className="m-6 Font-bold text-[35px] mt-10 bg-gray-500 text-white p-5 rounded-lg">.لا يوجد لجان للمستوى الثالث بعد</p>
+                <p className="m-6 Font-bold text-[35px] mt-10 bg-neutral-200 text-gray-600 p-5 rounded-lg">.لا يوجد لجان للمستوى الثالث بعد</p>
               : ""
           }
           {
@@ -111,7 +111,7 @@ const FacultyHome = () => {
               Committes?.level4?.length ?
                 <FacultyBars data={Committes.level4} title="المستوى الرابع " number={4} />
                 :
-                <p className="m-6 Font-bold text-[35px] mt-10 bg-gray-500 text-white p-5 rounded-lg">.لا يوجد لجان للمستوى الرابع بعد</p>
+                <p className="m-6 Font-bold text-[35px] mt-10 bg-neutral-200 text-gray-600 p-5 rounded-lg">.لا يوجد لجان للمستوى الرابع بعد</p>
               : ""
           }
 
@@ -120,7 +120,7 @@ const FacultyHome = () => {
               Committes?.level5?.length ?
                 <FacultyBars data={Committes.level5} title="المستوى الخامس " number={4} />
                 :
-                <p className="m-6 Font-bold text-[35px] mt-10 bg-gray-500 text-white p-5 rounded-lg">.لا يوجد لجان للمستوى الخامس بعد</p>
+                <p className="m-6 Font-bold text-[35px] mt-10 bg-neutral-200 text-gray-600 p-5 rounded-lg">.لا يوجد لجان للمستوى الخامس بعد</p>
               : ""
           }
 
@@ -129,7 +129,7 @@ const FacultyHome = () => {
               Committes?.level6?.length ?
                 <FacultyBars data={Committes.level6} title="المستوى السادس " number={4} />
                 :
-                <p className="m-6 Font-bold text-[35px] mt-10 bg-gray-500 text-white p-5 rounded-lg">.لا يوجد لجان للمستوى السادس بعد</p>
+                <p className="m-6 Font-bold text-[35px] mt-10 bg-neutral-200 text-gray-600 p-5 rounded-lg">.لا يوجد لجان للمستوى السادس بعد</p>
               : ""
           }
 
@@ -138,7 +138,7 @@ const FacultyHome = () => {
               Committes?.level7?.length ?
                 <FacultyBars data={Committes.level7} title="المستوى السابع " number={4} />
                 :
-                <p className="m-6 Font-bold text-[35px] mt-10 bg-gray-500 text-white p-5 rounded-lg">.لا يوجد لجان للمستوى السابع بعد</p>
+                <p className="m-6 Font-bold text-[35px] mt-10 bg-neutral-200 text-gray-600 p-5 rounded-lg">.لا يوجد لجان للمستوى السابع بعد</p>
               : ""
           }
 
