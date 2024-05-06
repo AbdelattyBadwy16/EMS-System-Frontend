@@ -62,16 +62,18 @@ const FacultyFlowcharts = () => {
       {/*pei flowchart*/}
       <motion.div
         variants={{
-          hidden: { x: -100, opacity: 0 },
+          hidden: { x: "-100vw", opacity: 0 },
           visible: {
             x: 0,
             opacity: 1,
             transition: {
-              delay: 0.5,
+              delay: 0.3,
               duration: 0.5,
             },
           },
         }}
+        initial="hidden"
+        animate="visible"
         className='w-11/12 h-80 xl:mx-24 bg-customGray rounded-2xl text-end flex sm:ml-10 justify-between '>
         <div className='w-[70%]'>
           <h1 className='mt-5 font-bold text-[25px] text-end'>لجان الفرق / المستويات</h1>
@@ -113,7 +115,19 @@ const FacultyFlowcharts = () => {
 
       {/*bar flowchart*/}
 
-      <div className='w-11/12 h-80 xl:mx-24 bg-customGray rounded-2xl text-end flex sm:ml-10 justify-between '>
+      <motion.div variants={{
+        hidden: { x: "100vw", opacity: 0 },
+        visible: {
+          x: 0,
+          opacity: 1,
+          transition: {
+            delay: 0.3,
+            duration: 0.5,
+          },
+        },
+      }}
+        initial="hidden"
+        animate="visible" className='w-11/12 h-80 xl:mx-24 bg-customGray rounded-2xl text-end flex sm:ml-10 justify-between '>
         <div className='w-[70%]'>
           <h1 className='mt-5 font-bold text-[25px] text-end'>عدد اللجان المفعلة اليوم</h1>
           {
@@ -152,7 +166,7 @@ const FacultyFlowcharts = () => {
           }
         </ul>
 
-      </div>
+      </motion.div>
     </motion.div >
 
 

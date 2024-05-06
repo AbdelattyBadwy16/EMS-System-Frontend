@@ -8,6 +8,8 @@ import { getId, getRole } from "../Redux/Slices/userSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import { GetAllCommite } from "../helper/Api/CommiteApi";
+import { motion } from 'framer-motion'
+
 
 const FacultyHome = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -64,11 +66,24 @@ const FacultyHome = () => {
         <Helmet>
           <title>الصفحة الرئيسية</title>
         </Helmet>
-        <div className='student-information bg-neutral-200 p-5 rounded-xl w-full mt-10  list-disc list-inside text-21 font-medium text-neutral-900'>
+        <motion.div
+          variants={{
+            hidden: { y: "-100vw", opacity: 0 },
+            visible: {
+              y: 0,
+              opacity: 1,
+              transition: {
+                delay: 0.3,
+                duration: 0.5,
+              },
+            },
+          }}
+          initial="hidden"
+          animate="visible" className='student-information bg-neutral-200 p-5 rounded-xl w-full mt-10  list-disc list-inside text-21 font-medium text-neutral-900'>
           <p className="font-bold text-center w-full text-[30px] ">
             مرحبا د/ {name}
           </p>
-        </div>
+        </motion.div>
         {/*flow cahrts */}
         <div className="">
           <FacultyFlowcharts />
@@ -86,7 +101,19 @@ const FacultyHome = () => {
               Committes?.level1?.length ?
                 <FacultyBars data={Committes.level1} title="المستوى الاول " number={1} />
                 :
-                <p className="m-6 Font-bold text-[35px] mt-10 bg-neutral-200  text-gray-600 p-5 rounded-lg">.لا يوجد لجان للمستوى الاول بعد</p>
+                <motion.p variants={{
+                  hidden: { x: "100vw", opacity: 0 },
+                  visible: {
+                    x: 0,
+                    opacity: 1,
+                    transition: {
+                      delay: 0.5,
+                      duration: 0.5,
+                    },
+                  },
+                }}
+                  initial="hidden"
+                  animate="visible" className="m-6 Font-bold text-[35px] mt-10 bg-neutral-200  text-gray-600 p-5 rounded-lg">.لا يوجد لجان للمستوى الاول بعد</motion.p>
               : ""
 
           }
@@ -95,7 +122,19 @@ const FacultyHome = () => {
               Committes?.level2?.length ?
                 <FacultyBars data={Committes.level2} title="المستوى الثاني " number={2} />
                 :
-                <p className="m-6 Font-bold text-[35px] mt-10 bg-neutral-200 text-gray-600 p-5 rounded-lg">.لا يوجد لجان للمستوى الثانى بعد</p>
+                <motion.p variants={{
+                  hidden: { x: "-100vw", opacity: 0 },
+                  visible: {
+                    x: 0,
+                    opacity: 1,
+                    transition: {
+                      delay: 0.5,
+                      duration: 0.5,
+                    },
+                  },
+                }}
+                  initial="hidden"
+                  animate="visible" className="m-6 Font-bold text-[35px] mt-10 bg-neutral-200 text-gray-600 p-5 rounded-lg">.لا يوجد لجان للمستوى الثانى بعد</motion.p>
               : ""
           }
           {
@@ -103,7 +142,19 @@ const FacultyHome = () => {
               Committes?.level3?.length ?
                 <FacultyBars data={Committes.level3} title="المستوى الثالث " number={3} />
                 :
-                <p className="m-6 Font-bold text-[35px] mt-10 bg-neutral-200 text-gray-600 p-5 rounded-lg">.لا يوجد لجان للمستوى الثالث بعد</p>
+                <motion.p variants={{
+                  hidden: { x: "100vw", opacity: 0 },
+                  visible: {
+                    x: 0,
+                    opacity: 1,
+                    transition: {
+                      delay: 0.5,
+                      duration: 0.5,
+                    },
+                  },
+                }}
+                  initial="hidden"
+                  animate="visible" className="m-6 Font-bold text-[35px] mt-10 bg-neutral-200 text-gray-600 p-5 rounded-lg">.لا يوجد لجان للمستوى الثالث بعد</motion.p>
               : ""
           }
           {
@@ -111,7 +162,19 @@ const FacultyHome = () => {
               Committes?.level4?.length ?
                 <FacultyBars data={Committes.level4} title="المستوى الرابع " number={4} />
                 :
-                <p className="m-6 Font-bold text-[35px] mt-10 bg-neutral-200 text-gray-600 p-5 rounded-lg">.لا يوجد لجان للمستوى الرابع بعد</p>
+                <motion.p variants={{
+                  hidden: { x: "-100vw", opacity: 0 },
+                  visible: {
+                    x: 0,
+                    opacity: 1,
+                    transition: {
+                      delay: 0.5,
+                      duration: 0.5,
+                    },
+                  },
+                }}
+                  initial="hidden"
+                  animate="visible" className="m-6 Font-bold text-[35px] mt-10 bg-neutral-200 text-gray-600 p-5 rounded-lg">.لا يوجد لجان للمستوى الرابع بعد</motion.p>
               : ""
           }
 
@@ -120,7 +183,19 @@ const FacultyHome = () => {
               Committes?.level5?.length ?
                 <FacultyBars data={Committes.level5} title="المستوى الخامس " number={4} />
                 :
-                <p className="m-6 Font-bold text-[35px] mt-10 bg-neutral-200 text-gray-600 p-5 rounded-lg">.لا يوجد لجان للمستوى الخامس بعد</p>
+                <motion.p variants={{
+                  hidden: { x: "100vw", opacity: 0 },
+                  visible: {
+                    x: 0,
+                    opacity: 1,
+                    transition: {
+                      delay: 0.5,
+                      duration: 0.5,
+                    },
+                  },
+                }}
+                  initial="hidden"
+                  animate="visible" className="m-6 Font-bold text-[35px] mt-10 bg-neutral-200 text-gray-600 p-5 rounded-lg">.لا يوجد لجان للمستوى الخامس بعد</motion.p>
               : ""
           }
 
@@ -129,7 +204,19 @@ const FacultyHome = () => {
               Committes?.level6?.length ?
                 <FacultyBars data={Committes.level6} title="المستوى السادس " number={4} />
                 :
-                <p className="m-6 Font-bold text-[35px] mt-10 bg-neutral-200 text-gray-600 p-5 rounded-lg">.لا يوجد لجان للمستوى السادس بعد</p>
+                <motion.p variants={{
+                  hidden: { x: "-100vw", opacity: 0 },
+                  visible: {
+                    x: 0,
+                    opacity: 1,
+                    transition: {
+                      delay: 0.5,
+                      duration: 0.5,
+                    },
+                  },
+                }}
+                  initial="hidden"
+                  animate="visible" className="m-6 Font-bold text-[35px] mt-10 bg-neutral-200 text-gray-600 p-5 rounded-lg">.لا يوجد لجان للمستوى السادس بعد</motion.p>
               : ""
           }
 
@@ -138,7 +225,19 @@ const FacultyHome = () => {
               Committes?.level7?.length ?
                 <FacultyBars data={Committes.level7} title="المستوى السابع " number={4} />
                 :
-                <p className="m-6 Font-bold text-[35px] mt-10 bg-neutral-200 text-gray-600 p-5 rounded-lg">.لا يوجد لجان للمستوى السابع بعد</p>
+                <motion.p variants={{
+                  hidden: { x: "-100vw", opacity: 0 },
+                  visible: {
+                    x: 0,
+                    opacity: 1,
+                    transition: {
+                      delay: 0.5,
+                      duration: 0.5,
+                    },
+                  },
+                }}
+                  initial="hidden"
+                  animate="visible" className="m-6 Font-bold text-[35px] mt-10 bg-neutral-200 text-gray-600 p-5 rounded-lg">.لا يوجد لجان للمستوى السابع بعد</motion.p>
               : ""
           }
 
