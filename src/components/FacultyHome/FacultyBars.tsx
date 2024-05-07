@@ -19,15 +19,15 @@ const FacultyBars = (Detail: BarDetails) => {
 
 
   return (
-    <div>
+  
 
-      <div>
-        <div className="m-6">
+  
+        <div className=" tt-table">
           <div className="bg-customGray rounded-2xl py-6  ">
             <h2 className="mr-5 font-gesstwo text-gray-500 font-medium text-4xl">
               {Detail.title}
-              <span className="border-4 border-borderColor  px-1 ml-2 mr-2  float-right rounded-b	">
-                {Detail.number}
+              <span className="  px-1 ml-2 float-right rounded-b	">
+                [{Detail.number}]
               </span>
             </h2>
             <div
@@ -41,12 +41,12 @@ const FacultyBars = (Detail: BarDetails) => {
               )}
             </div>
           </div>
-        </div>
+        
 
         {/*Table*/}
 
         {isExpanded && (
-          <div className="container  mx-auto px-12 grid">
+          <div className="container  pb-5">
             <table ref={componentRef} className='w-full border border-navColor rounded-md font-gesstwo overflow-x-auto'>
               <thead className='text-21 bg-stone-800 text-neutral-200 text-center rounded'>
                 <tr>
@@ -79,9 +79,6 @@ const FacultyBars = (Detail: BarDetails) => {
       </div>
 
 
-
-
-    </div>
   )
 }
 

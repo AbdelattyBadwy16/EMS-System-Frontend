@@ -772,39 +772,42 @@ const AddCommitte = () => {
                     </span>
                   </button>
                 </div>
-
-                {
+                <div className='overflow-x-auto'>
+                  {
                   committe.length ?
                     <table className='w-full border border-navColor rounded-md font-gesstwo overflow-x-auto'>
                       <thead className='text-21 bg-stone-800 text-neutral-200 text-center rounded'>
                         <tr>
-                          <td className='w-1/8 p-1 '>المقرر</td>
-                          <td className='w-1/8 p-1' >التاريخ</td>
-                          <td className='w-1/8 p-1'>اليوم</td>
-                          <td className='w-1/8 p-1'>الفترة</td>
-                          <td className='w-1/8 p-1'>التوقيت</td>
-                          <td className='w-1/8 p-1'>المكان</td>
-                          <td className='w-1/8 p-1' >اللجنة</td>
-                          <td className='w-1/8 p-1' >اعدادات</td>
+                          <td className='w-1/8 p-1 td-table'>المقرر</td>
+                          <td className='w-1/8 p-1 td-table' >التاريخ</td>
+                          <td className='w-1/8 p-1 td-table'>اليوم</td>
+                          <td className='w-1/8 p-1 td-table'>الفترة</td>
+                          <td className='w-1/8 p-1 td-table'>التوقيت</td>
+                          <td className='w-1/8 p-1 td-table'>المكان</td>
+                          <td className='w-1/8 p-1 td-table' >اللجنة</td>
+                          <td className='w-1/8 p-1 td-table' >اعدادات</td>
                         </tr>
                       </thead>
                       <tbody className='text-18 text-center'>
                         {
                           committe.map((com: any, index) => (
                             <tr key={index} className={index % 2 !== 0 ? ' bg-neutral-200' : ''}>
-                              <td className='w-1/8 p-2 '>{com.subjectName}</td>
-                              <td className='w-1/8 p-2'>{com.date}</td>
-                              <td className='w-1/8 p-2'>{com.day}</td>
-                              <td className='w-1/8 p-2'>{com.interval}</td>
-                              <td className='w-1/8 p-2'>{`${com.from} - ${com.to}`}</td>
-                              <td className='w-1/8 p-2'>{com.place}</td>
-                              <td className='w-1/8 p-2'>{com.name}</td>
-                              <td className='w-1/8 p-2 text-center cursor-pointer flex  justify-center items-center gap-5' ><p className='bg-green-500 text-white p-1 px-3 rounded-lg ' onClick={(e) => handelUpdate(com)}>تعديل</p><p className='bg-red-500 p-1 px-3 text-white rounded-lg' onClick={(e) => handelDelete(com.id, e)}>حذف</p></td>
+                              <td className='w-1/8 p-2 td-table'>{com.subjectName}</td>
+                              <td className='w-1/8 p-2 td-table'>{com.date}</td>
+                              <td className='w-1/8 p-2 td-table'>{com.day}</td>
+                              <td className='w-1/8 p-2 td-table'>{com.interval}</td>
+                              <td className='w-1/8 p-2 td-table'>{`${com.from} - ${com.to}`}</td>
+                              <td className='w-1/8 p- td-table'>{com.place}</td>
+                              <td className='w-1/8 p-2 td-table'>{com.name}</td>
+                              <td className='w-1/8 p-2 text-center cursor-pointer flex  justify-center items-center gap-5  td-table'  ><p className='bg-green-500 text-white p-1 px-3 rounded-lg ' onClick={(e) => handelUpdate(com)}>تعديل</p><p className='bg-red-500 p-1 px-3 text-white rounded-lg' onClick={(e) => handelDelete(com.id, e)}>حذف</p></td>
                             </tr>
                           ))}
                       </tbody>
                     </table> : <p className='text-center font-bold text-[30px]'>لا يوجد بيانات لعرضها</p>
                 }
+                </div>
+
+                
               </div>
             </>
         }

@@ -61,24 +61,20 @@ const FacultyHome = () => {
   }, [])
   return (
     <>
-      <div className="container mx-auto my-2 text-right">
+      <div className="px-2 sm:px-6 lg:px-20 w-full  text-right">
         <Helmet>
           <title>الصفحة الرئيسية</title>
         </Helmet>
-        <div className='student-information bg-neutral-200 p-5 rounded-xl w-full mt-10  list-disc list-inside text-21 font-medium text-neutral-900'>
-          <p className="font-bold text-center w-full text-[30px] ">
-            مرحبا د/ {name}
-          </p>
-        </div>
+
         {/*flow cahrts */}
-        <div className="">
+        <div className="shadow rounded-xl mt-10 p-7  ">
           <FacultyFlowcharts />
         </div>
 
         {/*اللجان المضافة */}
-        <div className="w-full grid mt-9 p-9" >
+        <div className="w-full grid mt-9" >
           <div className="float-end mb-4 ">
-            <h2 className="text-red text-5xl leading-10 font-bold ">
+            <h2 className="text-red text-[32px] leading-10 font-bold ">
               اللجان المضافة <span className="text-gray-500">|</span>
             </h2>
           </div>
@@ -87,7 +83,10 @@ const FacultyHome = () => {
               Committes?.level1?.length ?
                 <FacultyBars data={Committes.level1} title="المستوى الاول " number={1} />
                 :
-                <p className="m-6 Font-bold text-[35px] mt-10 bg-neutral-200  text-gray-600 p-5 rounded-lg">.لا يوجد لجان للمستوى الاول بعد</p>
+                <p className=" mb-6 flex px-5 justify-end items-center font-gesstwo text-gray-500 font-medium text-4xl bg-customGray rounded-2xl py-6">
+                  <span>لا يوجد لجان للمستوى الأول بعد</span>
+                  <span className="ml-2">[1]</span>
+                </p>
               : ""
 
           }
@@ -96,7 +95,11 @@ const FacultyHome = () => {
               Committes?.level2?.length ?
                 <FacultyBars data={Committes.level2} title="المستوى الثاني " number={2} />
                 :
-                <p className="m-6 Font-bold text-[35px] mt-10 bg-neutral-200 text-gray-600 p-5 rounded-lg">.لا يوجد لجان للمستوى الثانى بعد</p>
+                <p className="mb-6 flex px-5 justify-end items-center font-gesstwo text-gray-500 font-medium text-4xl bg-customGray rounded-2xl py-6">
+                  <span>لا يوجد لجان للمستوى الثانى بعد</span>
+                  <span className="ml-2">[2]</span>
+                </p>
+
               : ""
           }
           {
@@ -104,7 +107,11 @@ const FacultyHome = () => {
               Committes?.level3?.length ?
                 <FacultyBars data={Committes.level3} title="المستوى الثالث " number={3} />
                 :
-                <p className="m-6 Font-bold text-[35px] mt-10 bg-neutral-200 text-gray-600 p-5 rounded-lg">.لا يوجد لجان للمستوى الثالث بعد</p>
+                <p className=" mb-6 flex px-5 justify-end items-center font-gesstwo text-gray-500 font-medium text-4xl bg-customGray rounded-2xl py-6">
+                  <span>لا يوجد لجان للمستوى الثالث بعد</span>
+                  <span className="ml-2">[3]</span>
+                </p>
+                
               : ""
           }
           {
@@ -112,7 +119,10 @@ const FacultyHome = () => {
               Committes?.level4?.length ?
                 <FacultyBars data={Committes.level4} title="المستوى الرابع " number={4} />
                 :
-                <p className="m-6 Font-bold text-[35px] mt-10 bg-neutral-200 text-gray-600 p-5 rounded-lg">.لا يوجد لجان للمستوى الرابع بعد</p>
+                <p className=" mb-6 flex px-5 justify-end items-center font-gesstwo text-gray-500 font-medium text-4xl bg-customGray rounded-2xl py-6">
+                  <span>لا يوجد لجان للمستوى الرابع بعد</span>
+                  <span className="ml-2">[4]</span>
+                </p>
               : ""
           }
 
@@ -121,7 +131,10 @@ const FacultyHome = () => {
               Committes?.level5?.length ?
                 <FacultyBars data={Committes.level5} title="المستوى الخامس " number={4} />
                 :
-                <p className="m-6 Font-bold text-[35px] mt-10 bg-neutral-200 text-gray-600 p-5 rounded-lg">.لا يوجد لجان للمستوى الخامس بعد</p>
+                <p className=" mb-6 flex px-5 justify-end items-center font-gesstwo text-gray-500 font-medium text-4xl bg-customGray rounded-2xl py-6">
+                  <span>لا يوجد لجان للمستوى الخامس بعد</span>
+                  <span className="ml-2">[5]</span>
+                </p>
               : ""
           }
 
@@ -130,7 +143,10 @@ const FacultyHome = () => {
               Committes?.level6?.length ?
                 <FacultyBars data={Committes.level6} title="المستوى السادس " number={4} />
                 :
-                <p className="m-6 Font-bold text-[35px] mt-10 bg-neutral-200 text-gray-600 p-5 rounded-lg">.لا يوجد لجان للمستوى السادس بعد</p>
+                <p className=" mb-6 flex px-5 justify-end items-center font-gesstwo text-gray-500 font-medium text-4xl bg-customGray rounded-2xl py-6">
+                  <span>لا يوجد لجان للمستوى السادس بعد</span>
+                  <span className="ml-2">[6]</span>
+                </p>
               : ""
           }
 
@@ -139,7 +155,10 @@ const FacultyHome = () => {
               Committes?.level7?.length ?
                 <FacultyBars data={Committes.level7} title="المستوى السابع " number={4} />
                 :
-                <p className="m-6 Font-bold text-[35px] mt-10 bg-neutral-200 text-gray-600 p-5 rounded-lg">.لا يوجد لجان للمستوى السابع بعد</p>
+                <p className=" mb-6  flex px-5 justify-end items-center font-gesstwo text-gray-500 font-medium text-4xl bg-customGray rounded-2xl py-6">
+                  <span>لا يوجد لجان للمستوى السابع بعد</span>
+                  <span className="ml-2">[7]</span>
+                </p>
               : ""
           }
 
