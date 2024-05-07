@@ -64,7 +64,7 @@ const AddCommitte = () => {
   const [idInviInp, setIdInviInp] = useState<any>([]);
   const [listinvi, setListInvi] = useState<any>([]);
   const [inviInp, setInviInp] = useState<any>();
-  const [studentNum, setStudentNum] = useState<any>(0);
+  const [studentNum, setStudentNum] = useState<any>();
   // subject filter
   let lawID = 0;
   let facultyNodeID = 0;
