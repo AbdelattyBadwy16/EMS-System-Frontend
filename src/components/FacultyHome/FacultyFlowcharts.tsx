@@ -57,7 +57,7 @@ const FacultyFlowcharts = () => {
 
 
   return (
-    <motion.div className='w-full xl:flex justify-center mt-8 flex'>
+    <motion.div className='w-full xl:flex justify-center mt-8 flex flex-col md:flex-row gap-10'>
 
       {/*pei flowchart*/}
       <motion.div
@@ -74,7 +74,7 @@ const FacultyFlowcharts = () => {
         }}
         initial="hidden"
         animate="visible"
-        className='w-11/12 h-80 xl:mx-24 bg-customGray rounded-2xl text-end flex sm:ml-10 justify-between '>
+        className='md:w-11/12 h-80 xl:mx-24 w-full bg-customGray rounded-2xl text-end flex justify-between '>
         <div className='w-[70%]'>
           <h1 className='mt-5 font-bold text-[25px] text-end'>لجان الفرق / المستويات</h1>
           {
@@ -127,7 +127,7 @@ const FacultyFlowcharts = () => {
         },
       }}
         initial="hidden"
-        animate="visible" className='w-11/12 h-80 xl:mx-24 bg-customGray rounded-2xl text-end flex sm:ml-10 justify-between '>
+        animate="visible" className='md:w-[11/12] w-full h-80 xl:mx-24 bg-customGray rounded-2xl text-end flex justify-between '>
         <div className='w-[70%]'>
           <h1 className='mt-5 font-bold text-[25px] text-end'>عدد اللجان المفعلة اليوم</h1>
           {

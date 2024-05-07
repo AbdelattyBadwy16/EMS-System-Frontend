@@ -44,8 +44,8 @@ const Navbar = () => {
         {/*DropDown*/}
         {
           token && userRole[0] == "FacultyAdmin" ?
-         
-             <div className="relative inline-block text-left lg:hidden mr-6">
+
+            <div className="relative inline-block text-left lg:hidden mr-6">
               <div>
                 <button
                   type="button"
@@ -94,25 +94,28 @@ const Navbar = () => {
 
         <div className="flex flex-1 items-center sm:justify-between justify-end">
           <h2 className="text-white text-4xl font-futura text-normal hidden sm:block">
-          <img
-              className="size-24 lg:justify-end hidden lg:block" 
+            <img
+              className="size-24 lg:justify-end hidden lg:block"
               src={emslogo}
               alt=""
             />
           </h2>
           {
             token ?
-               <div className="lg:grid xl:grid-cols-6 grid-cols-4 m-auto items-center xl:mr-10 mr-25 gap-1 hidden">
-                <Link
-                  to="/Login"
-                  className="text-white font-bold font-geDinkum  bg-logoutBtnColor rounded-md px-2 py-2 gap-2"
-                >
-                  <i className="bx bx-log-out ml-0.5 font-bold font-geDinkum mr-2"></i>
-                  تسجيل الخروج
-                </Link>
+              <div className="lg:grid xl:grid-cols-6 grid-cols-4 m-auto items-center xl:mr-10 mr-25 gap-1 hidden">
+                {
+                  userRole[0] == "FacultyAdmin" ? 
+                  <Link
+                    to="/Login"
+                    className="text-white font-bold font-geDinkum  bg-logoutBtnColor rounded-md px-2 py-2 gap-2"
+                  >
+                    <i className="bx bx-log-out ml-0.5 font-bold font-geDinkum mr-2"></i>
+                    تسجيل الخروج
+                  </Link> : ""
+                }
                 {
                   userRole[0] == "FacultyAdmin" ?
-                 
+
                     <>
                       <div className="">
                         <LinkBtn title="اضافة لجنة" color="white" icon="plus-square" link="/addCommitte" />
@@ -125,7 +128,7 @@ const Navbar = () => {
                       </div>
                     </> : ""
                 }
-                
+
               </div> : ""
           }
           <div className="flex justify-center items-center ">
