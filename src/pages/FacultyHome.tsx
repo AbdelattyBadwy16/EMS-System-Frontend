@@ -63,7 +63,7 @@ const FacultyHome = () => {
   }, [])
   return (
     <>
-      <div className="container mx-auto my-2 text-right">
+      <div className="px-2 sm:px-6 lg:px-20 w-full  text-right">
         <Helmet>
           <title>الصفحة الرئيسية</title>
         </Helmet>
@@ -86,14 +86,14 @@ const FacultyHome = () => {
           </p>
         </motion.div>
         {/*flow cahrts */}
-        <div className="">
+        <div className="shadow rounded-xl mt-10 p-7  ">
           <FacultyFlowcharts />
         </div>
 
         {/*اللجان المضافة */}
-        <div className="w-full grid mt-9 p-9" >
+        <div className="w-full grid mt-9" >
           <div className="float-end mb-4 ">
-            <h2 className="text-red text-5xl leading-10 font-bold ">
+            <h2 className="text-red text-[32px] leading-10 font-bold ">
               اللجان المضافة <span className="text-gray-500">|</span>
             </h2>
           </div>

@@ -9,13 +9,13 @@ function TableRow(rowData: any) {
 
     return (
         <tr key={rowData.index} className={rowData.index % 2 !== 0 ? ' bg-neutral-200' : ''}>
-            <td className='w-1/8 p-2 '>{rowData.rowData.c.place}</td>
-            <td className='w-1/8 p-2'>{rowData.rowData.c.interval}</td>
-            <td className='w-1/8 p-2'>{`${rowData.rowData.c.from} - ${rowData.rowData.c.to}`}</td>
-            <td className='w-1/8 p-2'>{newDay}</td>
-            <td className='w-1/8 p-2'>{newDate}</td>
-            <td className='w-1/8 p-2'>{rowData.rowData.c.name}</td>
-            <td className='w-1/8 p-2'>{rowData.rowData.c.subjectName}</td>
+            <td className='w-1/8 p-2 td-table'>{rowData.rowData.c.place}</td>
+            <td className='w-1/8 p-2 td-table'>{rowData.rowData.c.interval}</td>
+            <td className='w-1/8 p-2 td-table'>{`${rowData.rowData.c.from} - ${rowData.rowData.c.to}`}</td>
+            <td className='w-1/8 p-2 td-table'>{newDay}</td>
+            <td className='w-1/8 p-2 td-table'>{newDate}</td>
+            <td className='w-1/8 p-2 td-table'>{rowData.rowData.c.name}</td>
+            <td className='w-1/8 p-2 td-table'>{rowData.rowData.c.subjectName}</td>
         </tr>
     )
 }
