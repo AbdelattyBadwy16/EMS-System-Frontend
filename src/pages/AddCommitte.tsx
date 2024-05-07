@@ -10,6 +10,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { subjectDto } from '../helper/Api/FacultyApi';
 import { GetCommiteDate } from '../helper/Constant';
 import { GetFacultyInvigilators, GetFacultyObservers } from '../helper/Api/StaffApi';
+import { motion } from 'framer-motion'
 
 interface commiteDto {
   day: string,
@@ -259,7 +260,6 @@ const AddCommitte = () => {
       }
 
       res = await AddNewCommite(data, observInp, idInviInp);
-      console.log(res);
     } finally {
       if (+res >= 0 && +res <= 1000) {
         let mess = ' من فضلك تاكد من عدد الطلاب فاللجنة لا يزيد عن عدد الطلاب المتاحين وهو';
@@ -420,8 +420,20 @@ const AddCommitte = () => {
               </Helmet>
 
 
-              <form className="shadow rounded-xl mt-10 p-7 grid grid-cols-1 lg:grid-cols-3 gap-5  ">
-                <div className='flex flex-col'>
+              <motion.form className="shadow rounded-xl mt-10 p-7 grid grid-cols-1 lg:grid-cols-3 gap-5  ">
+                <motion.div variants={{
+                  hidden: { x: "100vw", opacity: 0 },
+                  visible: {
+                    x: 0,
+                    opacity: 1,
+                    transition: {
+                      delay: 0.3,
+                      duration: 0.5,
+                    },
+                  },
+                }}
+                  initial="hidden"
+                  animate="visible" className='flex flex-col'>
                   <label className='font-bold text-[20px]'>اللائحة :</label>
                   {
                     !isUpdate ?
@@ -446,9 +458,21 @@ const AddCommitte = () => {
                       :
                       <input type='text' value={lawInput} disabled></input>
                   }
-                </div>
+                </motion.div>
 
-                <div className='flex flex-col'>
+                <motion.div variants={{
+                  hidden: { y: "100vw", opacity: 0 },
+                  visible: {
+                    y: 0,
+                    opacity: 1,
+                    transition: {
+                      delay: 0.3,
+                      duration: 0.5,
+                    },
+                  },
+                }}
+                  initial="hidden"
+                  animate="visible" className='flex flex-col'>
                   <label className='font-bold text-[20px]'>نظام الدراسة :</label>
                   {
                     !isUpdate ?
@@ -469,9 +493,21 @@ const AddCommitte = () => {
                       :
                       <input type='text' value={studyMethodInput} disabled></input>
                   }
-                </div>
+                </motion.div>
 
-                <div className='flex flex-col'>
+                <motion.div variants={{
+                  hidden: { x: "-100vw", opacity: 0 },
+                  visible: {
+                    x: 0,
+                    opacity: 1,
+                    transition: {
+                      delay: 0.3,
+                      duration: 0.5,
+                    },
+                  },
+                }}
+                  initial="hidden"
+                  animate="visible" className='flex flex-col'>
                   <label className='font-bold text-[20px]'>القسم :</label>
                   {
                     !isUpdate ?
@@ -492,8 +528,20 @@ const AddCommitte = () => {
                       :
                       <input type='text' value={departInput} disabled></input>
                   }
-                </div>
-                <div className='flex flex-col'>
+                </motion.div>
+                <motion.div variants={{
+                  hidden: { x: "100vw", opacity: 0 },
+                  visible: {
+                    x: 0,
+                    opacity: 1,
+                    transition: {
+                      delay: 0.5,
+                      duration: 0.5,
+                    },
+                  },
+                }}
+                  initial="hidden"
+                  animate="visible" className='flex flex-col'>
                   <label className='font-bold text-[20px]'>المستوى :</label>
                   {
                     !isUpdate ?
@@ -514,8 +562,20 @@ const AddCommitte = () => {
                       :
                       <input type='text' value={levelInput} disabled></input>
                   }
-                </div>
-                <div className='flex flex-col'>
+                </motion.div>
+                <motion.div variants={{
+                  hidden: { y: "100vw", opacity: 0 },
+                  visible: {
+                    y: 0,
+                    opacity: 1,
+                    transition: {
+                      delay: 0.5,
+                      duration: 0.5,
+                    },
+                  },
+                }}
+                  initial="hidden"
+                  animate="visible" className='flex flex-col'>
                   <label className='font-bold text-[20px]'>الفصل الدراسى :</label>
                   {
                     !isUpdate ?
@@ -536,8 +596,20 @@ const AddCommitte = () => {
                       :
                       <input type='text' value={termInput} disabled></input>
                   }
-                </div>
-                <div className='flex flex-col'>
+                </motion.div>
+                <motion.div variants={{
+                  hidden: { x: "-100vw", opacity: 0 },
+                  visible: {
+                    x: 0,
+                    opacity: 1,
+                    transition: {
+                      delay: 0.5,
+                      duration: 0.5,
+                    },
+                  },
+                }}
+                  initial="hidden"
+                  animate="visible" className='flex flex-col'>
                   <label className='font-bold text-[20px]'>المقرر :</label>
                   {
                     !isUpdate ?
@@ -558,17 +630,53 @@ const AddCommitte = () => {
                       :
                       <input type='text' value={subject} disabled></input>
                   }
-                </div>
-                <div className='flex flex-col'>
+                </motion.div>
+                <motion.div variants={{
+                  hidden: { x: "100vw", opacity: 0 },
+                  visible: {
+                    x: 0,
+                    opacity: 1,
+                    transition: {
+                      delay: 0.75,
+                      duration: 0.5,
+                    },
+                  },
+                }}
+                  initial="hidden"
+                  animate="visible" className='flex flex-col'>
                   <label className='font-bold text-[20px]'>التاريخ :</label>
                   <input style={{ height: '52px' }} value={commDate} onChange={(e) => GetDay(e)} className="p-3 border-2 rounded-xl w-full  border-borderColor text-gray-700 font-gesstwo font-bold text-lg" type='date' />
-                </div>
+                </motion.div>
 
-                <div className='flex flex-col'>
+                <motion.div variants={{
+                  hidden: { y: "100vw", opacity: 0 },
+                  visible: {
+                    y: 0,
+                    opacity: 1,
+                    transition: {
+                      delay: 0.75,
+                      duration: 0.5,
+                    },
+                  },
+                }}
+                  initial="hidden"
+                  animate="visible" className='flex flex-col'>
                   <label className='font-bold text-[20px]'>اليوم :</label>
                   <input value={day} style={{ height: '52px' }} className="p-3 border-2 rounded-xl w-full   border-borderColor text-gray-600 font-gesstwo font-bold text-lg" disabled type='text' />
-                </div>
-                <div className='flex flex-col'>
+                </motion.div>
+                <motion.div variants={{
+                  hidden: { x: "-100vw", opacity: 0 },
+                  visible: {
+                    x: 0,
+                    opacity: 1,
+                    transition: {
+                      delay: 0.75,
+                      duration: 0.5,
+                    },
+                  },
+                }}
+                  initial="hidden"
+                  animate="visible" className='flex flex-col'>
                   <label className='font-bold text-[20px]'>الفترة :</label>
                   <select
                     className="p-3 border-2 rounded-xl border-borderColor text-gray-700 font-gesstwo font-bold text-lg"
@@ -584,8 +692,20 @@ const AddCommitte = () => {
                       )
                     }
                   </select>
-                </div>
-                <div className="flex-1 grid grid-cols-2 gap-x-4">
+                </motion.div>
+                <motion.div variants={{
+                  hidden: { x: "100vw", opacity: 0 },
+                  visible: {
+                    x: 0,
+                    opacity: 1,
+                    transition: {
+                      delay: 1.0,
+                      duration: 0.5,
+                    },
+                  },
+                }}
+                  initial="hidden"
+                  animate="visible" className="flex-1 grid grid-cols-2 gap-x-4">
                   <div className='flex flex-col w-full'>
                     <label className='font-bold text-[20px]'>من :</label>
                     <input
@@ -612,9 +732,21 @@ const AddCommitte = () => {
                       onChange={(e) => setTo(e.target.value)}
                     />
                   </div>
-                </div>
+                </motion.div>
 
-                <div className='flex flex-col'>
+                <motion.div variants={{
+                  hidden: { y: "100vw", opacity: 0 },
+                  visible: {
+                    y: 0,
+                    opacity: 1,
+                    transition: {
+                      delay: 1.0,
+                      duration: 0.5,
+                    },
+                  },
+                }}
+                  initial="hidden"
+                  animate="visible" className='flex flex-col'>
                   <label className='font-bold text-[20px]'>مكان اللجنة :</label>
                   <select
                     className="p-3 border-2 rounded-xl border-borderColor text-gray-700 font-gesstwo font-bold text-lg"
@@ -630,9 +762,21 @@ const AddCommitte = () => {
                       )
                     }
                   </select>
-                </div>
+                </motion.div>
 
-                <div className="flex-1 grid grid-cols-2 gap-x-4">
+                <motion.div variants={{
+                  hidden: { x: "-100vw", opacity: 0 },
+                  visible: {
+                    x: 0,
+                    opacity: 1,
+                    transition: {
+                      delay: 1.0,
+                      duration: 0.5,
+                    },
+                  },
+                }}
+                  initial="hidden"
+                  animate="visible" className="flex-1 grid grid-cols-2 gap-x-4">
                   <div className='flex flex-col w-full'>
                     <label className='font-bold text-[20px]'>اسم اللجنة :</label>
                     <input
@@ -664,16 +808,40 @@ const AddCommitte = () => {
                       }
                     </select>
                   </div>
-                </div>
+                </motion.div>
 
-                <div className='flex flex-col'>
+                <motion.div variants={{
+                  hidden: { x: "100vw", opacity: 0 },
+                  visible: {
+                    x: 0,
+                    opacity: 1,
+                    transition: {
+                      delay: 1.25,
+                      duration: 0.5,
+                    },
+                  },
+                }}
+                  initial="hidden"
+                  animate="visible" className='flex flex-col'>
                   <label className='font-bold text-[20px]'>عدد الطلاب فاللجنة :</label>
                   <input value={studentNum} onChange={(e) => setStudentNum(e.target.value)} className="p-3 border-2 rounded-xl w-full  border-borderColor text-gray-700 font-gesstwo font-bold text-lg" type='text' />
-                </div>
+                </motion.div>
                 {
                   !isUpdate ?
                     <>
-                      <div className='flex flex-col w-full'>
+                      <motion.div variants={{
+                        hidden: { y: "100vw", opacity: 0 },
+                        visible: {
+                          y: 0,
+                          opacity: 1,
+                          transition: {
+                            delay: 1.25,
+                            duration: 0.5,
+                          },
+                        },
+                      }}
+                        initial="hidden"
+                        animate="visible" className='flex flex-col w-full'>
                         <label className='font-bold text-[20px]'>المراقبين :</label>
                         <select
                           className="p-3 border-2 rounded-xl border-borderColor text-gray-700 font-gesstwo font-bold text-lg"
@@ -690,9 +858,21 @@ const AddCommitte = () => {
                             )
                           }
                         </select>
-                      </div>
+                      </motion.div>
 
-                      <div className='flex flex-col w-full'>
+                      <motion.div variants={{
+                        hidden: { x: "-100vw", opacity: 0 },
+                        visible: {
+                          x: 0,
+                          opacity: 1,
+                          transition: {
+                            delay: 1.25,
+                            duration: 0.5,
+                          },
+                        },
+                      }}
+                        initial="hidden"
+                        animate="visible" className='flex flex-col w-full'>
                         <label className='font-bold text-[20px]'>الملاحظين :</label>
                         <select
                           className="p-3 border-2 rounded-xl border-borderColor text-gray-700 font-gesstwo font-bold text-lg"
@@ -708,11 +888,23 @@ const AddCommitte = () => {
                             )
                           }
                         </select>
-                      </div></> : ""
+                      </motion.div></> : ""
                 }
 
                 <div className='flex justify-between items-center lg:col-span-3'>
-                  <div className='flex flex-col '>
+                  <motion.div variants={{
+                    hidden: { x: "100vw", opacity: 0 },
+                    visible: {
+                      x: 0,
+                      opacity: 1,
+                      transition: {
+                        delay: 1.5,
+                        duration: 0.5,
+                      },
+                    },
+                  }}
+                    initial="hidden"
+                    animate="visible" className='flex flex-col '>
                     {
                       !isUpdate ?
                         <button onClick={(e) => handelSubmit(e)} className="bg-btnColor text-white rounded-lg p-2.5 w-full mt-5 px-5	">
@@ -730,7 +922,7 @@ const AddCommitte = () => {
                         </button>
                     }
 
-                  </div>
+                  </motion.div>
 
                   <div className='cols-span-2 grid-cols-2 text-start'>
                     {
@@ -743,7 +935,7 @@ const AddCommitte = () => {
                     }
                   </div>
                 </div>
-              </form>
+              </motion.form>
 
               {/* Table */}
               <div className='shadow rounded-xl mt-10 p-7 '>
@@ -757,7 +949,7 @@ const AddCommitte = () => {
                   </div>
                   <div className='w-full'>
                     <select style={{ height: '52px' }} onChange={(e) => setSearchLevel(+e.target.value)} className='w-full bg-[#e5e5e5] p-3 rounded-md'>
-                      <option value={0}>المستوى</option>
+                      <option value={0}>كل المستويات</option>
                       {
                         level.map((item: any) => <option key={item.id} value={item.id}>{item.name}</option>)
                       }
@@ -774,40 +966,40 @@ const AddCommitte = () => {
                 </div>
                 <div className='overflow-x-auto'>
                   {
-                  committe.length ?
-                    <table className='w-full border border-navColor rounded-md font-gesstwo overflow-x-auto'>
-                      <thead className='text-21 bg-stone-800 text-neutral-200 text-center rounded'>
-                        <tr>
-                          <td className='w-1/8 p-1 td-table'>المقرر</td>
-                          <td className='w-1/8 p-1 td-table' >التاريخ</td>
-                          <td className='w-1/8 p-1 td-table'>اليوم</td>
-                          <td className='w-1/8 p-1 td-table'>الفترة</td>
-                          <td className='w-1/8 p-1 td-table'>التوقيت</td>
-                          <td className='w-1/8 p-1 td-table'>المكان</td>
-                          <td className='w-1/8 p-1 td-table' >اللجنة</td>
-                          <td className='w-1/8 p-1 td-table' >اعدادات</td>
-                        </tr>
-                      </thead>
-                      <tbody className='text-18 text-center'>
-                        {
-                          committe.map((com: any, index) => (
-                            <tr key={index} className={index % 2 !== 0 ? ' bg-neutral-200' : ''}>
-                              <td className='w-1/8 p-2 td-table'>{com.subjectName}</td>
-                              <td className='w-1/8 p-2 td-table'>{com.date}</td>
-                              <td className='w-1/8 p-2 td-table'>{com.day}</td>
-                              <td className='w-1/8 p-2 td-table'>{com.interval}</td>
-                              <td className='w-1/8 p-2 td-table'>{`${com.from} - ${com.to}`}</td>
-                              <td className='w-1/8 p- td-table'>{com.place}</td>
-                              <td className='w-1/8 p-2 td-table'>{com.name}</td>
-                              <td className='w-1/8 p-2 text-center cursor-pointer flex  justify-center items-center gap-5  td-table'  ><p className='bg-green-500 text-white p-1 px-3 rounded-lg ' onClick={(e) => handelUpdate(com)}>تعديل</p><p className='bg-red-500 p-1 px-3 text-white rounded-lg' onClick={(e) => handelDelete(com.id, e)}>حذف</p></td>
-                            </tr>
-                          ))}
-                      </tbody>
-                    </table> : <p className='text-center font-bold text-[30px]'>لا يوجد بيانات لعرضها</p>
-                }
+                    committe.length ?
+                      <table className='w-full border border-navColor rounded-md font-gesstwo overflow-x-auto'>
+                        <thead className='text-21 bg-stone-800 text-neutral-200 text-center rounded'>
+                          <tr>
+                            <td className='w-1/8 p-1 td-table'>المقرر</td>
+                            <td className='w-1/8 p-1 td-table' >التاريخ</td>
+                            <td className='w-1/8 p-1 td-table'>اليوم</td>
+                            <td className='w-1/8 p-1 td-table'>الفترة</td>
+                            <td className='w-1/8 p-1 td-table'>التوقيت</td>
+                            <td className='w-1/8 p-1 td-table'>المكان</td>
+                            <td className='w-1/8 p-1 td-table' >اللجنة</td>
+                            <td className='w-1/8 p-1 td-table' >اعدادات</td>
+                          </tr>
+                        </thead>
+                        <tbody className='text-18 text-center'>
+                          {
+                            committe.map((com: any, index) => (
+                              <tr key={index} className={index % 2 !== 0 ? ' bg-neutral-200' : ''}>
+                                <td className='w-1/8 p-2 td-table'>{com.subjectName}</td>
+                                <td className='w-1/8 p-2 td-table'>{com.date}</td>
+                                <td className='w-1/8 p-2 td-table'>{com.day}</td>
+                                <td className='w-1/8 p-2 td-table'>{com.interval}</td>
+                                <td className='w-1/8 p-2 td-table'>{`${com.from} - ${com.to}`}</td>
+                                <td className='w-1/8 p- td-table'>{com.place}</td>
+                                <td className='w-1/8 p-2 td-table'>{com.name}</td>
+                                <td className='w-1/8 p-2 text-center cursor-pointer flex  justify-center items-center gap-5  td-table'  ><p className='bg-green-500 text-white p-1 px-3 rounded-lg ' onClick={(e) => handelUpdate(com)}>تعديل</p><p className='bg-red-500 p-1 px-3 text-white rounded-lg' onClick={(e) => handelDelete(com.id, e)}>حذف</p></td>
+                              </tr>
+                            ))}
+                        </tbody>
+                      </table> : <p className='text-center font-bold text-[30px]'>لا يوجد بيانات لعرضها</p>
+                  }
                 </div>
 
-                
+
               </div>
             </>
         }
