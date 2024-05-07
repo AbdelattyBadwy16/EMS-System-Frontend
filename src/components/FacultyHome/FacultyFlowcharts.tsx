@@ -72,6 +72,8 @@ const FacultyFlowcharts = () => {
             },
           },
         }}
+        initial="hidden"
+        animate="visible"
         className='w-11/12 h-80  bg-customGray rounded-2xl text-end flex sm:ml-10 justify-between my-7'>
         <div className='w-[70%]'>
           <h1 className='mt-5 font-bold text-[25px] text-end'>لجان الفرق / المستويات</h1>
@@ -125,7 +127,7 @@ const FacultyFlowcharts = () => {
         },
       }}
         initial="hidden"
-        animate="visible" className='md:w-[11/12] w-full h-80 xl:mx-24 bg-customGray rounded-2xl text-end flex justify-between '>
+        animate="visible" className='w-11/12 h-80  bg-customGray rounded-2xl text-end flex sm:ml-10 justify-between my-7'>
         <div className='w-[70%]'>
           <h1 className='mt-5 font-bold text-[25px] '>عدد اللجان المفعلة اليوم</h1>
           {
