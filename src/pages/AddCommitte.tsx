@@ -11,6 +11,7 @@ import { subjectDto } from '../helper/Api/FacultyApi';
 import { GetCommiteDate } from '../helper/Constant';
 import { GetFacultyInvigilators, GetFacultyObservers } from '../helper/Api/StaffApi';
 import { motion } from 'framer-motion'
+import { unstable_usePrompt } from 'react-router-dom';
 
 interface commiteDto {
   day: string,
@@ -33,6 +34,7 @@ interface commiteDto {
 
 
 const AddCommitte = () => {
+
   // drop down data
   const time = ["الفترة", "صباحية", "مسائية"]
   const state = ["عامة", "خاصة"]
@@ -178,7 +180,6 @@ const AddCommitte = () => {
 
   // Add Observer
   useEffect(() => {
-    console.log(inviInp);
     for (let i = 0; i < idInviInp.length; i++) {
       if (idInviInp[i] == inviInp) return;
     }
@@ -271,6 +272,8 @@ const AddCommitte = () => {
       setFrom("");
       setTo("");
       setCommName("");
+      setListInvi([]);
+      setIdInviInp([]);
       let res2;
       try {
         // Fetch Again
@@ -402,6 +405,16 @@ const AddCommitte = () => {
         setCommitte(res2);
       }
       setIsUpdate(false);
+    }
+  }
+  const ValidateDeleteAllCommite = (e: any) => {
+    if (confirm(`هل انت متاكد من انك تريد حذف كل اللجان الموجوده ؟`)) {
+      handelDeleteAll(e);
+    }
+  }
+  const ValidateDeleteCommite = (id: any, e: any) => {
+    if (confirm(`هل انت متاكد من انك تريد حذف هذة اللجنة ؟`)) {
+      handelDelete(id, e);
     }
   }
   return (
@@ -809,23 +822,25 @@ const AddCommitte = () => {
                     </select>
                   </div>
                 </motion.div>
-
-                <motion.div variants={{
-                  hidden: { x: "100vw", opacity: 0 },
-                  visible: {
-                    x: 0,
-                    opacity: 1,
-                    transition: {
-                      delay: 1.25,
-                      duration: 0.5,
+                {
+                  !isUpdate ? 
+                  <motion.div variants={{
+                    hidden: { x: "100vw", opacity: 0 },
+                    visible: {
+                      x: 0,
+                      opacity: 1,
+                      transition: {
+                        delay: 1.25,
+                        duration: 0.5,
+                      },
                     },
-                  },
-                }}
-                  initial="hidden"
-                  animate="visible" className='flex flex-col'>
-                  <label className='font-bold text-[20px]'>عدد الطلاب فاللجنة :</label>
-                  <input value={studentNum} onChange={(e) => setStudentNum(e.target.value)} className="p-3 border-2 rounded-xl w-full  border-borderColor text-gray-700 font-gesstwo font-bold text-lg" type='text' />
-                </motion.div>
+                  }}
+                    initial="hidden"
+                    animate="visible" className='flex flex-col'>
+                    <label className='font-bold text-[20px]'>عدد الطلاب فاللجنة :</label>
+                    <input value={studentNum} onChange={(e) => setStudentNum(e.target.value)} className="p-3 border-2 rounded-xl w-full  border-borderColor text-gray-700 font-gesstwo font-bold text-lg" type='text' />
+                  </motion.div> : ""
+                }
                 {
                   !isUpdate ?
                     <>
@@ -957,8 +972,8 @@ const AddCommitte = () => {
                   </div>
 
 
-                  <button onClick={(e) => handelDeleteAll(e)} className="bg-logoutBtnColor text-white rounded-lg p-2.5 w-full p-3 ">
-                    ازالة
+                  <button onClick={(e) => ValidateDeleteAllCommite(e)} className="bg-logoutBtnColor text-white rounded-lg p-2.5 w-full p-3 ">
+                    ازالة كل اللجان
                     <span className="mr-1">
                       <i className="bx bx-trash"></i>
                     </span>
@@ -991,7 +1006,7 @@ const AddCommitte = () => {
                                 <td className='w-1/8 p-2 td-table'>{`${com.from} - ${com.to}`}</td>
                                 <td className='w-1/8 p- td-table'>{com.place}</td>
                                 <td className='w-1/8 p-2 td-table'>{com.name}</td>
-                                <td className='w-1/8 p-2 text-center cursor-pointer flex  justify-center items-center gap-5  td-table'  ><p className='bg-green-500 text-white p-1 px-3 rounded-lg ' onClick={(e) => handelUpdate(com)}>تعديل</p><p className='bg-red-500 p-1 px-3 text-white rounded-lg' onClick={(e) => handelDelete(com.id, e)}>حذف</p></td>
+                                <td className='w-1/8 p-2 text-center cursor-pointer flex  justify-center items-center gap-5  td-table'  ><p className='bg-green-500 text-white p-1 px-3 rounded-lg ' onClick={(e) => handelUpdate(com)}>تعديل</p><p className='bg-red-500 p-1 px-3 text-white rounded-lg' onClick={(e) => ValidateDeleteCommite(com.id, e)}>حذف</p></td>
                               </tr>
                             ))}
                         </tbody>

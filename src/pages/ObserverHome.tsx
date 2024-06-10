@@ -22,14 +22,16 @@ const ObserverHome = () => {
     const componentRef = useRef<any>();
 
     const nav = useNavigate();
-    if (role == "FacultyAdmin") {
 
-        nav("/facultyhome")
-    }
     let newRole = "";
     if (role == "Observers") newRole = "المراقب";
     else newRole = "الملاحظ";
     useEffect(() => {
+        if (role == "FacultyAdmin") {
+            nav("/facultyhome")
+        } else if (role == "Student") {
+            nav("/studenthome")
+        }
         const fetch = async () => {
             let res2;
             try {

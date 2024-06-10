@@ -29,22 +29,23 @@ const StudentHome = () => {
     const userId = useSelector(getId);
     const dispath = useDispatch();
     const role = useSelector(getRole);
-    
+
     const nav = useNavigate();
-    if (role == "FacultyAdmin") {
-        nav("/facultyhome")
-    } else if (role != "Student") {
-        nav("/studenthome")
-    }
+
 
     useEffect(() => {
+        if (role == "FacultyAdmin") {
+            nav("/facultyhome")
+        } else if (role == "Observers" || role == "Invigilators") {
+            nav("/staffhome")
+        }
         const fetch = async () => {
             let res2;
             try {
                 setIsLoading(true);
                 const res = await GetStudentData(userId);
                 res2 = await GetStudentCommite(userId);
-         
+
                 const Data = {
                     name: res.name,
                     facultyCode: res.facultyCode,

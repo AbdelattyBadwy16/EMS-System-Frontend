@@ -21,11 +21,13 @@ const FacultyHome = () => {
   const role = useSelector(getRole);
   const [phaseLen, setPhaseLen] = useState(0);
   const nav = useNavigate();
-  if (role == "Student") {
-    
-    nav("/studenthome")
-  }
+
   useEffect(() => {
+    if (role == "Student") {
+      nav("/studenthome")
+    } else if (role == "Observers" || role == "Invigilators") {
+      nav("/staffhome")
+    }
     const fetch = async () => {
       try {
         setIsLoading(true);

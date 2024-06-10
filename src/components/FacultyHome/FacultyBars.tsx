@@ -4,26 +4,24 @@ import ReactToPrint from "react-to-print";
 import { FaPrint } from 'react-icons/fa';
 import { motion } from 'framer-motion'
 
+
 interface BarDetails {
   title: string,
   number: number,
   data: []
 }
 
-
-const FacultyBars = (Detail: BarDetails ) => {
+const FacultyBars = (Detail: BarDetails) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const componentRef = useRef<any>();
   const toggleSlide = () => {
     setIsExpanded(!isExpanded);
   };
-
-
-
   return (
     <div>
+  
       <motion.div variants={{
-        hidden: { x: `${Detail.number%2 ? "100vw" : "-100vw"}`, opacity: 0 },
+        hidden: { x: `${Detail.number % 2 ? "100vw" : "-100vw"}`, opacity: 0 },
         visible: {
           x: 0,
           opacity: 1,

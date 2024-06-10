@@ -124,7 +124,9 @@ const Navbar = () => {
                         <LinkBtn title="الرئيسية" color="white" icon="home" link={userHome} />
                       </div>
                       <div className="xl:block hidden">
-
+                      </div>
+                      <div className="">
+                        <LinkBtn title="تغيير كلمة السر" color="white" icon="" link="/changepassword" />
                       </div>
                     </> : ""
                 }
