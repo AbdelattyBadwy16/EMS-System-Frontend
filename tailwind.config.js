@@ -28,6 +28,14 @@ export default {
         iconColor: "rgba(11, 106, 14, 1)",
         borderColor:'rgba(0, 0, 0, 0.68)'
       },
+      borderRadius: {
+        '12px': '12px',
+        '6px': '6px',
+      },
+      width: {
+        '250px': '250px',
+        '520px': '520px',
+      },
     },
   },
   plugins: [],

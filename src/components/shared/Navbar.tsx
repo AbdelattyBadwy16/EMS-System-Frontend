@@ -105,10 +105,7 @@ const Navbar = () => {
               <div className="lg:grid xl:grid-cols-6 grid-cols-4 m-auto items-center xl:mr-10 mr-25 gap-1 hidden">
                 {
                   userRole[0] == "FacultyAdmin" ? 
-                  <Link
-                    to="/Login"
-                    className="text-white font-bold font-geDinkum  bg-logoutBtnColor rounded-md px-2 py-2 gap-2"
-                  >
+                  <Link to="/Login" className="text-white font-bold font-geDinkum  bg-logoutBtnColor rounded-md px-2 py-2 gap-2">
                     <i className="bx bx-log-out ml-0.5 font-bold font-geDinkum mr-2"></i>
                     تسجيل الخروج
                   </Link> : ""
