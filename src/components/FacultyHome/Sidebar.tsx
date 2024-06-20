@@ -1,23 +1,24 @@
+import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
 const Sidebar = () => {
-    
+    const location = useLocation();
 
     return (
         <div className='parent-sidebar h-full p-5 bg-gray-100 flex-col justify-between rounded-12px w-full flex items-center text-21'>
             <div className='links'>
-                <div className={`my-2 text-center active-link `}>
-                    <Link to="/collage" className="active py-2 block">
+                <div className={`my-2 text-center ${location.pathname === '/GlobalAdmin' ? 'active-link' : ''}`}>
+                    <Link to="/GlobalAdmin" className={`py-2 block ${location.pathname === '/GlobalAdmin' ? 'active' : ''}`}>
                         لوحة التحكم
                     </Link>
                 </div>
-                <div className={`my-2 text-center active-link`}>
-                    <Link to="/Colleges" className="py-2 block">
+                <div className={`my-2 text-center ${location.pathname === '/Colleges' ? 'active-link' : ''}`}>
+                    <Link to="/Colleges" className={`py-2 block ${location.pathname === '/Colleges' ? 'active' : ''}`}>
                         الكليات
                     </Link>
                 </div>
-                <div className={`my-2 text-center active-link`}>
-                    <Link to="/changepassword" className="py-2 block">
+                <div className={`my-2 text-center ${location.pathname === '/changepassword' ? 'active-link' : ''}`}>
+                    <Link to="/changepassword" className={`py-2 block ${location.pathname === '/changepassword' ? 'active' : ''}`}>
                         تغيير كلمة السر
                     </Link>
                 </div>
