@@ -19,7 +19,6 @@ const FacultyBars = (Detail: BarDetails) => {
   };
   return (
     <div>
-  
       <motion.div variants={{
         hidden: { x: `${Detail.number % 2 ? "100vw" : "-100vw"}`, opacity: 0 },
         visible: {
@@ -58,7 +57,7 @@ const FacultyBars = (Detail: BarDetails) => {
       {/*Table*/}
 
       {isExpanded && (
-        <div className="container  mx-auto px-12 grid">
+        <div className="container  mx-auto px-12 grid p-10">
           <table ref={componentRef} className='w-full border border-navColor rounded-md font-gesstwo overflow-x-auto'>
             <thead className='text-21 bg-stone-800 text-neutral-200 text-center rounded'>
               <tr>

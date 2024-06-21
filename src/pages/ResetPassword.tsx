@@ -31,7 +31,6 @@ const ResetPassword = () => {
     }
   }, [])
   const changePassword = async () => {
-    console.log(newReq);
     if ( !newPassword || !confirmPassword) {
       setErrorMessage('من فضلك لا تترك حقل فارغ');
     } else if (newPassword !== confirmPassword) {
@@ -40,11 +39,9 @@ const ResetPassword = () => {
       setErrorMessage("");
       setOldPassword("-1"); 
       setNewReq({ nid, newPassword, confirmPassword });
-      console.log(newReq);
-      const res = await ResetPasswordOTP(newReq);
-      
+      const res = await ResetPasswordOTP(newReq);      
       setErrorMessage(res.message);
-      // nav("/login");
+      //nav("/login");
     }
   };
 
@@ -69,6 +66,7 @@ const ResetPassword = () => {
           <button className='pass-btn' type="button" onClick={changePassword}>حفظ</button>
         </form>
         {errorMessage && <div className="error-message text-[18px] font-bold">{errorMessage}</div>}
+        
       </div>
     </>
   );

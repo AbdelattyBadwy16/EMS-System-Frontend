@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import Navbar from '../components/shared/Navbar';
 import './Login.css'
-import { ResetPassword, SendEmail, UserLogin } from '../helper/Api/AuthApi';
+import {  SendEmail, UserLogin } from '../helper/Api/AuthApi';
 import { useNavigate } from 'react-router';
 import { useDispatch } from 'react-redux';
 import { addData } from '../Redux/Slices/userSlice';
@@ -62,6 +62,7 @@ const Login = () => {
         ))
         Cookie.set("Refresh", res.refreshToken);
         Cookie.set("Bearer", res.token);
+        console.log(res);
         switch (res.roles[0]) {
           case "Student":
             navigate("/studenthome");
@@ -75,8 +76,8 @@ const Login = () => {
           case "FacultyAdmin":
             navigate("/facultyhome");
             break;
-          case "GlobelAdmin":
-            navigate("/studenthome");
+          case "GlobalAdmin":
+            navigate("/GlobalAdmin");
             break;
         }
 

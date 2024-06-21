@@ -25,7 +25,7 @@ const Sidebar = () => {
             </div>
             
             <div className='w-full'>
-                <Link to="" className="text-white block w-full text-center  font-geDinkum bg-red-700 rounded-md px-2 py-1 gap-2 ">
+                <Link to="/login" className="text-white block w-full text-center  font-geDinkum bg-red-700 rounded-md px-2 py-1 gap-2 ">
                     <i className="bx bx-log-out ml-0.5  font-geDinkum mr-2"></i>
                     تسجيل الخروج
                 </Link>

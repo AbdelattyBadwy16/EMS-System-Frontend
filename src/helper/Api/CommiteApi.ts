@@ -145,7 +145,6 @@ export async function SearchForCommite(facultyId = 0, levelId = 0, term: string,
 
 
 export async function UpdateCommitte(id: number, Data: commiteDto) {
-    console.log(Data);
     const Cookie = new Cookies();
     const token = Cookie.get("Bearer");
     let day = 0;
@@ -202,3 +201,96 @@ export async function UpdateCommitte(id: number, Data: commiteDto) {
 
 
 
+export async function GetAllCommitesGlobal() {
+    const Cookie = new Cookies();
+    const token = Cookie.get("Bearer");
+    const res = await fetch(`${Base_Url}/GlobalAdmin/CommitteesCount`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`
+        }
+    });
+    const data = await res.json();
+    return data;
+}
+
+
+export async function GetAllCommitesGlobalToday() {
+    const Cookie = new Cookies();
+    const token = Cookie.get("Bearer");
+    const res = await fetch(`${Base_Url}/GlobalAdmin/CommitteesTodayCount`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`
+        }
+    });
+    const data = await res.json();
+    return data;
+}
+
+
+
+export async function GetAllStudentToday() {
+    const Cookie = new Cookies();
+    const token = Cookie.get("Bearer");
+    const res = await fetch(`${Base_Url}/GlobalAdmin/StudentCountInActiveCommitteesToday`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`
+        }
+    });
+    const data = await res.json();
+    return data;
+}
+
+
+
+export async function GetMostFacultyToday() {
+    const Cookie = new Cookies();
+    const token = Cookie.get("Bearer");
+    const res = await fetch(`${Base_Url}/GlobalAdmin/FacultyWithMostActiveCommitteesToday`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`
+        }
+    });
+    const data = await res.json();
+    return data;
+}
+
+
+
+export async function GetCommiteDeltails() {
+    const Cookie = new Cookies();
+    const token = Cookie.get("Bearer");
+    const comId = Cookie.get("commiteId");
+    const res = await fetch(`${Base_Url}/Committee/CommitteeDetails?id=${comId}`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`
+        }
+    });
+    const data = await res.json();
+    return data;
+}
+
+
+export async function GetCommiteStudents() {
+    const Cookie = new Cookies();
+    const token = Cookie.get("Bearer");
+    const comId = Cookie.get("commiteId");
+    const res = await fetch(`${Base_Url}/Committee/GetCommiteStudents?comId=${comId}`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`
+        }
+    });
+    const data = await res.json();
+    return data;
+}

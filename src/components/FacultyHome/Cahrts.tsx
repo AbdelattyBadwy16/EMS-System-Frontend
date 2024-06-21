@@ -3,8 +3,8 @@ import { Bar } from 'react-chartjs-2';
 import 'chart.js/auto';
 
 interface CollegeData {
-    college: string;
-    committees: number;
+    facultyName: string;
+    committeeCount: number;
 }
 
 interface ChartsProps {
@@ -27,11 +27,11 @@ const Charts: React.FC<ChartsProps> = ({ data }) => {
     ];
 
     const chartData = {
-        labels: data.map(item => item.college),
+        labels: data.map(item => item.facultyName),
         datasets: [
             {
                 label: 'عدد اللجان',
-                data: data.map(item => item.committees),
+                data: data.map(item => item.committeeCount),
                 backgroundColor: data.map((_, index) => colors[index % colors.length]),
                 borderColor: data.map((_, index) => borderColors[index % borderColors.length]),
                 borderWidth: 1,

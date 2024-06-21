@@ -9,10 +9,12 @@ import FacultyHome from "./pages/FacultyHome"
 import ObserverHome from "./pages/ObserverHome"
 import { HelmetProvider } from "react-helmet-async"
 import AddCommitte from "./pages/AddCommitte"
-import ChangePassword from "./pages/changepassword"
 import ResetPassword from "./pages/ResetPassword"
 import GlobalAdmin from "./pages/GlobalAdmin"
 import Colleges from "./pages/Colleges"
+import ChangePassword from "./pages/Changepassword"
+import Info from "./pages/info"
+import CommiteStudents from "./pages/CommiteStudents"
 const helmetContext = {};
 
 function App() {
@@ -34,9 +36,11 @@ function App() {
                 <Route path='/staffhome' element={<ObserverHome></ObserverHome>}></Route>
                 <Route path='/addCommitte' element={<AddCommitte></AddCommitte>}></Route>
                 <Route path='/changepassword' element={<ChangePassword></ChangePassword>}></Route>
-                <Route path='/GlobalAdmin' element={<GlobalAdmin></GlobalAdmin>}></Route>
-                <Route path='/Colleges' element={<Colleges></Colleges>}></Route>
-                <Route path='/' element={<PageNotFound />} />
+                <Route path='/globaladmin' element={<GlobalAdmin></GlobalAdmin>}></Route>
+                <Route path='/colleges' element={<Colleges></Colleges>}></Route>
+                <Route path='/commite' element={<Info></Info>}></Route>
+                <Route path='/allstudents' element={<CommiteStudents></CommiteStudents>}></Route>
+                <Route path='*' element={<PageNotFound />} />
               </Route>
             </Route>
           </Route>

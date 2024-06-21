@@ -29,7 +29,6 @@ const StudentHome = () => {
     const userId = useSelector(getId);
     const dispath = useDispatch();
     const role = useSelector(getRole);
-
     const nav = useNavigate();
 
 

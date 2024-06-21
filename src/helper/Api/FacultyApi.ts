@@ -87,3 +87,34 @@ export async function GetPlaces() {
     const data = await res.json();
     return data;
 }
+
+
+export async function GetAllFacultiesName() {
+    const Cookie = new Cookies();
+    const token = Cookie.get("Bearer");
+    const res = await fetch(`${Base_Url}/GlobalAdmin/GetAllFaculties`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`
+        }
+    });
+    const data = await res.json();
+    return data;
+}
+
+
+
+export async function SearchInFacultiesNames(name :string) {
+    const Cookie = new Cookies();
+    const token = Cookie.get("Bearer");
+    const res = await fetch(`${Base_Url}/GlobalAdmin/GetFacultyByName?FacultyName=${name}`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`
+        }
+    });
+    const data = await res.json();
+    return data;
+}

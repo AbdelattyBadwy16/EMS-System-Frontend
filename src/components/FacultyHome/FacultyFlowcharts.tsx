@@ -4,6 +4,8 @@ import { GetCommitesStaticForLevels, GetCommitesStaticForLevelsForCurrentDay } f
 import { useSelector } from 'react-redux';
 import { getgetFacultyId } from '../../Redux/Slices/FacultySlice';
 import { motion } from 'framer-motion'
+import { getRole } from '../../Redux/Slices/userSlice';
+import Cookies from 'universal-cookie';
 
 
 const FacultyFlowcharts = () => {
@@ -11,9 +13,11 @@ const FacultyFlowcharts = () => {
 
   const [data, setData] = useState<any>([]);
   const [dataForDay, setDataDay] = useState<any>([]);
-  const facultyId = useSelector(getgetFacultyId);
-
-
+  let facultyId = useSelector(getgetFacultyId);
+  const Cookie = new Cookies;
+  const role = useSelector(getRole);
+  if (role == "GlobalAdmin") facultyId = Cookie.get("facultyId");
+  else facultyId = useSelector(getgetFacultyId)
   useEffect(() => {
     async function fetch() {
       let res;

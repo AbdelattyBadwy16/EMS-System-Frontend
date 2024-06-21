@@ -9,19 +9,22 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import { GetAllCommite } from "../helper/Api/CommiteApi";
 import { motion } from 'framer-motion'
+import Cookies from "universal-cookie";
 
 
 const FacultyHome = () => {
+  const Cookie = new Cookies;
   const [isLoading, setIsLoading] = useState(false);
   const [name, setName] = useState("");
   const userId = useSelector(getId);
   const dispath = useDispatch();
   const [Committes, setCommittes] = useState<any>({});
-  const facultyID = useSelector(getgetFacultyId);
+  let facultyID = useSelector(getgetFacultyId);
+
   const role = useSelector(getRole);
+
   const [phaseLen, setPhaseLen] = useState(0);
   const nav = useNavigate();
-
   useEffect(() => {
     if (role == "Student") {
       nav("/studenthome")
@@ -45,10 +48,12 @@ const FacultyHome = () => {
         setIsLoading(false);
       }
     }
-    fetch();
+    if (role != "GlobalAdmin")
+      fetch();
   }, [])
 
   useEffect(() => {
+    if (role == "GlobalAdmin") facultyID = Cookie.get("facultyId");
     const fetch = async () => {
       try {
         setIsLoading(true);
@@ -69,24 +74,29 @@ const FacultyHome = () => {
         <Helmet>
           <title>الصفحة الرئيسية</title>
         </Helmet>
-        <motion.div
-          variants={{
-            hidden: { y: "-100vw", opacity: 0 },
-            visible: {
-              y: 0,
-              opacity: 1,
-              transition: {
-                delay: 0.3,
-                duration: 0.5,
-              },
-            },
-          }}
-          initial="hidden"
-          animate="visible" className='student-information bg-neutral-200 p-5 rounded-xl w-full mt-10  list-disc list-inside text-21 font-medium text-neutral-900'>
-          <p className="font-bold text-center w-full text-[30px] ">
-            مرحبا د/ {name}
-          </p>
-        </motion.div>
+        {
+          role == "GlobalAdmin" ? "" :
+            <motion.div
+              variants={{
+                hidden: { y: "-100vw", opacity: 0 },
+                visible: {
+                  y: 0,
+                  opacity: 1,
+                  transition: {
+                    delay: 0.3,
+                    duration: 0.5,
+                  },
+                },
+              }}
+              initial="hidden"
+              animate="visible" className='student-information bg-neutral-200 p-5 rounded-xl w-full mt-10  list-disc list-inside text-21 font-medium text-neutral-900'>
+
+              <p className="font-bold text-center w-full text-[30px] ">
+                مرحبا د/ {name}
+              </p>
+
+            </motion.div>
+        }
         {/*flow cahrts */}
         <div className="shadow rounded-xl mt-10 p-7  ">
           <FacultyFlowcharts />

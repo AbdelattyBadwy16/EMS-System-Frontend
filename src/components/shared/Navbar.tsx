@@ -27,8 +27,8 @@ const Navbar = () => {
     case "FacultyAdmin":
       userHome = "/facultyhome";
       break;
-    case "GlobelAdmin":
-      userHome = "/studenthome";
+    case "GlobalAdmin":
+      userHome = "/GlobalAdmin";
       break;
   }
 
