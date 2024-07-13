@@ -2,16 +2,17 @@ import React from 'react';
 import { Bar } from 'react-chartjs-2';
 import 'chart.js/auto';
 
-interface CollegeData {
-    facultyName: string;
-    committeeCount: number;
+interface Data {
+    day: string;
+    amount: number;
 }
 
 interface ChartsProps {
-    data: CollegeData[];
+    data: Data[];
 }
 
 const Charts: React.FC<ChartsProps> = ({ data }) => {
+    if(data == undefined)return;
     const colors = [
         '#28a745', // Green
         '#dc3545', // Red
@@ -27,11 +28,11 @@ const Charts: React.FC<ChartsProps> = ({ data }) => {
     ];
 
     const chartData = {
-        labels: data.map(item => item.facultyName),
+        labels: data.map(item => item.day),
         datasets: [
             {
-                label: 'عدد اللجان',
-                data: data.map(item => item.committeeCount),
+                label: `Transaction per day`,
+                data: data.map(item => item.amount),
                 backgroundColor: data.map((_, index) => colors[index % colors.length]),
                 borderColor: data.map((_, index) => borderColors[index % borderColors.length]),
                 borderWidth: 1,
@@ -51,7 +52,7 @@ const Charts: React.FC<ChartsProps> = ({ data }) => {
     };
 
     return (
-        <div className="chart-container">
+        <div className="chart-container" style={{"margin":"auto","marginTop":"100px","width":"50%","display":"flex","justifyContent":"space-between","alignItems":"center"}}>
             <Bar data={chartData} options={options} />
         </div>
     );

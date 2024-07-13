@@ -1,88 +1,24 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
 
-
-body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
+.container{
+  width: 80%;
+  margin: auto;
+  margin-top: 100px;
 }
 
-.td-table {
-  min-width: 100px;
-
-}
-
-.tt-table {
-  min-width: 700px;
-
-}
-
-
-@media print {
-
-  @page {
-    size: auto;
-    margin: 0;
-  }
-
-  body {
-    color: black;
-  }
-
-  .no-print {
-    display: none;
-  }
-}
-
-
-.svg-admin {
-  background-color: rgb(215, 214, 214);
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  -webkit-border-radius: 50%;
-  -moz-border-radius: 50%;
-  -ms-border-radius: 50%;
-  -o-border-radius: 50%;
-  border: 2px solid rgb(208, 207, 207);
-  padding: 5px;
-  cursor: pointer;
-}
-
-.active-link {
-  transition: 0.3s;
-  -webkit-transition: 0.3s;
-  -moz-transition: 0.3s;
-  -ms-transition: 0.3s;
-  -o-transition: 0.3s;
-}
-
-.active-link:hover {
-  background-color: #dad6d6;
-  border-radius: 8px;
-  -webkit-border-radius: 8px;
-  -moz-border-radius: 8px;
-  -ms-border-radius: 8px;
-  -o-border-radius: 8px;
-  
-  
-}
-
-
-.active {
-  background-color: #dad6d6;
-    border-radius: 8px;
-    -webkit-border-radius: 8px;
-    -moz-border-radius: 8px;
-    -ms-border-radius: 8px;
-    -o-border-radius: 8px; 
-}
-
-.links {
+table{
   width: 100%;
+  text-align: center;
+
 }
 
 
+.inp{
+  display: flex;
+  margin-bottom: 30px;
+  justify-content: space-around;
+}
 
+.inp input{
+  padding: 10px;
+  border-radius: 5px;
+}
