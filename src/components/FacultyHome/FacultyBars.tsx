@@ -1,7 +1,6 @@
 import React, { useRef, useState } from 'react'
 import TableRow from './TableRow';
 import ReactToPrint from "react-to-print";
-import { FaPrint } from 'react-icons/fa';
 import { motion } from 'framer-motion'
 
 
@@ -80,7 +79,6 @@ const FacultyBars = (Detail: BarDetails) => {
             trigger={() => <div className="flex justify-end mt-5 ">
               <button className="btn-print gap-3 bg-black text-white flex items-center px-4 py-1 rounded hover:bg-gray-800 ">
                 <p>طباعة</p>
-                <FaPrint className="mr-2" />
               </button>
             </div>}
             content={() => componentRef.current}

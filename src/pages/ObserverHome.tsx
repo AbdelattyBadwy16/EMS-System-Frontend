@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { FaPrint } from 'react-icons/fa';
 import { GetStaffCommite, GetStaffData } from '../helper/Api/StaffApi';
 import { useDispatch, useSelector } from 'react-redux';
 import { getId, getRole } from '../Redux/Slices/userSlice';
@@ -127,7 +126,6 @@ const ObserverHome = () => {
                     trigger={() => <div className="flex justify-end mt-5 ">
                         <button className="btn-print gap-3 bg-black text-white flex items-center px-4 py-1 rounded hover:bg-gray-800 ">
                             <p>طباعة</p>
-                            <FaPrint className="mr-2" />
                         </button>
                     </div>}
                     content={() => componentRef.current}

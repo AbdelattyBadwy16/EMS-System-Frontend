@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 import Cookies from "universal-cookie";
 
-const Base_Url = 'https://localhost:44331/api'
+const Base_Url = 'http://localhost:44331/api'
 
 interface loginDto {
     username: string,

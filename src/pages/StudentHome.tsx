@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { FaPrint } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
 import { getId, getRole } from '../Redux/Slices/userSlice';
 import { GetStudentCommite, GetStudentData } from '../helper/Api/StudentApi';
@@ -147,7 +146,6 @@ const StudentHome = () => {
                         onClick={() => { window.print() }}
                     >
                         طباعة
-                        <FaPrint className="mr-2" />
                     </button>
                 </div>
 
